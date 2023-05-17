@@ -5,34 +5,81 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Video Compare',
+        theme: ThemeData(
+            scaffoldBackgroundColor: const Color.fromRGBO(37, 150, 190, 1)),
+        home: Scaffold(
+            appBar: AppBar(
+              title: const Text("Video Comparing App"),
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                iconSize: 48,
+                onPressed: () {
+                  // Do something
+                },
+              ),
+              actions: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.more_horiz),
+                  iconSize: 48,
+                  onPressed: () {
+                    // Do something
+                  },
+                ),
+              ],
+            ),
+            body: Column(
+              children: <Widget>[
+                Expanded(
+                    child: Container(
+                        color: const Color.fromARGB(255, 31, 111, 43),
+                        child: Column(
+                          children: [
+                            Expanded(
+                                flex: 7,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      color: Colors.red,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.5,
+                                    ),
+                                    Container(
+                                      color: Colors.black,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.5,
+                                    )
+                                  ],
+                                )),
+                            Expanded(
+                              flex: 3,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: const Text('Rotate'),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: const Text('Slow Down'),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        )))
+              ],
+            )));
   }
 }
 
