@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
+                                    //video player (maybe need to outsource controller or give it back to the main)
                                     CustomVideoPlayer(videoLink:"https://assets.mixkit.co/videos/preview/mixkit-young-man-at-the-bowling-center-makes-a-shot-49114-large.mp4 ", autoPlay: true),
                                     CustomVideoPlayer(videoLink:"https://assets.mixkit.co/videos/preview/mixkit-young-woman-missing-a-bowling-shot-49115-large.mp4", autoPlay: true),
                                           ],
