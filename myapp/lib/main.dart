@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'widgets/controllButton.dart';
+import 'package:flutter/material.dart';
+import 'widgets/AddButton.dart';
+import 'widgets/CustomVideoPlayer.dart';
+import 'package:video_player/video_player.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -7,10 +13,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
+
         title: 'Video Compare',
         theme: ThemeData(
             scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
@@ -40,7 +49,7 @@ class MyApp extends StatelessWidget {
                 Expanded(
                     child: Container(
                         color: const Color.fromARGB(255, 31, 111, 43),
-                        child: Column(
+                        child: const Column(
                           children: [
                             Expanded(
                                 flex: 7,
@@ -48,113 +57,12 @@ class MyApp extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Container(
-                                        decoration: const BoxDecoration(
-                                          color: Colors.black,
-                                          border: Border(
-                                            right: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
-                                            bottom: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
-                                            top: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
-                                          ),
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.5,
-                                        child: Stack(
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: Colors.lightGreen,
-                                                  border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 5,
-                                                  ),
-                                                ),
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.25,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.25,
-                                                child: IconButton(
-                                                  icon: const Icon(Icons.add),
-                                                  iconSize: 48,
-                                                  onPressed: () => {
-                                                    // Do Something
-                                                  },
-                                                ),
-                                              ),
-                                            ),
+                                    CustomVideoPlayer(videoLink:"https://assets.mixkit.co/videos/preview/mixkit-young-man-at-the-bowling-center-makes-a-shot-49114-large.mp4 ", autoPlay: true),
+                                    CustomVideoPlayer(videoLink:"https://assets.mixkit.co/videos/preview/mixkit-young-woman-missing-a-bowling-shot-49115-large.mp4", autoPlay: true),
                                           ],
-                                        )),
-                                    Container(
-                                        decoration: const BoxDecoration(
-                                          color: Colors.black,
-                                          border: Border(
-                                            left: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
-                                            bottom: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
-                                            top: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
-                                          ),
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.5,
-                                        child: Stack(
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: Colors.lightGreen,
-                                                  border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 5,
-                                                  ),
-                                                ),
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.25,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.25,
-                                                child: IconButton(
-                                                  icon: const Icon(Icons.add),
-                                                  iconSize: 48,
-                                                  onPressed: () => {
-                                                    // Do Something
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ))
-                                  ],
                                 )),
-                            const Expanded(
+                            Expanded(
+                              
                                 // the const can be removed later on
                                 flex: 2,
                                 child: Row(
@@ -168,20 +76,8 @@ class MyApp extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  SizedBox(
-                                      width: 150,
-                                      height: 48,
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        child: const Text('Slow Down'),
-                                      )),
-                                  SizedBox(
-                                      width: 150,
-                                      height: 48,
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        child: const Text('Rotate'),
-                                      ))
+                                  controllButton(text: 'Slow Down'),
+                                  controllButton(text: 'Rotate'),
                                 ],
                               ),
                             )
