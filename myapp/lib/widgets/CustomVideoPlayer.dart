@@ -1,15 +1,13 @@
-import 'dart:html';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-
 
 class CustomVideoPlayer extends StatefulWidget {
   final String videoLink;
   final bool autoPlay;
 
-  const CustomVideoPlayer({Key? key, required this.videoLink, this.autoPlay = false}) : super(key: key);
+  const CustomVideoPlayer(
+      {Key? key, required this.videoLink, this.autoPlay = false})
+      : super(key: key);
 
   @override
   _CustomVideoPlayerState createState() => _CustomVideoPlayerState();
@@ -31,7 +29,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
       }
     });
     _controller.setLooping(true);
-    _controller.setVolume(1.0);
+    _controller.setVolume(0);
     _controller.initialize().then((_) {
       if (widget.autoPlay) {
         setState(() {
@@ -55,6 +53,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 700,
       decoration: const BoxDecoration(
         color: Colors.black,
         border: Border(
