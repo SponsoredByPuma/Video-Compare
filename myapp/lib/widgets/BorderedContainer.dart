@@ -8,10 +8,15 @@ class BorderedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 700,
       decoration: const BoxDecoration(
         color: Colors.black,
         border: Border(
           left: BorderSide(
+            color: Colors.white,
+            width: 2,
+          ),
+          right: BorderSide(
             color: Colors.white,
             width: 2,
           ),
@@ -26,7 +31,9 @@ class BorderedContainer extends StatelessWidget {
         ),
       ),
       width: MediaQuery.of(context).size.width * 0.5,
-      child: child,
+      child: Stack(
+        children: [Align(alignment: Alignment.center, child: child)],
+      ),
     );
   }
 }
