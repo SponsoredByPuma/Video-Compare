@@ -1,8 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class CustomVideoPlayer extends StatefulWidget {
-  final String videoLink;
+  final File videoLink;
   final bool autoPlay;
 
   const CustomVideoPlayer(
@@ -20,7 +22,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(widget.videoLink);
+    _controller = VideoPlayerController.file(widget.videoLink);
     _controller.addListener(() {
       if (!_controller.value.isPlaying) {
         setState(() {
@@ -28,7 +30,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
         });
       }
     });
-    _controller.setLooping(true);
+    _controller.setLooping(false);
     _controller.setVolume(0);
     _controller.initialize().then((_) {
       if (widget.autoPlay) {
@@ -37,7 +39,9 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
         });
         _controller.play();
       } else {
-        setState(() {});
+        setState(() {
+          _isPlaying = false;
+        });
       }
     }).catchError((error) {
       print('Error initializing video player: $error');
