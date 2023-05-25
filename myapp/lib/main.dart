@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'widgets/AddButton.dart';
 import 'widgets/CustomVideoPlayer.dart';
 import 'package:video_player/video_player.dart';
+import 'widgets/VideoChooser.dart';
+import 'widgets/PlayButton.dart';
 
 void main() {
   runApp(MyHomePage(
@@ -15,25 +17,24 @@ void main() {
 }
 
 class MyHomePage extends StatefulWidget {
-  final File firstVideo;
-  final File secondVideo;
   final int numberOfVideos;
 
-  const MyHomePage(
-      {super.key,
-      required this.firstVideo,
-      required this.numberOfVideos,
-      required this.secondVideo});
+  const MyHomePage({Key? key, required this.numberOfVideos, required File firstVideo, required File secondVideo}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //bool videosHorizontal = false;
-  //bool slowedDown = false;
-  bool bothVideosPicked = false;
-  bool showSettings = false;
+  VideoPlayerController? _firstVideoController;
+  VideoPlayerController? _secondVideoController;
+
+  @override
+  void dispose() {
+    _firstVideoController?.dispose();
+    _secondVideoController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
               iconSize: 48,
               onPressed: () {
                 // Do something
-                showSettings = !showSettings;
               },
             ),
           ],
@@ -77,12 +77,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 //video player (maybe need to outsource controller or give it back to the main)
-                                CustomVideoPlayer(
-                                    videoLink: widget.firstVideo,
-                                    autoPlay: false),
-                                CustomVideoPlayer(
-                                    videoLink: widget.secondVideo,
-                                    autoPlay: false),
+                                if (_firstVideoController != null)
+                                  AspectRatio(
+                                    aspectRatio:
+                                        _firstVideoController!.value.aspectRatio,
+                                    child: VideoPlayer(_firstVideoController!),
+                                  ),
+                                if (_secondVideoController != null)
+                                  AspectRatio(
+                                    aspectRatio: _secondVideoController!.value.aspectRatio,
+                                    child: VideoPlayer(_secondVideoController!),
+                                  ),
                               ],
                             )
                           : widget.numberOfVideos == 1
@@ -90,14 +95,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    CustomVideoPlayer(
-                                        videoLink: widget.firstVideo,
-                                        autoPlay: false),
+                                    if (_firstVideoController != null)
+                                      AspectRatio(
+                                        aspectRatio: _firstVideoController!.value.aspectRatio,
+                                        child: VideoPlayer(_firstVideoController!),
+                                      ),
                                     BorderedContainer(
-                                      child: AddButton(
-                                        numberOfVideos: widget.numberOfVideos,
-                                        firstVideo: widget.firstVideo,
-                                        secondVideo: widget.secondVideo,
+                                      child: VideoChooserButton(
+                                        onVideoSelected: (controller) {
+                                          setState(() {
+                                            _firstVideoController = controller;
+                                          });
+                                        },
                                       ),
                                     ),
                                   ],
@@ -107,24 +116,27 @@ class _MyHomePageState extends State<MyHomePage> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     BorderedContainer(
-                                      child: AddButton(
-                                        numberOfVideos: widget.numberOfVideos,
-                                        firstVideo: widget.firstVideo,
-                                        secondVideo: widget.secondVideo,
+                                      child: VideoChooserButton(
+                                        onVideoSelected: (controller) {
+                                          setState(() {
+                                            _firstVideoController = controller;
+                                          });
+                                        },
                                       ),
                                     ),
                                     BorderedContainer(
-                                      child: AddButton(
-                                        numberOfVideos: widget.numberOfVideos,
-                                        firstVideo: widget.firstVideo,
-                                        secondVideo: widget.secondVideo,
+                                      child: VideoChooserButton(
+                                        onVideoSelected: (controller) {
+                                          setState(() {
+                                            _secondVideoController = controller;
+                                          });
+                                        },
                                       ),
                                     ),
                                   ],
                                 ),
                     ),
                     const Expanded(
-
                         // the const can be removed later on
                         flex: 2,
                         child: Row(
@@ -132,12 +144,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             // Here should be the video trimmer bar !
                           ],
                         )),
-                    const Expanded(
+                    Expanded(
                       flex: 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           SpeedButton(),
+                          PlayButton(
+                            firstVideoController: _firstVideoController,
+                            secondVideoController: _secondVideoController,
+                          ),                      
                           RotateButton(),
                         ],
                       ),
