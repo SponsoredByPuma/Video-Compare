@@ -7,9 +7,14 @@ import 'package:file_picker/file_picker.dart';
 class VideoChooserButton extends StatefulWidget {
   final Function(VideoPlayerController) onVideoSelected;
   VideoPlayerController? controller;
+  File? video;
 
-  VideoChooserButton({Key? key, required this.onVideoSelected, this.controller})
-      : super(key: key);
+  VideoChooserButton({
+    Key? key,
+    required this.onVideoSelected,
+    this.controller,
+    this.video,
+  }) : super(key: key);
 
   @override
   _VideoChooserButtonState createState() => _VideoChooserButtonState();
@@ -31,6 +36,7 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
       await controllerTmp.initialize();
       setState(() {
         widget.controller = controllerTmp;
+        widget.video = videoFile;
       });
       widget.onVideoSelected(controllerTmp);
     }

@@ -5,6 +5,7 @@ import 'package:myapp/widgets/BorderedContainer.dart';
 import 'package:myapp/widgets/RotateButton.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
 import 'package:flutter/material.dart';
+import 'package:video_trimmer/video_trimmer.dart';
 import 'widgets/CustomVideoPlayer.dart';
 import 'package:video_player/video_player.dart';
 import 'widgets/VideoChooser.dart';
@@ -25,6 +26,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   VideoPlayerController? _firstVideoController;
   VideoPlayerController? _secondVideoController;
+  File? firstVideo;
+  File? secondVideo;
+  final Trimmer trimmerFirstVideo = Trimmer();
+  final Trimmer trimmerSecondVideo = Trimmer();
+  double startValueFirstVideo = 0.0;
+  double endValueFirstVideo = 0.0;
+  bool isPlayingFirstVideo = false;
   bool vertical = true;
 
   @override
@@ -69,72 +77,95 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     Expanded(
-                        flex: 7,
-                        child: vertical
-                            ? Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  BorderedContainer(
-                                    vertical: vertical,
-                                    child: VideoChooserButton(
-                                      controller: _firstVideoController,
-                                      onVideoSelected: (controller) {
-                                        setState(() {
-                                          _firstVideoController = controller;
-                                        });
-                                      },
-                                    ),
+                      flex: 7,
+                      child: vertical
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                BorderedContainer(
+                                  vertical: vertical,
+                                  child: VideoChooserButton(
+                                    controller: _firstVideoController,
+                                    video: firstVideo,
+                                    onVideoSelected: (controller) {
+                                      setState(() {
+                                        _firstVideoController = controller;
+                                        trimmerFirstVideo.loadVideo(
+                                            videoFile: firstVideo!);
+                                      });
+                                    },
                                   ),
-                                  BorderedContainer(
-                                    vertical: vertical,
-                                    child: VideoChooserButton(
-                                      controller: _secondVideoController,
-                                      onVideoSelected: (controller) {
-                                        setState(() {
-                                          _secondVideoController = controller;
-                                        });
-                                      },
-                                    ),
+                                ),
+                                BorderedContainer(
+                                  vertical: vertical,
+                                  child: VideoChooserButton(
+                                    controller: _secondVideoController,
+                                    video: secondVideo,
+                                    onVideoSelected: (controller) {
+                                      setState(() {
+                                        _secondVideoController = controller;
+                                      });
+                                    },
                                   ),
-                                ],
-                              )
-                            : Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  BorderedContainer(
-                                    vertical: vertical,
-                                    child: VideoChooserButton(
-                                      controller: _firstVideoController,
-                                      onVideoSelected: (controller) {
-                                        setState(() {
-                                          _firstVideoController = controller;
-                                        });
-                                      },
-                                    ),
+                                ),
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                BorderedContainer(
+                                  vertical: vertical,
+                                  child: VideoChooserButton(
+                                    controller: _firstVideoController,
+                                    video: firstVideo,
+                                    onVideoSelected: (controller) {
+                                      setState(() {
+                                        _firstVideoController = controller;
+                                        trimmerFirstVideo.loadVideo(
+                                            videoFile: firstVideo!);
+                                      });
+                                    },
                                   ),
-                                  BorderedContainer(
-                                    vertical: vertical,
-                                    child: VideoChooserButton(
-                                      controller: _secondVideoController,
-                                      onVideoSelected: (controller) {
-                                        setState(() {
-                                          _secondVideoController = controller;
-                                        });
-                                      },
-                                    ),
+                                ),
+                                BorderedContainer(
+                                  vertical: vertical,
+                                  child: VideoChooserButton(
+                                    controller: _secondVideoController,
+                                    video: secondVideo,
+                                    onVideoSelected: (controller) {
+                                      setState(() {
+                                        _secondVideoController = controller;
+                                      });
+                                    },
                                   ),
-                                ],
-                              )),
-                    const Expanded(
-                        // the const can be removed later on
-                        flex: 2,
-                        child: Row(
-                          children: [
-                            // Here should be the video trimmer bar !
-                          ],
-                        )),
+                                ),
+                              ],
+                            ),
+                    ),
+                    Expanded(
+                      // the const can be removed later on
+                      flex: 2,
+                      // Here should be the video trimmer bar !
+                      /*
+                        ElevatedButton(
+                          child: const Text("Test"),
+                          onPressed: () => {},
+                        ),
+                       */
+                      child: Center(
+                        child: TrimViewer(
+                          trimmer: trimmerFirstVideo,
+                          viewerHeight: 50.0,
+                          viewerWidth: MediaQuery.of(context).size.width,
+                          maxVideoLength: const Duration(seconds: 10),
+                          onChangeStart: (value) =>
+                              startValueFirstVideo = value,
+                          onChangeEnd: (value) => endValueFirstVideo = value,
+                          onChangePlaybackState: (value) =>
+                              setState(() => isPlayingFirstVideo = value),
+                        ),
+                      ),
+                    ),
                     Expanded(
                       flex: 2,
                       child: Row(
