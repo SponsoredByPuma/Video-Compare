@@ -49,7 +49,7 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
       child: _controller != null
           ? SizedBox(
               height: 700,
-              width: MediaQuery.of(context).size.width / 2,
+              width: 800,
               child: VideoPlayer(_controller!),
             )
           : Container(
