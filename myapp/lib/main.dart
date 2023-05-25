@@ -78,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   BorderedContainer(
                                     vertical: vertical,
                                     child: VideoChooserButton(
+                                      controller: _firstVideoController,
                                       onVideoSelected: (controller) {
                                         setState(() {
                                           _firstVideoController = controller;
@@ -88,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   BorderedContainer(
                                     vertical: vertical,
                                     child: VideoChooserButton(
+                                      controller: _secondVideoController,
                                       onVideoSelected: (controller) {
                                         setState(() {
                                           _secondVideoController = controller;
@@ -104,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   BorderedContainer(
                                     vertical: vertical,
                                     child: VideoChooserButton(
+                                      controller: _firstVideoController,
                                       onVideoSelected: (controller) {
                                         setState(() {
                                           _firstVideoController = controller;
@@ -114,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   BorderedContainer(
                                     vertical: vertical,
                                     child: VideoChooserButton(
+                                      controller: _secondVideoController,
                                       onVideoSelected: (controller) {
                                         setState(() {
                                           _secondVideoController = controller;

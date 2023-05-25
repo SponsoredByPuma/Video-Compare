@@ -6,8 +6,9 @@ import 'package:file_picker/file_picker.dart';
 
 class VideoChooserButton extends StatefulWidget {
   final Function(VideoPlayerController) onVideoSelected;
+  VideoPlayerController? controller;
 
-  const VideoChooserButton({Key? key, required this.onVideoSelected})
+  VideoChooserButton({Key? key, required this.onVideoSelected, this.controller})
       : super(key: key);
 
   @override
@@ -15,8 +16,6 @@ class VideoChooserButton extends StatefulWidget {
 }
 
 class _VideoChooserButtonState extends State<VideoChooserButton> {
-  VideoPlayerController? _controller;
-
   Future<void> _pickVideo() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.video,
@@ -25,32 +24,26 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
 
     if (result != null) {
       final videoFile = File(result.files.single.path!);
-      final controller = VideoPlayerController.file(
+      final controllerTmp = VideoPlayerController.file(
         videoFile,
         videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
       );
-      await controller.initialize();
+      await controllerTmp.initialize();
       setState(() {
-        _controller = controller;
+        widget.controller = controllerTmp;
       });
-      widget.onVideoSelected(controller);
+      widget.onVideoSelected(controllerTmp);
     }
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: _controller != null
+      child: widget.controller != null
           ? SizedBox(
               height: 700,
               width: 800,
-              child: VideoPlayer(_controller!),
+              child: VideoPlayer(widget.controller!),
             )
           : Container(
               decoration: BoxDecoration(
