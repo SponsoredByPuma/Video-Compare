@@ -14,10 +14,9 @@ void main() {
   runApp(const MyHomePage());
 }
 
+// horizontal vertikal
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    Key? key,
-  }) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -26,6 +25,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   VideoPlayerController? _firstVideoController;
   VideoPlayerController? _secondVideoController;
+  bool vertical = true;
 
   @override
   void dispose() {
@@ -69,31 +69,60 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     Expanded(
-                      flex: 7,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          BorderedContainer(
-                            child: VideoChooserButton(
-                              onVideoSelected: (controller) {
-                                setState(() {
-                                  _firstVideoController = controller;
-                                });
-                              },
-                            ),
-                          ),
-                          BorderedContainer(
-                            child: VideoChooserButton(
-                              onVideoSelected: (controller) {
-                                setState(() {
-                                  _secondVideoController = controller;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        flex: 7,
+                        child: vertical
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  BorderedContainer(
+                                    vertical: vertical,
+                                    child: VideoChooserButton(
+                                      onVideoSelected: (controller) {
+                                        setState(() {
+                                          _firstVideoController = controller;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  BorderedContainer(
+                                    vertical: vertical,
+                                    child: VideoChooserButton(
+                                      onVideoSelected: (controller) {
+                                        setState(() {
+                                          _secondVideoController = controller;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  BorderedContainer(
+                                    vertical: vertical,
+                                    child: VideoChooserButton(
+                                      onVideoSelected: (controller) {
+                                        setState(() {
+                                          _firstVideoController = controller;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  BorderedContainer(
+                                    vertical: vertical,
+                                    child: VideoChooserButton(
+                                      onVideoSelected: (controller) {
+                                        setState(() {
+                                          _secondVideoController = controller;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )),
                     const Expanded(
                         // the const can be removed later on
                         flex: 2,
@@ -115,7 +144,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             firstVideoController: _firstVideoController,
                             secondVideoController: _secondVideoController,
                           ),
-                          const RotateButton(),
+                          RotateButton(buttonPressed: () {
+                            setState(() {
+                              vertical = !vertical;
+                            });
+                          }),
                         ],
                       ),
                     )

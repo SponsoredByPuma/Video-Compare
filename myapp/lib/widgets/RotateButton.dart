@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/main.dart';
 
 class RotateButton extends StatefulWidget {
-  const RotateButton({Key? key}) : super(key: key);
+  final VoidCallback buttonPressed;
+  const RotateButton({
+    Key? key,
+    required this.buttonPressed,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _RotateButtonState();
 }
 
 class _RotateButtonState extends State<RotateButton> {
-  bool horizontal = false;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 150,
       height: 48,
       child: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            horizontal = !horizontal;
-          });
-        },
+        onPressed: widget.buttonPressed,
         child: const Text("Rotate"),
       ),
     );
