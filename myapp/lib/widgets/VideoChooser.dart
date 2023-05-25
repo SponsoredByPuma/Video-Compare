@@ -46,19 +46,11 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
 
   @override
   Widget build(BuildContext context) {
-    return /*ElevatedButton(
-      onPressed: _pickVideo,
+    return Container(
       child: _controller != null
-          ? AspectRatio(
-              aspectRatio: _controller!.value.aspectRatio,
-              child: VideoPlayer(_controller!),
-            )
-          : const Text('Choose a video'),
-    );*/
-        Container(
-      child: _controller != null
-          ? AspectRatio(
-              aspectRatio: _controller!.value.aspectRatio,
+          ? SizedBox(
+              height: 700,
+              width: MediaQuery.of(context).size.width / 2,
               child: VideoPlayer(_controller!),
             )
           : Container(
