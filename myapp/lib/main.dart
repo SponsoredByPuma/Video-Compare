@@ -5,21 +5,19 @@ import 'package:myapp/widgets/BorderedContainer.dart';
 import 'package:myapp/widgets/RotateButton.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
 import 'package:flutter/material.dart';
-import 'widgets/AddButton.dart';
 import 'widgets/CustomVideoPlayer.dart';
 import 'package:video_player/video_player.dart';
 import 'widgets/VideoChooser.dart';
 import 'widgets/PlayButton.dart';
 
 void main() {
-  runApp(MyHomePage(
-      firstVideo: File(""), numberOfVideos: 0, secondVideo: File("")));
+  runApp(const MyHomePage());
 }
 
 class MyHomePage extends StatefulWidget {
-  final int numberOfVideos;
-
-  const MyHomePage({Key? key, required this.numberOfVideos, required File firstVideo, required File secondVideo}) : super(key: key);
+  const MyHomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -72,69 +70,29 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Expanded(
                       flex: 7,
-                      child: widget.numberOfVideos == 2
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                //video player (maybe need to outsource controller or give it back to the main)
-                                if (_firstVideoController != null)
-                                  AspectRatio(
-                                    aspectRatio:
-                                        _firstVideoController!.value.aspectRatio,
-                                    child: VideoPlayer(_firstVideoController!),
-                                  ),
-                                if (_secondVideoController != null)
-                                  AspectRatio(
-                                    aspectRatio: _secondVideoController!.value.aspectRatio,
-                                    child: VideoPlayer(_secondVideoController!),
-                                  ),
-                              ],
-                            )
-                          : widget.numberOfVideos == 1
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    if (_firstVideoController != null)
-                                      AspectRatio(
-                                        aspectRatio: _firstVideoController!.value.aspectRatio,
-                                        child: VideoPlayer(_firstVideoController!),
-                                      ),
-                                    BorderedContainer(
-                                      child: VideoChooserButton(
-                                        onVideoSelected: (controller) {
-                                          setState(() {
-                                            _firstVideoController = controller;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    BorderedContainer(
-                                      child: VideoChooserButton(
-                                        onVideoSelected: (controller) {
-                                          setState(() {
-                                            _firstVideoController = controller;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                    BorderedContainer(
-                                      child: VideoChooserButton(
-                                        onVideoSelected: (controller) {
-                                          setState(() {
-                                            _secondVideoController = controller;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          BorderedContainer(
+                            child: VideoChooserButton(
+                              onVideoSelected: (controller) {
+                                setState(() {
+                                  _firstVideoController = controller;
+                                });
+                              },
+                            ),
+                          ),
+                          BorderedContainer(
+                            child: VideoChooserButton(
+                              onVideoSelected: (controller) {
+                                setState(() {
+                                  _secondVideoController = controller;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const Expanded(
                         // the const can be removed later on
@@ -149,14 +107,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          SpeedButton(                           
+                          SpeedButton(
                             firstVideoController: _firstVideoController,
-                            secondVideoController: _secondVideoController,),
+                            secondVideoController: _secondVideoController,
+                          ),
                           PlayButton(
                             firstVideoController: _firstVideoController,
                             secondVideoController: _secondVideoController,
-                          ),                      
-                          RotateButton(),
+                          ),
+                          const RotateButton(),
                         ],
                       ),
                     )
