@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:myapp/widgets/AddButton.dart';
 import 'package:video_player/video_player.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -25,13 +26,15 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
 
     if (result != null) {
       final videoFile = File(result.files.single.path!);
-      final controller = VideoPlayerController.file(videoFile, videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true));
+      final controller = VideoPlayerController.file(
+        videoFile,
+        videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+      );
       await controller.initialize();
       setState(() {
         _controller = controller;
       });
       widget.onVideoSelected(controller);
-
     }
   }
 
@@ -43,7 +46,7 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return /*ElevatedButton(
       onPressed: _pickVideo,
       child: _controller != null
           ? AspectRatio(
@@ -51,6 +54,27 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
               child: VideoPlayer(_controller!),
             )
           : const Text('Choose a video'),
+    );*/
+        Container(
+      child: _controller != null
+          ? AspectRatio(
+              aspectRatio: _controller!.value.aspectRatio,
+              child: VideoPlayer(_controller!),
+            )
+          : Container(
+              decoration: BoxDecoration(
+                color: Colors.lightGreen,
+                border: Border.all(
+                  color: Colors.white,
+                  width: 5,
+                ),
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.add),
+                iconSize: 48,
+                onPressed: _pickVideo,
+              ),
+            ),
     );
   }
 }
