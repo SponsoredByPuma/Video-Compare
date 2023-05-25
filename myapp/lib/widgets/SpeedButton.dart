@@ -1,33 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
+import 'package:flutter/material.dart';
 
 class SpeedButton extends StatefulWidget {
-  const SpeedButton({Key? key}) : super(key: key);
+  final VideoPlayerController? firstVideoController;
+  final VideoPlayerController? secondVideoController;
+
+  const SpeedButton({
+    Key? key,
+    required this.firstVideoController,
+    required this.secondVideoController,
+  }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _SpeedButtonState();
+  _SpeedButtonState createState() => _SpeedButtonState();
 }
 
 class _SpeedButtonState extends State<SpeedButton> {
-  String text = "Slow Down";
-  bool slowed = false;
+  bool _isSlowMotion = false;
+
+  void _toggleSpeed() {
+    setState(() {
+      _isSlowMotion = !_isSlowMotion;
+      if (_isSlowMotion) {
+        widget.firstVideoController?.setPlaybackSpeed(0.5);
+        widget.secondVideoController?.setPlaybackSpeed(0.5);
+      } else {
+        widget.firstVideoController?.setPlaybackSpeed(1.0);
+        widget.secondVideoController?.setPlaybackSpeed(1.0);
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 150,
       height: 48,
-      child: ElevatedButton(
+      child: MaterialButton(
         onPressed: () {
-          setState(() {
-            slowed = !slowed;
-            if (text == "Slow Down") {
-              text = "Speed Up";
-            } else {
-              text = "Slow Down";
-            }
-          });
+          _toggleSpeed();
         },
-        child: Text(text),
+        color: Colors.blue,
+        textColor: Colors.white,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              _isSlowMotion ? Icons.slow_motion_video : Icons.speed,
+              size: 24,
+            ),
+            SizedBox(width: 8.0),
+            Text(
+              _isSlowMotion ? 'Slow Motion' : 'Normal Speed',
+              style: TextStyle(fontSize: 13),
+            ),
+          ],
+        ),
       ),
     );
   }

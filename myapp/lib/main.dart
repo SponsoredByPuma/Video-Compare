@@ -149,7 +149,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          SpeedButton(),
+                          SpeedButton(                           
+                            firstVideoController: _firstVideoController,
+                            secondVideoController: _secondVideoController,),
                           PlayButton(
                             firstVideoController: _firstVideoController,
                             secondVideoController: _secondVideoController,
