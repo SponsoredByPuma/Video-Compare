@@ -1,9 +1,7 @@
-import 'dart:io';
 import 'package:myapp/widgets/PlayButton.dart';
 import 'package:myapp/widgets/RotateButton.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
 import 'package:myapp/widgets/VideoChooser.dart';
-import 'package:video_player/video_player.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,50 +12,46 @@ import 'package:myapp/widgets/VerticalContainer.dart';
 
 class HomeView extends ConsumerWidget {
   HomeView({Key? key}) : super(key: key);
-  VideoPlayerController? _firstVideoController;
-  VideoPlayerController? _secondVideoController;
-  File? firstVideo;
-  File? secondVideo;
-
-  Widget get horizontalConainer => HorizontalContainer(
-        leftVideoController: VideoChooserButton(
-          controller: _firstVideoController,
-          video: firstVideo,
-          onVideoSelected: (newController) {
-            _firstVideoController = newController;
-          },
-        ),
-        rightVideoController: VideoChooserButton(
-          controller: _secondVideoController,
-          video: secondVideo,
-          onVideoSelected: (newController) {
-            _secondVideoController = newController;
-          },
-        ),
-      );
-
-  Widget get verticalContainer => VerticalContainer(
-        leftVideoController: VideoChooserButton(
-          controller: _firstVideoController,
-          video: firstVideo,
-          onVideoSelected: (newController) {
-            _firstVideoController = newController;
-          },
-        ),
-        rightVideoController: VideoChooserButton(
-          controller: _secondVideoController,
-          video: secondVideo,
-          onVideoSelected: (newController) {
-            _secondVideoController = newController;
-          },
-        ),
-      );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final HomeController controller =
         ref.read(providers.homeControllerProvider.notifier);
     final HomeModel model = ref.watch(providers.homeControllerProvider);
+
+    Widget horizontalConainer = HorizontalContainer(
+      leftVideoController: VideoChooserButton(
+        controller: model.firstVideoController,
+        video: model.firstVideo,
+        onVideoSelected: (newController) {
+          controller.setFirstController(newController);
+        },
+      ),
+      rightVideoController: VideoChooserButton(
+        controller: model.secondVideoController,
+        video: model.secondVideo,
+        onVideoSelected: (newController) {
+          controller.setSecondController(newController);
+        },
+      ),
+    );
+
+    Widget verticalContainer = VerticalContainer(
+      leftVideoController: VideoChooserButton(
+        controller: model.firstVideoController,
+        video: model.firstVideo,
+        onVideoSelected: (newController) {
+          controller.setFirstController(newController);
+        },
+      ),
+      rightVideoController: VideoChooserButton(
+        controller: model.secondVideoController,
+        video: model.secondVideo,
+        onVideoSelected: (newController) {
+          controller.setSecondController(newController);
+        },
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -104,12 +98,12 @@ class HomeView extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         SpeedButton(
-                          firstVideoController: _firstVideoController,
-                          secondVideoController: _secondVideoController,
+                          firstVideoController: model.firstVideoController,
+                          secondVideoController: model.secondVideoController,
                         ),
                         PlayButton(
-                          firstVideoController: _firstVideoController,
-                          secondVideoController: _secondVideoController,
+                          firstVideoController: model.firstVideoController,
+                          secondVideoController: model.secondVideoController,
                         ),
                         RotateButton(
                             buttonPressed: () => {controller.rotate()}),
@@ -130,4 +124,8 @@ abstract class HomeController extends StateNotifier<HomeModel> {
   HomeController(HomeModel state) : super(state);
 
   void rotate();
+
+  void setFirstController(controller);
+
+  void setSecondController(controller);
 }

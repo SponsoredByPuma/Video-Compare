@@ -17,6 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeModel {
   bool get vertical => throw _privateConstructorUsedError;
+  VideoPlayerController? get firstVideoController =>
+      throw _privateConstructorUsedError;
+  VideoPlayerController? get secondVideoController =>
+      throw _privateConstructorUsedError;
+  File? get firstVideo => throw _privateConstructorUsedError;
+  File? get secondVideo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeModelCopyWith<HomeModel> get copyWith =>
@@ -28,7 +34,12 @@ abstract class $HomeModelCopyWith<$Res> {
   factory $HomeModelCopyWith(HomeModel value, $Res Function(HomeModel) then) =
       _$HomeModelCopyWithImpl<$Res, HomeModel>;
   @useResult
-  $Res call({bool vertical});
+  $Res call(
+      {bool vertical,
+      VideoPlayerController? firstVideoController,
+      VideoPlayerController? secondVideoController,
+      File? firstVideo,
+      File? secondVideo});
 }
 
 /// @nodoc
@@ -45,12 +56,32 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
   @override
   $Res call({
     Object? vertical = null,
+    Object? firstVideoController = freezed,
+    Object? secondVideoController = freezed,
+    Object? firstVideo = freezed,
+    Object? secondVideo = freezed,
   }) {
     return _then(_value.copyWith(
       vertical: null == vertical
           ? _value.vertical
           : vertical // ignore: cast_nullable_to_non_nullable
               as bool,
+      firstVideoController: freezed == firstVideoController
+          ? _value.firstVideoController
+          : firstVideoController // ignore: cast_nullable_to_non_nullable
+              as VideoPlayerController?,
+      secondVideoController: freezed == secondVideoController
+          ? _value.secondVideoController
+          : secondVideoController // ignore: cast_nullable_to_non_nullable
+              as VideoPlayerController?,
+      firstVideo: freezed == firstVideo
+          ? _value.firstVideo
+          : firstVideo // ignore: cast_nullable_to_non_nullable
+              as File?,
+      secondVideo: freezed == secondVideo
+          ? _value.secondVideo
+          : secondVideo // ignore: cast_nullable_to_non_nullable
+              as File?,
     ) as $Val);
   }
 }
@@ -62,7 +93,12 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       __$$_HomeModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool vertical});
+  $Res call(
+      {bool vertical,
+      VideoPlayerController? firstVideoController,
+      VideoPlayerController? secondVideoController,
+      File? firstVideo,
+      File? secondVideo});
 }
 
 /// @nodoc
@@ -77,12 +113,32 @@ class __$$_HomeModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? vertical = null,
+    Object? firstVideoController = freezed,
+    Object? secondVideoController = freezed,
+    Object? firstVideo = freezed,
+    Object? secondVideo = freezed,
   }) {
     return _then(_$_HomeModel(
       vertical: null == vertical
           ? _value.vertical
           : vertical // ignore: cast_nullable_to_non_nullable
               as bool,
+      firstVideoController: freezed == firstVideoController
+          ? _value.firstVideoController
+          : firstVideoController // ignore: cast_nullable_to_non_nullable
+              as VideoPlayerController?,
+      secondVideoController: freezed == secondVideoController
+          ? _value.secondVideoController
+          : secondVideoController // ignore: cast_nullable_to_non_nullable
+              as VideoPlayerController?,
+      firstVideo: freezed == firstVideo
+          ? _value.firstVideo
+          : firstVideo // ignore: cast_nullable_to_non_nullable
+              as File?,
+      secondVideo: freezed == secondVideo
+          ? _value.secondVideo
+          : secondVideo // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 }
@@ -90,14 +146,27 @@ class __$$_HomeModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeModel implements _HomeModel {
-  const _$_HomeModel({required this.vertical});
+  const _$_HomeModel(
+      {required this.vertical,
+      required this.firstVideoController,
+      required this.secondVideoController,
+      required this.firstVideo,
+      required this.secondVideo});
 
   @override
   final bool vertical;
+  @override
+  final VideoPlayerController? firstVideoController;
+  @override
+  final VideoPlayerController? secondVideoController;
+  @override
+  final File? firstVideo;
+  @override
+  final File? secondVideo;
 
   @override
   String toString() {
-    return 'HomeModel(vertical: $vertical)';
+    return 'HomeModel(vertical: $vertical, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo)';
   }
 
   @override
@@ -106,11 +175,20 @@ class _$_HomeModel implements _HomeModel {
         (other.runtimeType == runtimeType &&
             other is _$_HomeModel &&
             (identical(other.vertical, vertical) ||
-                other.vertical == vertical));
+                other.vertical == vertical) &&
+            (identical(other.firstVideoController, firstVideoController) ||
+                other.firstVideoController == firstVideoController) &&
+            (identical(other.secondVideoController, secondVideoController) ||
+                other.secondVideoController == secondVideoController) &&
+            (identical(other.firstVideo, firstVideo) ||
+                other.firstVideo == firstVideo) &&
+            (identical(other.secondVideo, secondVideo) ||
+                other.secondVideo == secondVideo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, vertical);
+  int get hashCode => Object.hash(runtimeType, vertical, firstVideoController,
+      secondVideoController, firstVideo, secondVideo);
 
   @JsonKey(ignore: true)
   @override
@@ -120,10 +198,23 @@ class _$_HomeModel implements _HomeModel {
 }
 
 abstract class _HomeModel implements HomeModel {
-  const factory _HomeModel({required final bool vertical}) = _$_HomeModel;
+  const factory _HomeModel(
+      {required final bool vertical,
+      required final VideoPlayerController? firstVideoController,
+      required final VideoPlayerController? secondVideoController,
+      required final File? firstVideo,
+      required final File? secondVideo}) = _$_HomeModel;
 
   @override
   bool get vertical;
+  @override
+  VideoPlayerController? get firstVideoController;
+  @override
+  VideoPlayerController? get secondVideoController;
+  @override
+  File? get firstVideo;
+  @override
+  File? get secondVideo;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>
