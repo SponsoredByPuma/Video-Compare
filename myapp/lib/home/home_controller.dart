@@ -17,10 +17,12 @@ class HomeControllerImplmentation extends HomeController {
     state = state.copyWith(vertical: !state.vertical);
   }
 
+  @override
   void setFirstController(controller) {
     state = state.copyWith(firstVideoController: controller);
   }
 
+  @override
   void setSecondController(controller) {
     state = state.copyWith(secondVideoController: controller);
   }
