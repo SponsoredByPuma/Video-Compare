@@ -1,0 +1,133 @@
+import 'dart:io';
+import 'package:myapp/widgets/PlayButton.dart';
+import 'package:myapp/widgets/RotateButton.dart';
+import 'package:myapp/widgets/SpeedButton.dart';
+import 'package:myapp/widgets/VideoChooser.dart';
+import 'package:video_player/video_player.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myapp/common/providers.dart';
+import 'package:myapp/home/home_model.dart';
+import 'package:myapp/widgets/HorizontalContainer.dart';
+import 'package:myapp/widgets/VerticalContainer.dart';
+
+class HomeView extends ConsumerWidget {
+  HomeView({Key? key}) : super(key: key);
+  VideoPlayerController? _firstVideoController;
+  VideoPlayerController? _secondVideoController;
+  File? firstVideo;
+  File? secondVideo;
+
+  Widget get horizontalConainer => HorizontalContainer(
+        leftVideoController: VideoChooserButton(
+          controller: _firstVideoController,
+          video: firstVideo,
+          onVideoSelected: (newController) {
+            _firstVideoController = newController;
+          },
+        ),
+        rightVideoController: VideoChooserButton(
+          controller: _secondVideoController,
+          video: secondVideo,
+          onVideoSelected: (newController) {
+            _secondVideoController = newController;
+          },
+        ),
+      );
+
+  Widget get verticalContainer => VerticalContainer(
+        leftVideoController: VideoChooserButton(
+          controller: _firstVideoController,
+          video: firstVideo,
+          onVideoSelected: (newController) {
+            _firstVideoController = newController;
+          },
+        ),
+        rightVideoController: VideoChooserButton(
+          controller: _secondVideoController,
+          video: secondVideo,
+          onVideoSelected: (newController) {
+            _secondVideoController = newController;
+          },
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final HomeController controller =
+        ref.read(providers.homeControllerProvider.notifier);
+    final HomeModel model = ref.watch(providers.homeControllerProvider);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Video Compare"),
+        backgroundColor: const Color.fromARGB(255, 11, 68, 6),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          iconSize: 48,
+          onPressed: () {
+            // Do something
+          },
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.more_horiz),
+            iconSize: 48,
+            onPressed: () {
+              // Do something
+            },
+          ),
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              color: const Color.fromARGB(255, 31, 111, 43),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child:
+                        model.vertical ? verticalContainer : horizontalConainer,
+                  ),
+                  const Expanded(
+                    flex: 2,
+                    child: Center(
+                        // Trimmerview
+                        ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        SpeedButton(
+                          firstVideoController: _firstVideoController,
+                          secondVideoController: _secondVideoController,
+                        ),
+                        PlayButton(
+                          firstVideoController: _firstVideoController,
+                          secondVideoController: _secondVideoController,
+                        ),
+                        RotateButton(
+                            buttonPressed: () => {controller.rotate()}),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+abstract class HomeController extends StateNotifier<HomeModel> {
+  HomeController(HomeModel state) : super(state);
+
+  void rotate();
+}
