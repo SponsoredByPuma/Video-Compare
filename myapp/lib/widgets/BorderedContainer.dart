@@ -12,7 +12,7 @@ class BorderedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return vertical
         ? Container(
-            height: 700,
+            height: double.infinity,
             decoration: const BoxDecoration(
               color: Colors.black,
               border: Border(
@@ -40,8 +40,8 @@ class BorderedContainer extends StatelessWidget {
             ),
           )
         : Container(
-            width: 500,
-            height: MediaQuery.of(context).size.height * 0.279,
+            width: double.infinity,
+            height: MediaQuery.of(context).size.width * 0.64,
             decoration: const BoxDecoration(
               color: Colors.black,
               border: Border(

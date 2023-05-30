@@ -81,14 +81,25 @@ class HomeView extends ConsumerWidget {
               color: const Color.fromARGB(255, 31, 111, 43),
               child: Column(
                 children: [
-                  Expanded(
-                    flex: 7,
-                    child:
-                        model.vertical ? verticalContainer : horizontalConainer,
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.6,
+                        width: MediaQuery.of(context).size.width,
+                        child: model.vertical
+                            ? verticalContainer
+                            : horizontalConainer,
+                      ),
+                      PlayButton(
+                        firstVideoController: model.firstVideoController,
+                        secondVideoController: model.secondVideoController,
+                      ),
+                    ],
                   ),
                   const Expanded(
                     flex: 2,
                     child: Center(
+
                         // Trimmerview
                         ),
                   ),
@@ -98,10 +109,6 @@ class HomeView extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         SpeedButton(
-                          firstVideoController: model.firstVideoController,
-                          secondVideoController: model.secondVideoController,
-                        ),
-                        PlayButton(
                           firstVideoController: model.firstVideoController,
                           secondVideoController: model.secondVideoController,
                         ),
