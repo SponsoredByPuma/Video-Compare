@@ -1,5 +1,6 @@
 import 'package:myapp/widgets/PlayButton.dart';
 import 'package:myapp/widgets/RotateButton.dart';
+import 'package:myapp/widgets/SettingsMenu.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
 import 'package:myapp/widgets/VideoChooser.dart';
 
@@ -64,14 +65,8 @@ class HomeView extends ConsumerWidget {
             // Do something
           },
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.more_horiz),
-            iconSize: 48,
-            onPressed: () {
-              // Do something
-            },
-          ),
+        actions: const <Widget>[
+          SettingsMenu(),
         ],
       ),
       body: Column(
