@@ -1,4 +1,3 @@
-import 'package:myapp/widgets/PlayButton.dart';
 import 'package:myapp/widgets/RotateButton.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
 import 'package:myapp/widgets/VideoChooser.dart';
@@ -11,7 +10,7 @@ import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
 
 class HomeView extends ConsumerWidget {
-  HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,6 +33,8 @@ class HomeView extends ConsumerWidget {
           controller.setSecondController(newController);
         },
       ),
+      controllerLeft: model.firstVideoController,
+      controllerRight: model.secondVideoController,
     );
 
     Widget verticalContainer = VerticalContainer(
@@ -51,6 +52,8 @@ class HomeView extends ConsumerWidget {
           controller.setSecondController(newController);
         },
       ),
+      controllerLeft: model.firstVideoController,
+      controllerRight: model.secondVideoController,
     );
 
     return Scaffold(
@@ -86,13 +89,11 @@ class HomeView extends ConsumerWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.6,
                         width: MediaQuery.of(context).size.width,
-                        child: model.vertical
-                            ? verticalContainer
-                            : horizontalConainer,
-                      ),
-                      PlayButton(
-                        firstVideoController: model.firstVideoController,
-                        secondVideoController: model.secondVideoController,
+                        child: Align(
+                          child: model.vertical
+                              ? verticalContainer
+                              : horizontalConainer,
+                        ),
                       ),
                     ],
                   ),

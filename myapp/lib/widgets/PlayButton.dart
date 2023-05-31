@@ -31,13 +31,13 @@ class _PlayButtonState extends State<PlayButton> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(
         _isPlaying ? Icons.pause : Icons.play_arrow,
         size: 48,
+        color: Colors.black,
       ),
       onPressed: () {
         _togglePlay();

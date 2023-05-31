@@ -37,12 +37,10 @@ class _SpeedButtonState extends State<SpeedButton> {
     return SizedBox(
       width: 150,
       height: 48,
-      child: MaterialButton(
+      child: ElevatedButton(
         onPressed: () {
           _toggleSpeed();
         },
-        color: Colors.blue,
-        textColor: Colors.white,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
