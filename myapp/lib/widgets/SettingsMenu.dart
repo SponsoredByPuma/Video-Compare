@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/home/home_view.dart';
-import 'package:myapp/main.dart';
-import 'package:video_player/video_player.dart';
+import 'package:get/get.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
@@ -26,6 +25,7 @@ class _SettingsMenuState extends State<SettingsMenu> {
       child: PopupMenuButton<SampleItem>(
         icon: const Icon(Icons.more_horiz),
         iconSize: 48,
+
         initialValue: selectedMenu,
         // Callback that sets the selected popup menu item.
         onSelected: (SampleItem item) {
@@ -35,6 +35,39 @@ class _SettingsMenuState extends State<SettingsMenu> {
               if (selectedMenu == SampleItem.itemOne) {
                 // darkmode
                 widget.controller.switchColorMode();
+                widget.controller.getLightMode()
+                    ? Get.changeTheme(
+                        ThemeData(
+                            scaffoldBackgroundColor:
+                                const Color.fromRGBO(178, 206, 222, 1),
+                            appBarTheme: const AppBarTheme(
+                              backgroundColor: Color.fromRGBO(178, 206, 222, 1),
+                              iconTheme: IconThemeData(color: Colors.black),
+                            ),
+                            elevatedButtonTheme: ElevatedButtonThemeData(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromARGB(
+                                    255, 91, 31, 97), // 111, 104, 102, 1
+                              ),
+                            ),
+                            primaryColor: Colors.black),
+                      )
+                    : Get.changeTheme(
+                        ThemeData(
+                          scaffoldBackgroundColor:
+                              const Color.fromARGB(255, 67, 13, 117),
+                          appBarTheme: const AppBarTheme(
+                            backgroundColor: Color.fromARGB(255, 67, 13, 117),
+                          ),
+                          elevatedButtonTheme: ElevatedButtonThemeData(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 216, 99, 67),
+                            ),
+                          ),
+                          primaryColor: Colors.white,
+                        ),
+                      );
               }
               if (selectedMenu == SampleItem.itemTwo) {
                 // remove both videos inside the VideoPlayerController

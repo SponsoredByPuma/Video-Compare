@@ -53,9 +53,7 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
             )
           : Container(
               decoration: BoxDecoration(
-                color: Colors.lightGreen,
                 border: Border.all(
-                  color: Colors.white,
                   width: 5,
                 ),
               ),

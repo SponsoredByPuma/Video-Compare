@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/home/home_view.dart';
 import 'package:myapp/widgets/AnimatedSplashScreen.dart';
+import 'package:get/get.dart';
 
 void main() async {
   runApp(await buildApp());
@@ -18,18 +19,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Video Compare',
-      //theme: ThemeData(
-      //    scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
       theme: ThemeData(
-          brightness: Brightness.light,
-          /* light theme settings */
-          scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
-      darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          /* dark theme settings */
-          scaffoldBackgroundColor: const Color.fromARGB(23, 11, 68, 6)),
+        scaffoldBackgroundColor: const Color.fromRGBO(178, 206, 222, 1),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromRGBO(178, 206, 222, 1),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor:
+                const Color.fromARGB(255, 91, 31, 97), // 111, 104, 102, 1
+          ),
+        ),
+      ),
       home: const AnimatedSplashScreen(),
       routes: {
         '/home': (context) => const HomeView(),

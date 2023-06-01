@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/widgets/BorderedContainer.dart';
+import 'package:myapp/widgets/PlayButton.dart';
+import 'package:video_player/video_player.dart';
 
 class VerticalContainer extends StatelessWidget {
   final Widget leftVideoController;

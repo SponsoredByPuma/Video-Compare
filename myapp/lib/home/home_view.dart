@@ -60,10 +60,10 @@ class HomeView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Video Compare"),
-        backgroundColor: const Color.fromARGB(255, 11, 68, 6),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           iconSize: 48,
+          //color: Theme.of(context).primaryColor,
           onPressed: () {
             // Do something
           },
@@ -77,48 +77,44 @@ class HomeView extends ConsumerWidget {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: Container(
-              color: const Color.fromARGB(255, 31, 111, 43),
-              child: Column(
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.6,
-                        width: MediaQuery.of(context).size.width,
-                        child: Align(
-                          child: model.vertical
-                              ? verticalContainer
-                              : horizontalConainer,
-                        ),
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      width: MediaQuery.of(context).size.width,
+                      child: Align(
+                        child: model.vertical
+                            ? verticalContainer
+                            : horizontalConainer,
                       ),
+                    ),
+                  ],
+                ),
+                const Expanded(
+                  flex: 2,
+                  child: Center(
+
+                      // Trimmerview
+                      ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      SpeedButton(
+                        firstVideoController: model.firstVideoController,
+                        secondVideoController: model.secondVideoController,
+                      ),
+                      RotateButton(buttonPressed: () => {controller.rotate()}),
                     ],
                   ),
-                  const Expanded(
-                    flex: 2,
-                    child: Center(
-
-                        // Trimmerview
-                        ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        SpeedButton(
-                          firstVideoController: model.firstVideoController,
-                          secondVideoController: model.secondVideoController,
-                        ),
-                        RotateButton(
-                            buttonPressed: () => {controller.rotate()}),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );
