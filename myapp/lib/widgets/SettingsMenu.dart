@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/home/home_view.dart';
+import 'package:myapp/main.dart';
+import 'package:video_player/video_player.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
 class SettingsMenu extends StatefulWidget {
-  const SettingsMenu({Key? key}) : super(key: key);
+  SettingsMenu({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final HomeController controller;
 
   @override
   State<StatefulWidget> createState() => _SettingsMenuState();
@@ -19,9 +27,28 @@ class _SettingsMenuState extends State<SettingsMenu> {
         initialValue: selectedMenu,
         // Callback that sets the selected popup menu item.
         onSelected: (SampleItem item) {
-          setState(() {
-            selectedMenu = item;
-          });
+          setState(
+            () {
+              selectedMenu = item;
+              if (selectedMenu == SampleItem.itemOne) {
+                // darkmode
+              }
+              if (selectedMenu == SampleItem.itemTwo) {
+                // remove both videos inside the VideoPlayerController
+                /*if (widget.firstVideoController != null) {
+                  widget.firstVideoController = null;
+                }
+                if (widget.secondVideoController != null) {
+                  widget.secondVideoController = null;
+                } */
+                widget.controller.removeFirstVideo();
+                widget.controller.removeSecondVideo();
+              }
+              if (selectedMenu == SampleItem.itemThree) {
+                //safe
+              }
+            },
+          );
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
           const PopupMenuItem<SampleItem>(

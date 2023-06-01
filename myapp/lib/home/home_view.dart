@@ -65,8 +65,10 @@ class HomeView extends ConsumerWidget {
             // Do something
           },
         ),
-        actions: const <Widget>[
-          SettingsMenu(),
+        actions: <Widget>[
+          SettingsMenu(
+            controller: controller,
+          ),
         ],
       ),
       body: Column(
@@ -130,4 +132,8 @@ abstract class HomeController extends StateNotifier<HomeModel> {
   void setFirstController(controller);
 
   void setSecondController(controller);
+
+  void removeFirstVideo();
+
+  void removeSecondVideo();
 }

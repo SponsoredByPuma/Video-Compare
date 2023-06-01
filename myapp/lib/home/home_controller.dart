@@ -26,4 +26,14 @@ class HomeControllerImplmentation extends HomeController {
   void setSecondController(controller) {
     state = state.copyWith(secondVideoController: controller);
   }
+
+  @override
+  void removeFirstVideo() {
+    state = state.copyWith(firstVideoController: null);
+  }
+
+  @override
+  void removeSecondVideo() {
+    state = state.copyWith(secondVideoController: null);
+  }
 }
