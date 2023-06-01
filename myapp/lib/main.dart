@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/home/home_view.dart';
 import 'package:myapp/widgets/AnimatedSplashScreen.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
@@ -19,12 +20,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Video Compare',
       theme: ThemeData(
-          textTheme: GoogleFonts.robotoFlexTextTheme(), //Change the font for the whole App here
-          scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
-      home: AnimatedSplashScreen(),
+        scaffoldBackgroundColor: const Color.fromRGBO(178, 206, 222, 1),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromRGBO(178, 206, 222, 1),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor:
+                const Color.fromARGB(255, 91, 31, 97), // 111, 104, 102, 1
+          ),
+        ),
+        primaryColor: Colors.black,
+        textTheme: GoogleFonts.robotoFlexTextTheme(),
+      ),
+      home: const AnimatedSplashScreen(),
       routes: {
         '/home': (context) => const HomeView(),
       },

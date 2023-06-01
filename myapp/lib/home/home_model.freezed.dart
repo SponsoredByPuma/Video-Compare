@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeModel {
   bool get vertical => throw _privateConstructorUsedError;
+  bool get lightmode => throw _privateConstructorUsedError;
   VideoPlayerController? get firstVideoController =>
       throw _privateConstructorUsedError;
   VideoPlayerController? get secondVideoController =>
@@ -36,6 +37,7 @@ abstract class $HomeModelCopyWith<$Res> {
   @useResult
   $Res call(
       {bool vertical,
+      bool lightmode,
       VideoPlayerController? firstVideoController,
       VideoPlayerController? secondVideoController,
       File? firstVideo,
@@ -56,6 +58,7 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
   @override
   $Res call({
     Object? vertical = null,
+    Object? lightmode = null,
     Object? firstVideoController = freezed,
     Object? secondVideoController = freezed,
     Object? firstVideo = freezed,
@@ -65,6 +68,10 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
       vertical: null == vertical
           ? _value.vertical
           : vertical // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lightmode: null == lightmode
+          ? _value.lightmode
+          : lightmode // ignore: cast_nullable_to_non_nullable
               as bool,
       firstVideoController: freezed == firstVideoController
           ? _value.firstVideoController
@@ -95,6 +102,7 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
   @useResult
   $Res call(
       {bool vertical,
+      bool lightmode,
       VideoPlayerController? firstVideoController,
       VideoPlayerController? secondVideoController,
       File? firstVideo,
@@ -113,6 +121,7 @@ class __$$_HomeModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? vertical = null,
+    Object? lightmode = null,
     Object? firstVideoController = freezed,
     Object? secondVideoController = freezed,
     Object? firstVideo = freezed,
@@ -122,6 +131,10 @@ class __$$_HomeModelCopyWithImpl<$Res>
       vertical: null == vertical
           ? _value.vertical
           : vertical // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lightmode: null == lightmode
+          ? _value.lightmode
+          : lightmode // ignore: cast_nullable_to_non_nullable
               as bool,
       firstVideoController: freezed == firstVideoController
           ? _value.firstVideoController
@@ -148,6 +161,7 @@ class __$$_HomeModelCopyWithImpl<$Res>
 class _$_HomeModel implements _HomeModel {
   const _$_HomeModel(
       {required this.vertical,
+      required this.lightmode,
       required this.firstVideoController,
       required this.secondVideoController,
       required this.firstVideo,
@@ -155,6 +169,8 @@ class _$_HomeModel implements _HomeModel {
 
   @override
   final bool vertical;
+  @override
+  final bool lightmode;
   @override
   final VideoPlayerController? firstVideoController;
   @override
@@ -166,7 +182,7 @@ class _$_HomeModel implements _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(vertical: $vertical, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo)';
+    return 'HomeModel(vertical: $vertical, lightmode: $lightmode, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo)';
   }
 
   @override
@@ -176,6 +192,8 @@ class _$_HomeModel implements _HomeModel {
             other is _$_HomeModel &&
             (identical(other.vertical, vertical) ||
                 other.vertical == vertical) &&
+            (identical(other.lightmode, lightmode) ||
+                other.lightmode == lightmode) &&
             (identical(other.firstVideoController, firstVideoController) ||
                 other.firstVideoController == firstVideoController) &&
             (identical(other.secondVideoController, secondVideoController) ||
@@ -187,8 +205,8 @@ class _$_HomeModel implements _HomeModel {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, vertical, firstVideoController,
-      secondVideoController, firstVideo, secondVideo);
+  int get hashCode => Object.hash(runtimeType, vertical, lightmode,
+      firstVideoController, secondVideoController, firstVideo, secondVideo);
 
   @JsonKey(ignore: true)
   @override
@@ -200,6 +218,7 @@ class _$_HomeModel implements _HomeModel {
 abstract class _HomeModel implements HomeModel {
   const factory _HomeModel(
       {required final bool vertical,
+      required final bool lightmode,
       required final VideoPlayerController? firstVideoController,
       required final VideoPlayerController? secondVideoController,
       required final File? firstVideo,
@@ -207,6 +226,8 @@ abstract class _HomeModel implements HomeModel {
 
   @override
   bool get vertical;
+  @override
+  bool get lightmode;
   @override
   VideoPlayerController? get firstVideoController;
   @override
