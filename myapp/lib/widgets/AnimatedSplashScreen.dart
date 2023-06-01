@@ -34,21 +34,22 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
   }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: Center(
-      child: FadeTransition(
-        opacity: _animation,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/VideoAppLogoForSplashScreen.png', width: 100, height: 100),
-            SizedBox(height: 24),
-            Text('Video Compare', style: TextStyle(fontSize: 24)),
-          ],
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: FadeTransition(
+          opacity: _animation,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/VideoAppLogoForSplashScreen.png',
+                  width: 300, height: 300),
+              const SizedBox(height: 24),
+              const Text('Video Compare', style: TextStyle(fontSize: 24)),
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 }
