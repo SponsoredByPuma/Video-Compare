@@ -22,11 +22,10 @@ class MyApp extends StatelessWidget {
       title: 'Video Compare',
       theme: ThemeData(
           scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
-      home: AnimatedSplashScreen(),
+      home: const AnimatedSplashScreen(),
       routes: {
-        '/home': (context) => HomeView(),
+        '/home': (context) => const HomeView(),
       },
-
     );
   }
 }
