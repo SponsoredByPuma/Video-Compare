@@ -66,7 +66,7 @@ class _PlayButtonState extends State<PlayButton> {
       icon: Icon(
         _isPlaying ? Icons.pause : Icons.play_arrow,
         size: 48,
-        color: Colors.black,
+        color: Theme.of(context).primaryColor,
       ),
       onPressed: () {
         addWatcherToController();

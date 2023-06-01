@@ -10,6 +10,7 @@ part 'home_model.freezed.dart';
 class HomeModel with _$HomeModel {
   const factory HomeModel({
     required bool vertical,
+    required bool lightmode,
     required VideoPlayerController? firstVideoController,
     required VideoPlayerController? secondVideoController,
     required File? firstVideo,
