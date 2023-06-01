@@ -24,6 +24,8 @@ class _SettingsMenuState extends State<SettingsMenu> {
   Widget build(BuildContext context) {
     return Center(
       child: PopupMenuButton<SampleItem>(
+        icon: const Icon(Icons.more_horiz),
+        iconSize: 48,
         initialValue: selectedMenu,
         // Callback that sets the selected popup menu item.
         onSelected: (SampleItem item) {
