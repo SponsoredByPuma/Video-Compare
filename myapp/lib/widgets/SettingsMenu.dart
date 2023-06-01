@@ -85,12 +85,6 @@ class _SettingsMenuState extends State<SettingsMenu> {
                   Get.updateLocale(Locale('en', 'US'));
                 }
               }
-             // if (selectedMenu == SampleItem.itemFour) {
-                //if current language is English Dsiplay "deutsch"
-                //and if pressed switch to german
-                //if current language is German Display "English"
-                //and if pressed switch to english
-             // }
 
             },
           );
