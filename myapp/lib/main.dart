@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/home/home_view.dart';
 import 'package:myapp/widgets/AnimatedSplashScreen.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   runApp(await buildApp());
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         primaryColor: Colors.black,
+        textTheme: GoogleFonts.robotoFlexTextTheme(), 
       ),
       home: const AnimatedSplashScreen(),
       routes: {
