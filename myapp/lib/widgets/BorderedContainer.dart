@@ -12,9 +12,9 @@ class BorderedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return vertical
         ? Container(
-            height: 700,
+            height: double.infinity,
             decoration: const BoxDecoration(
-              color: Colors.black,
+              color: Colors.grey,
               border: Border(
                 left: BorderSide(
                   color: Colors.white,
@@ -36,14 +36,16 @@ class BorderedContainer extends StatelessWidget {
             ),
             width: MediaQuery.of(context).size.width * 0.5,
             child: Stack(
-              children: [Align(alignment: Alignment.center, child: child)],
+              children: [
+                Align(alignment: Alignment.center, child: child),
+              ],
             ),
           )
         : Container(
-            width: 500,
-            height: MediaQuery.of(context).size.height * 0.279,
+            width: double.infinity,
+            height: MediaQuery.of(context).size.width * 0.65,
             decoration: const BoxDecoration(
-              color: Colors.black,
+              color: Colors.grey,
               border: Border(
                 left: BorderSide(
                   color: Colors.white,
@@ -65,7 +67,9 @@ class BorderedContainer extends StatelessWidget {
             ),
             //
             child: Stack(
-              children: [Align(alignment: Alignment.center, child: child)],
+              children: [
+                Align(alignment: Alignment.center, child: child),
+              ],
             ),
           );
   }

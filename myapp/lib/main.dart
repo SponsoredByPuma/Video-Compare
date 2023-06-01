@@ -1,46 +1,19 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:myapp/widgets/BorderedContainer.dart';
-import 'package:myapp/widgets/RotateButton.dart';
-import 'package:myapp/widgets/SpeedButton.dart';
-import 'package:flutter/material.dart';
-import 'package:video_trimmer/video_trimmer.dart';
-import 'widgets/CustomVideoPlayer.dart';
-import 'package:video_player/video_player.dart';
-import 'widgets/VideoChooser.dart';
-import 'widgets/PlayButton.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myapp/home/home_view.dart';
 
-void main() {
-  runApp(const MyHomePage());
+void main() async {
+  runApp(await buildApp());
 }
 
-// horizontal vertikal
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
+Future<Widget> buildApp() async {
+  return const ProviderScope(
+    child: MyApp(),
+  );
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  VideoPlayerController? _firstVideoController;
-  VideoPlayerController? _secondVideoController;
-  File? firstVideo;
-  File? secondVideo;
-  final Trimmer trimmerFirstVideo = Trimmer();
-  final Trimmer trimmerSecondVideo = Trimmer();
-  double startValueFirstVideo = 0.0;
-  double endValueFirstVideo = 0.0;
-  bool isPlayingFirstVideo = false;
-  bool vertical = true;
-
-  @override
-  void dispose() {
-    _firstVideoController?.dispose();
-    _secondVideoController?.dispose();
-    super.dispose();
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,152 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
       title: 'Video Compare',
       theme: ThemeData(
           scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Video Compare"),
-          backgroundColor: const Color.fromARGB(255, 11, 68, 6),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            iconSize: 48,
-            onPressed: () {
-              // Do something
-            },
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.more_horiz),
-              iconSize: 48,
-              onPressed: () {
-                // Do something
-              },
-            ),
-          ],
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                color: const Color.fromARGB(255, 31, 111, 43),
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 7,
-                      child: vertical
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                BorderedContainer(
-                                  vertical: vertical,
-                                  child: VideoChooserButton(
-                                    controller: _firstVideoController,
-                                    video: firstVideo,
-                                    onVideoSelected: (controller) {
-                                      setState(() {
-                                        _firstVideoController = controller;
-                                        trimmerFirstVideo.loadVideo(
-                                            videoFile: firstVideo!);
-                                      });
-                                    },
-                                  ),
-                                ),
-                                BorderedContainer(
-                                  vertical: vertical,
-                                  child: VideoChooserButton(
-                                    controller: _secondVideoController,
-                                    video: secondVideo,
-                                    onVideoSelected: (controller) {
-                                      setState(() {
-                                        _secondVideoController = controller;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ],
-                            )
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                BorderedContainer(
-                                  vertical: vertical,
-                                  child: VideoChooserButton(
-                                    controller: _firstVideoController,
-                                    video: firstVideo,
-                                    onVideoSelected: (controller) {
-                                      setState(() {
-                                        _firstVideoController = controller;
-                                        trimmerFirstVideo.loadVideo(
-                                            videoFile: firstVideo!);
-                                      });
-                                    },
-                                  ),
-                                ),
-                                BorderedContainer(
-                                  vertical: vertical,
-                                  child: VideoChooserButton(
-                                    controller: _secondVideoController,
-                                    video: secondVideo,
-                                    onVideoSelected: (controller) {
-                                      setState(() {
-                                        _secondVideoController = controller;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                    ),
-                    Expanded(
-                      // the const can be removed later on
-                      flex: 2,
-                      // Here should be the video trimmer bar !
-                      /*
-                        ElevatedButton(
-                          child: const Text("Test"),
-                          onPressed: () => {},
-                        ),
-                       */
-                      child: Center(
-                        child: TrimViewer(
-                          trimmer: trimmerFirstVideo,
-                          viewerHeight: 50.0,
-                          viewerWidth: MediaQuery.of(context).size.width,
-                          maxVideoLength: const Duration(seconds: 10),
-                          onChangeStart: (value) =>
-                              startValueFirstVideo = value,
-                          onChangeEnd: (value) => endValueFirstVideo = value,
-                          onChangePlaybackState: (value) =>
-                              setState(() => isPlayingFirstVideo = value),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          SpeedButton(
-                            firstVideoController: _firstVideoController,
-                            secondVideoController: _secondVideoController,
-                          ),
-                          PlayButton(
-                            firstVideoController: _firstVideoController,
-                            secondVideoController: _secondVideoController,
-                          ),
-                          RotateButton(buttonPressed: () {
-                            setState(() {
-                              vertical = !vertical;
-                            });
-                          }),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+      home: HomeView(),
     );
   }
 }

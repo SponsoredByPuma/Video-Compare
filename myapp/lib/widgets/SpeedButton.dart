@@ -32,18 +32,15 @@ class _SpeedButtonState extends State<SpeedButton> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 150,
       height: 48,
-      child: MaterialButton(
+      child: ElevatedButton(
         onPressed: () {
           _toggleSpeed();
         },
-        color: Colors.blue,
-        textColor: Colors.white,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -51,10 +48,10 @@ class _SpeedButtonState extends State<SpeedButton> {
               _isSlowMotion ? Icons.slow_motion_video : Icons.speed,
               size: 24,
             ),
-            SizedBox(width: 8.0),
+            const SizedBox(width: 8.0),
             Text(
               _isSlowMotion ? 'Slow Motion' : 'Normal Speed',
-              style: TextStyle(fontSize: 13),
+              style: const TextStyle(fontSize: 13),
             ),
           ],
         ),
