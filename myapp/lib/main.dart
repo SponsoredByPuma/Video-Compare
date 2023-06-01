@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
                 const Color.fromARGB(255, 91, 31, 97), // 111, 104, 102, 1
           ),
         ),
+        primaryColor: Colors.black,
       ),
       home: const AnimatedSplashScreen(),
       routes: {
