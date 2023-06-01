@@ -4,6 +4,8 @@ import 'package:myapp/home/home_view.dart';
 import 'package:myapp/widgets/AnimatedSplashScreen.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   runApp(await buildApp());
@@ -23,6 +25,16 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Video Compare',
+      localizationsDelegates: const [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('de'),
+      ],
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromRGBO(178, 206, 222, 1),
         appBarTheme: const AppBarTheme(
