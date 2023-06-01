@@ -23,20 +23,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Video Compare',
-    localizationsDelegates: [
-      AppLocalizations.delegate, // Add this line
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate,
-    ],
-    supportedLocales: [
-      Locale('en'), // English
-      Locale('de'), // Spanish
-    ],
+      localizationsDelegates: const [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('de'),
+      ],
       theme: ThemeData(
-          textTheme: GoogleFonts.robotoFlexTextTheme(), //Change the font for the whole App here
+          textTheme: GoogleFonts
+              .robotoFlexTextTheme(), //Change the font for the whole App here
           scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
-      home: AnimatedSplashScreen(),
+      home: const AnimatedSplashScreen(),
       routes: {
         '/home': (context) => const HomeView(),
       },
