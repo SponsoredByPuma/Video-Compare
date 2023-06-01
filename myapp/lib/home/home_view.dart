@@ -1,5 +1,6 @@
 import 'package:myapp/widgets/RotateButton.dart';
 import 'package:myapp/widgets/SettingsMenu.dart';
+import 'package:myapp/widgets/SliderStartLocation.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
 import 'package:myapp/widgets/VideoChooser.dart';
 
@@ -92,12 +93,18 @@ class HomeView extends ConsumerWidget {
                     ),
                   ],
                 ),
-                const Expanded(
+                Expanded(
                   flex: 2,
                   child: Center(
-
-                      // Trimmerview
-                      ),
+                    child: (model.firstVideoController != null &&
+                            model.secondVideoController != null)
+                        ? SliderExample(
+                            firstVideoController: model.firstVideoController,
+                            secondVideoController: model.secondVideoController,
+                          )
+                        : const Center(),
+                    // Trimmerview
+                  ),
                 ),
                 Expanded(
                   flex: 2,
