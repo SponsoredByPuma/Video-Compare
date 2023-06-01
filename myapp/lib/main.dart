@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/home/home_view.dart';
+import 'package:myapp/widgets/AnimatedSplashScreen.dart';
 
 void main() async {
   runApp(await buildApp());
@@ -29,7 +30,10 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           /* dark theme settings */
           scaffoldBackgroundColor: const Color.fromARGB(23, 11, 68, 6)),
-      home: HomeView(),
+      home: const AnimatedSplashScreen(),
+      routes: {
+        '/home': (context) => const HomeView(),
+      },
     );
   }
 }
