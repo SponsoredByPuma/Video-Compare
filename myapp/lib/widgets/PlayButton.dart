@@ -40,6 +40,7 @@ class _PlayButtonState extends State<PlayButton> {
         color: Colors.black,
       ),
       onPressed: () {
+        addWatcherToController();
         _togglePlay();
       },
     );
