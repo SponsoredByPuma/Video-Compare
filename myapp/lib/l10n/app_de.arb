@@ -1,4 +1,12 @@
 {
   "helloWorld": "¡Hallo Welt!",
-  "apptitle": "Videovergleichsapp"
+  "apptitle": "Videovergleichsapp",
+  "speedButtonNormalSpeed": "Normal",
+  "speedButtonSlowSpeed": "Langsamer",
+  "rotateButtonText" : "Drehen",
+  "darkModeText": "Dunkler Modus",
+  "lightModeText": "Heller Modus",
+  "newProjectButtonText": "Neues Projekt",
+  "saveProjectButtonText": "Projekt speichern",
+  "languageSwitchButton": "🇬🇧 "
 }

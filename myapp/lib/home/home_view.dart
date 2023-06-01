@@ -10,6 +10,7 @@ import 'package:myapp/common/providers.dart';
 import 'package:myapp/home/home_model.dart';
 import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -60,7 +61,7 @@ class HomeView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Video Compare"),
+        title:  Text(AppLocalizations.of(context)?.apptitle?? ''),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           iconSize: 48,

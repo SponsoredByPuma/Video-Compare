@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SpeedButton extends StatefulWidget {
   final VideoPlayerController? firstVideoController;
@@ -43,13 +44,9 @@ class _SpeedButtonState extends State<SpeedButton> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              _isSlowMotion ? Icons.slow_motion_video : Icons.speed,
-              size: 24,
-            ),
             const SizedBox(width: 8.0),
             Text(
-              _isSlowMotion ? 'Slow Motion' : 'Normal Speed',
+              _isSlowMotion ? AppLocalizations.of(context)?.speedButtonSlowSpeed?? '' : AppLocalizations.of(context)?.speedButtonNormalSpeed ?? '',
               style: const TextStyle(fontSize: 13),
             ),
           ],
