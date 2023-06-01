@@ -19,8 +19,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Video Compare',
+      //theme: ThemeData(
+      //    scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
       theme: ThemeData(
+          brightness: Brightness.light,
+          /* light theme settings */
           scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
+      darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          /* dark theme settings */
+          scaffoldBackgroundColor: const Color.fromARGB(23, 11, 68, 6)),
       home: HomeView(),
     );
   }

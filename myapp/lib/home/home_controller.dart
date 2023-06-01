@@ -7,6 +7,7 @@ class HomeControllerImplmentation extends HomeController {
   }) : super(model ??
             const HomeModel(
                 vertical: true,
+                lightmode: true,
                 firstVideoController: null,
                 secondVideoController: null,
                 firstVideo: null,
@@ -35,5 +36,15 @@ class HomeControllerImplmentation extends HomeController {
   @override
   void removeSecondVideo() {
     state = state.copyWith(secondVideoController: null);
+  }
+
+  @override
+  bool getLightMode() {
+    return state.lightmode;
+  }
+
+  @override
+  void switchColorMode() {
+    state = state.copyWith(lightmode: !state.lightmode);
   }
 }

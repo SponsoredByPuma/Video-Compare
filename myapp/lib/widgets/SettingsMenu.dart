@@ -34,15 +34,10 @@ class _SettingsMenuState extends State<SettingsMenu> {
               selectedMenu = item;
               if (selectedMenu == SampleItem.itemOne) {
                 // darkmode
+                widget.controller.switchColorMode();
               }
               if (selectedMenu == SampleItem.itemTwo) {
                 // remove both videos inside the VideoPlayerController
-                /*if (widget.firstVideoController != null) {
-                  widget.firstVideoController = null;
-                }
-                if (widget.secondVideoController != null) {
-                  widget.secondVideoController = null;
-                } */
                 widget.controller.removeFirstVideo();
                 widget.controller.removeSecondVideo();
               }
@@ -53,20 +48,30 @@ class _SettingsMenuState extends State<SettingsMenu> {
           );
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-          const PopupMenuItem<SampleItem>(
+          PopupMenuItem<SampleItem>(
             value: SampleItem.itemOne,
-            child: Row(
-              children: [
-                Text("Darkmode    "),
-                Icon(Icons.brightness_2, color: Colors.black),
-              ],
-            ),
+            child: widget.controller.getLightMode()
+                ? const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Dark mode"),
+                      Icon(Icons.brightness_2, color: Colors.black),
+                    ],
+                  )
+                : const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Light mode"),
+                      Icon(Icons.sunny, color: Colors.black),
+                    ],
+                  ),
           ),
           const PopupMenuItem<SampleItem>(
             value: SampleItem.itemTwo,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("New Project    "),
+                Text("New Project"),
                 Icon(Icons.recycling, color: Colors.black),
               ],
             ),
@@ -74,8 +79,9 @@ class _SettingsMenuState extends State<SettingsMenu> {
           const PopupMenuItem<SampleItem>(
             value: SampleItem.itemThree,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Save    "),
+                Text("Save"),
                 Icon(Icons.save, color: Colors.black),
               ],
             ),
