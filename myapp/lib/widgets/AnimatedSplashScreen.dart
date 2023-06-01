@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
   const AnimatedSplashScreen({Key? key}) : super(key: key);
@@ -45,7 +46,8 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
               Image.asset('assets/images/VideoAppLogoForSplashScreen.png',
                   width: 300, height: 300),
               const SizedBox(height: 24),
-              const Text('Video Compare', style: TextStyle(fontSize: 24)),
+              Text(AppLocalizations.of(context)?.apptitle ?? '', style: TextStyle(fontSize: 24)),
+
             ],
           ),
         ),
