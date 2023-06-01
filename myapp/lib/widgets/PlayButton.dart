@@ -38,11 +38,9 @@ class _PlayButtonState extends State<PlayButton> {
         setState(() {
           if (widget.firstVideoController!.value.duration ==
               widget.firstVideoController!.value.position) {
-            setState(() {
-              _isPlaying = false;
-              widget.firstVideoController!.seekTo(Duration.zero);
-              widget.secondVideoController!.seekTo(Duration.zero);
-            });
+            _isPlaying = false;
+            widget.firstVideoController!.seekTo(Duration.zero);
+            widget.secondVideoController!.seekTo(Duration.zero);
           }
         });
       });
@@ -51,11 +49,11 @@ class _PlayButtonState extends State<PlayButton> {
         setState(() {
           if (widget.secondVideoController!.value.duration ==
               widget.secondVideoController!.value.position) {
-            setState(() {
-              _isPlaying = false;
-              widget.firstVideoController!.seekTo(Duration.zero);
-              widget.secondVideoController!.seekTo(Duration.zero);
-            });
+            //setState(() {
+            _isPlaying = false;
+            widget.firstVideoController!.seekTo(Duration.zero);
+            widget.secondVideoController!.seekTo(Duration.zero);
+            //});
           }
         });
       });
