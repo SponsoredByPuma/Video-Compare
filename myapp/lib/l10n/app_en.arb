@@ -6,6 +6,38 @@
   "apptitle": "VideoCompare app",
   "@apptitle": {
     "description": "The name of the video comparison app"
+  },
+  "speedButtonNormalSpeed": "Normal Speed",
+  "@speedButtonNormalSpeed": {
+    "description": "normal Speed"
+  },
+  "speedButtonSlowSpeed": "Slow Speed",
+  "@speedButtonSlowSpeed": {
+    "description": "slow Speed"
+  },
+  "rotateButtonText": "Rotate",
+  "@rotateButtonText": {
+    "description": "text for rotate Button"
+  },
+  "darkModeText": "Darkmode",
+  "@darkModeText": {
+    "description": "text for Darkmode"
+  },
+  "lightModeText": "Lightmode",
+  "@lightModeText": {
+    "description": "text for Lightmode"
+  },
+  "newProjectButtonText": "New Project",
+  "@newProjectButtonText": {
+      "description": "text for new Project Button"
+    },
+  "saveProjectButtonText": "Save Project",
+  "@SaveProjectButtonText": {
+    "description": "text for Save Project Button"
+    },
+  "languageSwitchButton": "🇩🇪 ",
+  "@languageSwitchButton": {
+    "description": "Button for switching between German and english , always displays the other language"
   }
 }
 

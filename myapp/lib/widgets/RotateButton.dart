@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RotateButton extends StatefulWidget {
   final VoidCallback buttonPressed;
@@ -19,7 +20,7 @@ class _RotateButtonState extends State<RotateButton> {
       height: 48,
       child: ElevatedButton(
         onPressed: widget.buttonPressed,
-        child: const Text("Rotate"),
+        child: Text(AppLocalizations.of(context)?.rotateButtonText?? ''),
       ),
     );
   }
