@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         primaryColor: Colors.black,
-        textTheme: GoogleFonts.robotoFlexTextTheme(), 
+        textTheme: GoogleFonts.robotoFlexTextTheme(),
       ),
       home: const AnimatedSplashScreen(),
       routes: {
