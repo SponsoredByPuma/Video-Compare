@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/home/home_view.dart';
+import 'package:myapp/widgets/AnimatedSplashScreen.dart';
 
 void main() async {
   runApp(await buildApp());
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
       title: 'Video Compare',
       theme: ThemeData(
           scaffoldBackgroundColor: const Color.fromARGB(255, 11, 68, 6)),
-      home: HomeView(),
+      home: const AnimatedSplashScreen(),
+      routes: {
+        '/home': (context) => const HomeView(),
+      },
     );
   }
 }
