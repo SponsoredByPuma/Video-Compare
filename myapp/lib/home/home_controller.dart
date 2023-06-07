@@ -6,12 +6,15 @@ class HomeControllerImplmentation extends HomeController {
     HomeModel? model,
   }) : super(model ??
             const HomeModel(
-                vertical: true,
-                lightmode: true,
-                firstVideoController: null,
-                secondVideoController: null,
-                firstVideo: null,
-                secondVideo: null));
+              vertical: true,
+              lightmode: true,
+              firstVideoController: null,
+              secondVideoController: null,
+              firstVideo: null,
+              secondVideo: null,
+              firstVideoTapped: false,
+              secondVideoTapped: false,
+            ));
 
   @override
   void rotate() {
@@ -46,5 +49,19 @@ class HomeControllerImplmentation extends HomeController {
   @override
   void switchColorMode() {
     state = state.copyWith(lightmode: !state.lightmode);
+  }
+
+  @override
+  void firstVideoTapped() {
+    if (!state.secondVideoTapped) {
+      state = state.copyWith(firstVideoTapped: !state.firstVideoTapped);
+    }
+  }
+
+  @override
+  void secondVideoTapped() {
+    if (!state.firstVideoTapped) {
+      state = state.copyWith(secondVideoTapped: !state.secondVideoTapped);
+    }
   }
 }
