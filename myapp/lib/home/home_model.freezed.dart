@@ -26,6 +26,10 @@ mixin _$HomeModel {
   File? get secondVideo => throw _privateConstructorUsedError;
   bool get firstVideoTapped => throw _privateConstructorUsedError;
   bool get secondVideoTapped => throw _privateConstructorUsedError;
+  double get firstVideoStartPoint => throw _privateConstructorUsedError;
+  double get firstVideoEndPoint => throw _privateConstructorUsedError;
+  double get secondVideoStartPoint => throw _privateConstructorUsedError;
+  double get secondVideoEndPoint => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeModelCopyWith<HomeModel> get copyWith =>
@@ -45,7 +49,11 @@ abstract class $HomeModelCopyWith<$Res> {
       File? firstVideo,
       File? secondVideo,
       bool firstVideoTapped,
-      bool secondVideoTapped});
+      bool secondVideoTapped,
+      double firstVideoStartPoint,
+      double firstVideoEndPoint,
+      double secondVideoStartPoint,
+      double secondVideoEndPoint});
 }
 
 /// @nodoc
@@ -69,6 +77,10 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? secondVideo = freezed,
     Object? firstVideoTapped = null,
     Object? secondVideoTapped = null,
+    Object? firstVideoStartPoint = null,
+    Object? firstVideoEndPoint = null,
+    Object? secondVideoStartPoint = null,
+    Object? secondVideoEndPoint = null,
   }) {
     return _then(_value.copyWith(
       vertical: null == vertical
@@ -103,6 +115,22 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
           ? _value.secondVideoTapped
           : secondVideoTapped // ignore: cast_nullable_to_non_nullable
               as bool,
+      firstVideoStartPoint: null == firstVideoStartPoint
+          ? _value.firstVideoStartPoint
+          : firstVideoStartPoint // ignore: cast_nullable_to_non_nullable
+              as double,
+      firstVideoEndPoint: null == firstVideoEndPoint
+          ? _value.firstVideoEndPoint
+          : firstVideoEndPoint // ignore: cast_nullable_to_non_nullable
+              as double,
+      secondVideoStartPoint: null == secondVideoStartPoint
+          ? _value.secondVideoStartPoint
+          : secondVideoStartPoint // ignore: cast_nullable_to_non_nullable
+              as double,
+      secondVideoEndPoint: null == secondVideoEndPoint
+          ? _value.secondVideoEndPoint
+          : secondVideoEndPoint // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -122,7 +150,11 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       File? firstVideo,
       File? secondVideo,
       bool firstVideoTapped,
-      bool secondVideoTapped});
+      bool secondVideoTapped,
+      double firstVideoStartPoint,
+      double firstVideoEndPoint,
+      double secondVideoStartPoint,
+      double secondVideoEndPoint});
 }
 
 /// @nodoc
@@ -144,6 +176,10 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? secondVideo = freezed,
     Object? firstVideoTapped = null,
     Object? secondVideoTapped = null,
+    Object? firstVideoStartPoint = null,
+    Object? firstVideoEndPoint = null,
+    Object? secondVideoStartPoint = null,
+    Object? secondVideoEndPoint = null,
   }) {
     return _then(_$_HomeModel(
       vertical: null == vertical
@@ -178,6 +214,22 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value.secondVideoTapped
           : secondVideoTapped // ignore: cast_nullable_to_non_nullable
               as bool,
+      firstVideoStartPoint: null == firstVideoStartPoint
+          ? _value.firstVideoStartPoint
+          : firstVideoStartPoint // ignore: cast_nullable_to_non_nullable
+              as double,
+      firstVideoEndPoint: null == firstVideoEndPoint
+          ? _value.firstVideoEndPoint
+          : firstVideoEndPoint // ignore: cast_nullable_to_non_nullable
+              as double,
+      secondVideoStartPoint: null == secondVideoStartPoint
+          ? _value.secondVideoStartPoint
+          : secondVideoStartPoint // ignore: cast_nullable_to_non_nullable
+              as double,
+      secondVideoEndPoint: null == secondVideoEndPoint
+          ? _value.secondVideoEndPoint
+          : secondVideoEndPoint // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -193,7 +245,11 @@ class _$_HomeModel implements _HomeModel {
       required this.firstVideo,
       required this.secondVideo,
       required this.firstVideoTapped,
-      required this.secondVideoTapped});
+      required this.secondVideoTapped,
+      required this.firstVideoStartPoint,
+      required this.firstVideoEndPoint,
+      required this.secondVideoStartPoint,
+      required this.secondVideoEndPoint});
 
   @override
   final bool vertical;
@@ -211,10 +267,18 @@ class _$_HomeModel implements _HomeModel {
   final bool firstVideoTapped;
   @override
   final bool secondVideoTapped;
+  @override
+  final double firstVideoStartPoint;
+  @override
+  final double firstVideoEndPoint;
+  @override
+  final double secondVideoStartPoint;
+  @override
+  final double secondVideoEndPoint;
 
   @override
   String toString() {
-    return 'HomeModel(vertical: $vertical, lightmode: $lightmode, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo, firstVideoTapped: $firstVideoTapped, secondVideoTapped: $secondVideoTapped)';
+    return 'HomeModel(vertical: $vertical, lightmode: $lightmode, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo, firstVideoTapped: $firstVideoTapped, secondVideoTapped: $secondVideoTapped, firstVideoStartPoint: $firstVideoStartPoint, firstVideoEndPoint: $firstVideoEndPoint, secondVideoStartPoint: $secondVideoStartPoint, secondVideoEndPoint: $secondVideoEndPoint)';
   }
 
   @override
@@ -237,7 +301,15 @@ class _$_HomeModel implements _HomeModel {
             (identical(other.firstVideoTapped, firstVideoTapped) ||
                 other.firstVideoTapped == firstVideoTapped) &&
             (identical(other.secondVideoTapped, secondVideoTapped) ||
-                other.secondVideoTapped == secondVideoTapped));
+                other.secondVideoTapped == secondVideoTapped) &&
+            (identical(other.firstVideoStartPoint, firstVideoStartPoint) ||
+                other.firstVideoStartPoint == firstVideoStartPoint) &&
+            (identical(other.firstVideoEndPoint, firstVideoEndPoint) ||
+                other.firstVideoEndPoint == firstVideoEndPoint) &&
+            (identical(other.secondVideoStartPoint, secondVideoStartPoint) ||
+                other.secondVideoStartPoint == secondVideoStartPoint) &&
+            (identical(other.secondVideoEndPoint, secondVideoEndPoint) ||
+                other.secondVideoEndPoint == secondVideoEndPoint));
   }
 
   @override
@@ -250,7 +322,11 @@ class _$_HomeModel implements _HomeModel {
       firstVideo,
       secondVideo,
       firstVideoTapped,
-      secondVideoTapped);
+      secondVideoTapped,
+      firstVideoStartPoint,
+      firstVideoEndPoint,
+      secondVideoStartPoint,
+      secondVideoEndPoint);
 
   @JsonKey(ignore: true)
   @override
@@ -268,7 +344,11 @@ abstract class _HomeModel implements HomeModel {
       required final File? firstVideo,
       required final File? secondVideo,
       required final bool firstVideoTapped,
-      required final bool secondVideoTapped}) = _$_HomeModel;
+      required final bool secondVideoTapped,
+      required final double firstVideoStartPoint,
+      required final double firstVideoEndPoint,
+      required final double secondVideoStartPoint,
+      required final double secondVideoEndPoint}) = _$_HomeModel;
 
   @override
   bool get vertical;
@@ -286,6 +366,14 @@ abstract class _HomeModel implements HomeModel {
   bool get firstVideoTapped;
   @override
   bool get secondVideoTapped;
+  @override
+  double get firstVideoStartPoint;
+  @override
+  double get firstVideoEndPoint;
+  @override
+  double get secondVideoStartPoint;
+  @override
+  double get secondVideoEndPoint;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>
