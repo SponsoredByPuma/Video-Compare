@@ -3,10 +3,10 @@ import 'package:myapp/home/home_view.dart';
 import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-enum SampleItem { itemOne, itemTwo, itemThree , itemFour}
+enum SampleItem { itemOne, itemTwo, itemThree, itemFour }
 
 class SettingsMenu extends StatefulWidget {
-  SettingsMenu({
+  const SettingsMenu({
     Key? key,
     required this.controller,
   }) : super(key: key);
@@ -68,7 +68,6 @@ class _SettingsMenuState extends State<SettingsMenu> {
                           primaryColor: Colors.white,
                         ),
                       );
-               print(Theme.of(context).primaryColor);
               }
               if (selectedMenu == SampleItem.itemTwo) {
                 widget.controller.removeFirstVideo();
@@ -80,65 +79,64 @@ class _SettingsMenuState extends State<SettingsMenu> {
               if (selectedMenu == SampleItem.itemFour) {
                 if (AppLocalizations.of(context)?.localeName == 'en') {
                   selectedMenu = SampleItem.itemFour;
-                  Get.updateLocale(Locale('de', 'DE'));
+                  Get.updateLocale(const Locale('de', 'DE'));
                 } else {
-                  Get.updateLocale(Locale('en', 'US'));
+                  Get.updateLocale(const Locale('en', 'US'));
                 }
               }
-
             },
           );
         },
-      itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-        PopupMenuItem<SampleItem>(
-          value: SampleItem.itemOne,
-          child: widget.controller.getLightMode()
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(AppLocalizations.of(context)?.darkModeText ?? ''),
-                    Icon(Icons.brightness_2, color: Colors.black),
-                  ],
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(AppLocalizations.of(context)?.lightModeText ?? ''),
-                    Icon(Icons.sunny, color: Colors.black),
-                  ],
-                ),
-        ),
-        PopupMenuItem<SampleItem>(
-          value: SampleItem.itemTwo,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(AppLocalizations.of(context)?.newProjectButtonText ?? ''),
-              Icon(Icons.recycling, color: Colors.black),
-            ],
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+          PopupMenuItem<SampleItem>(
+            value: SampleItem.itemOne,
+            child: widget.controller.getLightMode()
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(AppLocalizations.of(context)?.darkModeText ?? ''),
+                      const Icon(Icons.brightness_2, color: Colors.black),
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(AppLocalizations.of(context)?.lightModeText ?? ''),
+                      const Icon(Icons.sunny, color: Colors.black),
+                    ],
+                  ),
           ),
-        ),
-        PopupMenuItem<SampleItem>(
-          value: SampleItem.itemThree,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(AppLocalizations.of(context)?.saveProjectButtonText ?? ''),
-              Icon(Icons.save, color: Colors.black),
-            ],
+          PopupMenuItem<SampleItem>(
+            value: SampleItem.itemTwo,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(AppLocalizations.of(context)?.newProjectButtonText ?? ''),
+                const Icon(Icons.recycling, color: Colors.black),
+              ],
+            ),
           ),
-        ),
-        PopupMenuItem<SampleItem>(
-          value: SampleItem.itemFour,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(AppLocalizations.of(context)?.languageSwitchButton ?? ''),
-              Icon(Icons.language, color: Colors.black),
-            ],
+          PopupMenuItem<SampleItem>(
+            value: SampleItem.itemThree,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(AppLocalizations.of(context)?.saveProjectButtonText ?? ''),
+                const Icon(Icons.save, color: Colors.black),
+              ],
+            ),
           ),
-        ),
-      ],
+          PopupMenuItem<SampleItem>(
+            value: SampleItem.itemFour,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(AppLocalizations.of(context)?.languageSwitchButton ?? ''),
+                const Icon(Icons.language, color: Colors.black),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
