@@ -61,11 +61,10 @@ class HomeView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:  Text(AppLocalizations.of(context)?.apptitle?? ''),
+        title: Text(AppLocalizations.of(context)?.apptitle ?? ''),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           iconSize: 48,
-          //color: Theme.of(context).primaryColor,
           onPressed: () {
             // Do something
           },
@@ -99,12 +98,17 @@ class HomeView extends ConsumerWidget {
                   child: Center(
                     child: (model.firstVideoController != null &&
                             model.secondVideoController != null)
-                        ? SliderExample(
-                            firstVideoController: model.firstVideoController,
-                            secondVideoController: model.secondVideoController,
+                        ? Column(
+                            children: [
+                              SliderExample(
+                                firstVideoController:
+                                    model.firstVideoController,
+                                secondVideoController:
+                                    model.secondVideoController,
+                              ),
+                            ],
                           )
                         : const Center(),
-                    // Trimmerview
                   ),
                 ),
                 Expanded(
