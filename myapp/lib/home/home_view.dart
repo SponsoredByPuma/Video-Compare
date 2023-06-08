@@ -96,7 +96,8 @@ class HomeView extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back),
           iconSize: 48,
           onPressed: () {
-            // Do something
+            //navigate back to landingpage
+            Navigator.pop(context);
           },
         ),
         actions: <Widget>[

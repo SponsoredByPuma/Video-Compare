@@ -1,12 +1,54 @@
 {
-  "helloWorld": "¡Hallo Welt!",
-  "apptitle": "Videovergleichsapp",
-  "speedButtonNormalSpeed": "Normal",
-  "speedButtonSlowSpeed": "Langsamer",
-  "rotateButtonText" : "Drehen",
+  "helloWorld": "Hallo Welt!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "appTitle": "Videovergleichsapp",
+  "@appTitle": {
+    "description": "Title of the app"
+  },
+  "speedButtonNormalSpeed": "Normale Geschwindigkeit",
+  "@speedButtonNormalSpeed": {
+    "description": "Label for the button that sets the video playback speed to normal"
+  },
+  "speedButtonSlowSpeed": "Langsame Geschwindigkeit",
+  "@speedButtonSlowSpeed": {
+    "description": "Label for the button that sets the video playback speed to slow"
+  },
+  "rotateButtonText": "Drehen",
+  "@rotateButtonText": {
+    "description": "text for rotate Button"
+  },
   "darkModeText": "Dunkler Modus",
+  "@darkModeText": {
+    "description": "text for Darkmode"
+  },
   "lightModeText": "Heller Modus",
+  "@lightModeText": {
+    "description": "text for Lightmode"
+  },
   "newProjectButtonText": "Neues Projekt",
+  "@newProjectButtonText": {
+    "description": "text for new Project Button"
+  },
   "saveProjectButtonText": "Projekt speichern",
-  "languageSwitchButton": "🇬🇧 "
+  "@saveProjectButtonText": {
+    "description": "text for Save Project Button"
+  },
+  "languageSwitchButton": "🇩🇪",
+  "@languageSwitchButton": {
+    "description": "Button for switching between German and English, always displays the other language"
+  },
+  "firstTabTitle": "Haupt",
+  "@firstTabTitle": {
+    "description": "Title of the first tab"
+  },
+  "secondTabTitle": "Über",
+  "@secondTabTitle": {
+    "description": "Title of the second tab"
+  },
+  "goToCompareVideos": "Zu den Vergleichsvideos",
+  "@goToCompareVideos": {
+    "description": "Label for the button that navigates to the video comparison screen"
+  }
 }
