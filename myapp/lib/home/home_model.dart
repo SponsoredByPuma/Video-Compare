@@ -17,5 +17,9 @@ class HomeModel with _$HomeModel {
     required File? secondVideo,
     required bool firstVideoTapped,
     required bool secondVideoTapped,
+    required double firstVideoStartPoint,
+    required double firstVideoEndPoint,
+    required double secondVideoStartPoint,
+    required double secondVideoEndPoint,
   }) = _HomeModel;
 }
