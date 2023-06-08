@@ -20,6 +20,10 @@ class SettingsMenu extends StatefulWidget {
 class _SettingsMenuState extends State<SettingsMenu> {
   SampleItem? selectedMenu;
 
+    void _changeLanguage(String languageCode) {
+      widget.controller.changeLanguage(context, languageCode);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -80,9 +84,9 @@ class _SettingsMenuState extends State<SettingsMenu> {
               if (selectedMenu == SampleItem.itemFour) {
                 if (AppLocalizations.of(context)?.localeName == 'en') {
                   selectedMenu = SampleItem.itemFour;
-                  Get.updateLocale(Locale('de', 'DE'));
+                  _changeLanguage('de');
                 } else {
-                  Get.updateLocale(Locale('en', 'US'));
+                  _changeLanguage('en');
                 }
               }
 
