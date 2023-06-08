@@ -15,5 +15,7 @@ class HomeModel with _$HomeModel {
     required VideoPlayerController? secondVideoController,
     required File? firstVideo,
     required File? secondVideo,
+    required bool firstVideoTapped,
+    required bool secondVideoTapped,
   }) = _HomeModel;
 }

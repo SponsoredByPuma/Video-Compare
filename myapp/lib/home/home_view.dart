@@ -37,6 +37,7 @@ class HomeView extends ConsumerWidget {
       ),
       controllerLeft: model.firstVideoController,
       controllerRight: model.secondVideoController,
+      controller: controller,
     );
 
     Widget verticalContainer = VerticalContainer(
@@ -56,15 +57,15 @@ class HomeView extends ConsumerWidget {
       ),
       controllerLeft: model.firstVideoController,
       controllerRight: model.secondVideoController,
+      controller: controller,
     );
 
     return Scaffold(
       appBar: AppBar(
-        title:  Text(AppLocalizations.of(context)?.apptitle?? ''),
+        title: Text(AppLocalizations.of(context)?.apptitle ?? ''),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           iconSize: 48,
-          //color: Theme.of(context).primaryColor,
           onPressed: () {
             // Do something
           },
@@ -93,12 +94,30 @@ class HomeView extends ConsumerWidget {
                     ),
                   ],
                 ),
-                const Expanded(
+                Expanded(
                   flex: 2,
                   child: Center(
-
-                      // Trimmerview
-                      ),
+                    child: (model.firstVideoController != null &&
+                            model.secondVideoController != null)
+                        ? Column(
+                            children: [
+                              // Slider
+                              model.firstVideoTapped
+                                  ? ElevatedButton(
+                                      onPressed: () {},
+                                      child: const Text("FirstVideo"),
+                                    )
+                                  : const Center(),
+                              model.secondVideoTapped
+                                  ? ElevatedButton(
+                                      onPressed: () {},
+                                      child: const Text("SecondVideo"),
+                                    )
+                                  : const Center(),
+                            ],
+                          )
+                        : const Center(),
+                  ),
                 ),
                 Expanded(
                   flex: 2,
@@ -138,4 +157,8 @@ abstract class HomeController extends StateNotifier<HomeModel> {
   bool getLightMode();
 
   void switchColorMode();
+
+  void firstVideoTapped();
+
+  void secondVideoTapped();
 }
