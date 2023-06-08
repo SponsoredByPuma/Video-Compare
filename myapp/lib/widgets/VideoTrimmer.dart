@@ -23,7 +23,8 @@ class VideoTrimmer extends StatefulWidget {
 class _VideoTrimmerState extends State<VideoTrimmer> {
   final Trimmer _trimmer = Trimmer();
 
-  Future<void> _loadVideo() async {
+  _loadVideo() async {
+    // we probably need to create a copy so it does not overwrite our File inside of the VideoPlayerController
     final uriString = widget.videoPlayerController.dataSource;
     final uri = Uri.parse(uriString);
     final file = File.fromUri(uri);
@@ -32,8 +33,8 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
 
   @override
   void initState() {
-    super.initState();
     _loadVideo();
+    super.initState();
   }
 
   @override
@@ -43,7 +44,17 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
       viewerHeight: 50.0,
       viewerWidth: 400,
       maxVideoLength: widget.videoPlayerController.value.duration,
-      onChangeStart: (value) => {
+      onChangePlaybackState: (bool value) => {},
+      showDuration: false,
+      editorProperties: const TrimEditorProperties(
+        borderPaintColor: Color.fromARGB(255, 91, 31, 97),
+        borderWidth: 6,
+        circleSize: 10,
+        circlePaintColor: Color.fromARGB(255, 67, 203, 244),
+        circleSizeOnDrag: 12,
+        borderRadius: 12,
+      ),
+      onChangeStart: (double value) => {
         if (widget.isItFirstVideo)
           {
             widget.controller.changeFirstVideoStartPoint(value),
@@ -57,7 +68,7 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
                 .seekTo(Duration(milliseconds: value.toInt())),
           }
       },
-      onChangeEnd: (value) => {
+      onChangeEnd: (double value) => {
         if (widget.isItFirstVideo)
           {
             widget.controller.changeFirstVideoEndPoint(value),
