@@ -24,7 +24,6 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
   final Trimmer _trimmer = Trimmer();
 
   _loadVideo() async {
-    // we probably need to create a copy so it does not overwrite our File inside of the VideoPlayerController
     final uriString = widget.videoPlayerController.dataSource;
     final uri = Uri.parse(uriString);
     final file = File.fromUri(uri);
@@ -47,7 +46,7 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
       onChangePlaybackState: (bool value) => {},
       showDuration: false,
       editorProperties: const TrimEditorProperties(
-        borderPaintColor: Color.fromARGB(255, 91, 31, 97),
+        borderPaintColor: Color.fromARGB(255, 172, 19, 39),
         borderWidth: 6,
         circleSize: 10,
         circlePaintColor: Color.fromARGB(255, 67, 203, 244),
