@@ -185,10 +185,6 @@ abstract class HomeController extends StateNotifier<HomeModel> {
 
   void setSecondController(controller);
 
-  void removeFirstVideo();
-
-  void removeSecondVideo();
-
   bool getLightMode();
 
   void switchColorMode();
@@ -212,4 +208,6 @@ abstract class HomeController extends StateNotifier<HomeModel> {
   double getSecondVideoStart();
 
   double getSecondVideoEnd();
+
+  void resetEverything();
 }
