@@ -11,6 +11,7 @@ import 'package:myapp/home/home_model.dart';
 import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:myapp/widgets/VideoTrimmer.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -22,41 +23,71 @@ class HomeView extends ConsumerWidget {
     final HomeModel model = ref.watch(providers.homeControllerProvider);
 
     Widget horizontalConainer = HorizontalContainer(
+      //First Controller
       leftVideoController: VideoChooserButton(
         controller: model.firstVideoController,
         video: model.firstVideo,
         onVideoSelected: (newController) {
           controller.setFirstController(newController);
+          controller.changeFirstVideoStartPoint(0.0);
+          controller.changeFirstVideoEndPoint(
+              newController.value.duration.inSeconds.toDouble());
         },
       ),
+      // Second Controller
       rightVideoController: VideoChooserButton(
         controller: model.secondVideoController,
         video: model.secondVideo,
         onVideoSelected: (newController) {
           controller.setSecondController(newController);
+          controller.changeSecondVideoStartPoint(0.0);
+          controller.changeSecondVideoEndPoint(
+              newController.value.duration.inSeconds.toDouble());
         },
       ),
+      // additional controller
       controllerLeft: model.firstVideoController,
       controllerRight: model.secondVideoController,
+      controller: controller,
+      // start & end points
+      firstVideoStartPoint: model.firstVideoStartPoint,
+      firstVideoEndPoint: model.firstVideoEndPoint,
+      secondVideoStartPoint: model.secondVideoStartPoint,
+      secondVideoEndPoint: model.secondVideoEndPoint,
     );
 
     Widget verticalContainer = VerticalContainer(
+      //First Controller
       leftVideoController: VideoChooserButton(
         controller: model.firstVideoController,
         video: model.firstVideo,
         onVideoSelected: (newController) {
           controller.setFirstController(newController);
+          controller.changeFirstVideoStartPoint(0.0);
+          controller.changeFirstVideoEndPoint(
+              newController.value.duration.inMilliseconds.toDouble());
         },
       ),
+      // Second Controller
       rightVideoController: VideoChooserButton(
         controller: model.secondVideoController,
         video: model.secondVideo,
         onVideoSelected: (newController) {
           controller.setSecondController(newController);
+          controller.changeSecondVideoStartPoint(0.0);
+          controller.changeSecondVideoEndPoint(
+              newController.value.duration.inMilliseconds.toDouble());
         },
       ),
+      // additional controller
       controllerLeft: model.firstVideoController,
       controllerRight: model.secondVideoController,
+      controller: controller,
+      //start & endPoints
+      firstVideoStartPoint: model.firstVideoStartPoint,
+      firstVideoEndPoint: model.firstVideoEndPoint,
+      secondVideoStartPoint: model.secondVideoStartPoint,
+      secondVideoEndPoint: model.secondVideoEndPoint,
     );
 
     return Scaffold(
@@ -106,6 +137,24 @@ class HomeView extends ConsumerWidget {
                                 secondVideoController:
                                     model.secondVideoController,
                               ),
+                              model.firstVideoTapped &&
+                                      model.firstVideoController != null
+                                  ? VideoTrimmer(
+                                      controller: controller,
+                                      videoPlayerController:
+                                          model.firstVideoController!,
+                                      isItFirstVideo: true,
+                                    )
+                                  : const Center(),
+                              model.secondVideoTapped &&
+                                      model.secondVideoController != null
+                                  ? VideoTrimmer(
+                                      controller: controller,
+                                      videoPlayerController:
+                                          model.secondVideoController!,
+                                      isItFirstVideo: false,
+                                    )
+                                  : const Center(),
                             ],
                           )
                         : const Center(),
@@ -149,4 +198,24 @@ abstract class HomeController extends StateNotifier<HomeModel> {
   bool getLightMode();
 
   void switchColorMode();
+
+  void firstVideoTapped();
+
+  void secondVideoTapped();
+
+  void changeFirstVideoStartPoint(startPoint);
+
+  void changeFirstVideoEndPoint(endPoint);
+
+  void changeSecondVideoStartPoint(startPoint);
+
+  void changeSecondVideoEndPoint(endPoint);
+
+  double getFirstVideoStart();
+
+  double getFirstVideoEnd();
+
+  double getSecondVideoStart();
+
+  double getSecondVideoEnd();
 }

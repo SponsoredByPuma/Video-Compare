@@ -6,12 +6,19 @@ class HomeControllerImplmentation extends HomeController {
     HomeModel? model,
   }) : super(model ??
             const HomeModel(
-                vertical: true,
-                lightmode: true,
-                firstVideoController: null,
-                secondVideoController: null,
-                firstVideo: null,
-                secondVideo: null));
+              vertical: true,
+              lightmode: true,
+              firstVideoController: null,
+              secondVideoController: null,
+              firstVideo: null,
+              secondVideo: null,
+              firstVideoTapped: false,
+              secondVideoTapped: false,
+              firstVideoStartPoint: 0.0,
+              firstVideoEndPoint: 0.0,
+              secondVideoStartPoint: 0.0,
+              secondVideoEndPoint: 0.0,
+            ));
 
   @override
   void rotate() {
@@ -46,5 +53,59 @@ class HomeControllerImplmentation extends HomeController {
   @override
   void switchColorMode() {
     state = state.copyWith(lightmode: !state.lightmode);
+  }
+
+  @override
+  void firstVideoTapped() {
+    if (!state.secondVideoTapped) {
+      state = state.copyWith(firstVideoTapped: !state.firstVideoTapped);
+    }
+  }
+
+  @override
+  void secondVideoTapped() {
+    if (!state.firstVideoTapped) {
+      state = state.copyWith(secondVideoTapped: !state.secondVideoTapped);
+    }
+  }
+
+  @override
+  void changeFirstVideoStartPoint(startPoint) {
+    state = state.copyWith(firstVideoStartPoint: startPoint);
+  }
+
+  @override
+  void changeFirstVideoEndPoint(endPoint) {
+    state = state.copyWith(firstVideoEndPoint: endPoint);
+  }
+
+  @override
+  void changeSecondVideoStartPoint(startPoint) {
+    state = state.copyWith(secondVideoStartPoint: startPoint);
+  }
+
+  @override
+  void changeSecondVideoEndPoint(endPoint) {
+    state = state.copyWith(secondVideoEndPoint: endPoint);
+  }
+
+  @override
+  double getFirstVideoStart() {
+    return state.firstVideoStartPoint;
+  }
+
+  @override
+  double getFirstVideoEnd() {
+    return state.firstVideoEndPoint;
+  }
+
+  @override
+  double getSecondVideoStart() {
+    return state.secondVideoStartPoint;
+  }
+
+  @override
+  double getSecondVideoEnd() {
+    return state.secondVideoEndPoint;
   }
 }
