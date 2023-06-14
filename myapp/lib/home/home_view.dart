@@ -138,7 +138,9 @@ class HomeView extends ConsumerWidget {
                                     model.secondVideoController,
                               ),
                               model.firstVideoTapped &&
-                                      model.firstVideoController != null
+                                      model.firstVideoController != null &&
+                                      !(model.firstVideoController!.value
+                                          .isPlaying)
                                   ? VideoTrimmer(
                                       controller: controller,
                                       videoPlayerController:
@@ -147,7 +149,9 @@ class HomeView extends ConsumerWidget {
                                     )
                                   : const Center(),
                               model.secondVideoTapped &&
-                                      model.secondVideoController != null
+                                      model.secondVideoController != null &&
+                                      !(model.secondVideoController!.value
+                                          .isPlaying)
                                   ? VideoTrimmer(
                                       controller: controller,
                                       videoPlayerController:

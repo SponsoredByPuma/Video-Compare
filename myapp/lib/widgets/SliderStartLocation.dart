@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:smooth_video_progress/smooth_video_progress.dart';
 
 class SliderExample extends StatefulWidget {
   VideoPlayerController? firstVideoController;
@@ -16,61 +17,61 @@ class SliderExample extends StatefulWidget {
 }
 
 class _SliderExampleState extends State<SliderExample> {
-  double _currentSliderValue = 0;
-
   @override
   Widget build(BuildContext context) {
     return widget.firstVideoController!.value.duration >=
             widget.secondVideoController!.value.duration
-        ? Slider(
-            value: widget.firstVideoController!.value.position.inSeconds
-                .toDouble(),
-            max: double.parse(
-              widget.firstVideoController!.value.duration.inSeconds.toString(),
-            ),
-            onChanged: (double value) {
-              setState(
-                () {
-                  _currentSliderValue = value;
-                  widget.firstVideoController!
-                      .seekTo(Duration(seconds: value.toInt()));
-                  if (Duration(seconds: value.toInt()) >=
-                      widget.secondVideoController!.value.duration) {
+        ? SmoothVideoProgress(
+            controller: widget.firstVideoController!,
+            builder: (context, position, duration, child) => Slider(
+              onChangeStart: (_) => widget.firstVideoController!.pause(),
+              onChangeEnd: (_) => widget.firstVideoController!.play(),
+              onChanged: (double value) => {
+                widget.firstVideoController!
+                    .seekTo(Duration(milliseconds: value.toInt())),
+                if (Duration(milliseconds: value.toInt()) >=
+                    widget.secondVideoController!.value.duration)
+                  {
                     widget.secondVideoController!
-                        .seekTo(widget.secondVideoController!.value.duration);
-                    widget.secondVideoController!.pause();
-                  } else {
-                    widget.secondVideoController!
-                        .seekTo(Duration(seconds: value.toInt()));
+                        .seekTo(widget.secondVideoController!.value.duration),
+                    widget.secondVideoController!.pause(),
                   }
-                },
-              );
-            },
-            activeColor: Colors.white,
+                else
+                  {
+                    widget.secondVideoController!
+                        .seekTo(Duration(milliseconds: value.toInt())),
+                  }
+              },
+              value: position.inMilliseconds.toDouble(),
+              min: 0,
+              max: duration.inMilliseconds.toDouble(),
+            ),
           )
-        : Slider(
-            value: _currentSliderValue,
-            max: double.parse(
-              widget.secondVideoController!.value.duration.inSeconds.toString(),
-            ),
-            onChanged: (double value) {
-              setState(
-                () {
-                  _currentSliderValue = value;
-                  widget.secondVideoController!
-                      .seekTo(Duration(seconds: value.toInt()));
-                  if (Duration(seconds: value.toInt()) >=
-                      widget.firstVideoController!.value.duration) {
-                    widget.secondVideoController!
-                        .seekTo(widget.firstVideoController!.value.duration);
-                    widget.secondVideoController!.pause();
-                  } else {
+        : SmoothVideoProgress(
+            controller: widget.secondVideoController!,
+            builder: (context, position, duration, child) => Slider(
+              onChangeStart: (_) => widget.secondVideoController!.pause(),
+              onChangeEnd: (_) => widget.secondVideoController!.play(),
+              onChanged: (double value) => {
+                widget.secondVideoController!
+                    .seekTo(Duration(milliseconds: value.toInt())),
+                if (Duration(milliseconds: value.toInt()) >=
+                    widget.firstVideoController!.value.duration)
+                  {
                     widget.firstVideoController!
-                        .seekTo(Duration(seconds: value.toInt()));
+                        .seekTo(widget.firstVideoController!.value.duration),
+                    widget.firstVideoController!.pause(),
                   }
-                },
-              );
-            },
+                else
+                  {
+                    widget.firstVideoController!
+                        .seekTo(Duration(milliseconds: value.toInt())),
+                  }
+              },
+              value: position.inMilliseconds.toDouble(),
+              min: 0,
+              max: duration.inMilliseconds.toDouble(),
+            ),
           );
   }
 }
