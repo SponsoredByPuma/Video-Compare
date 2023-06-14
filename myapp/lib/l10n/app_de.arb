@@ -7,11 +7,11 @@
   "@appTitle": {
     "description": "Title of the app"
   },
-  "speedButtonNormalSpeed": "Normale Geschwindigkeit",
+  "speedButtonNormalSpeed": "Normal",
   "@speedButtonNormalSpeed": {
     "description": "Label for the button that sets the video playback speed to normal"
   },
-  "speedButtonSlowSpeed": "Langsame Geschwindigkeit",
+  "speedButtonSlowSpeed": "Langsam",
   "@speedButtonSlowSpeed": {
     "description": "Label for the button that sets the video playback speed to slow"
   },
