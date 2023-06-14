@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/home/home_view.dart';
 import 'package:myapp/widgets/AnimatedSplashScreen.dart';
-import 'package:myapp/widgets/LandingPage.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'landingpage/landing_view.dart';
 
 void main() async {
   runApp(await buildApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Video Compare',
-      initialRoute: '/home',
+      initialRoute: '/',
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -52,9 +53,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         textTheme: GoogleFonts.robotoFlexTextTheme(),
       ),
-      home: const AnimatedSplashScreen(),
+      home: AnimatedSplashScreen(
+      ),
       routes: {
-        '/home': (context) => LandingPage(),
+        '/home': (context) => LandingView(),
         '/videoCompare': (context) => const HomeView(),
       },
     );

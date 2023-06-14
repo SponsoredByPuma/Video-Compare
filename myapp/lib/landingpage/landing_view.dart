@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'AboutWidget.dart';
-import 'SettingTab.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myapp/common/providers.dart';
+import 'package:myapp/home/home_model.dart';
+import 'package:myapp/widgets/AboutWidget.dart';
 
-class LandingPage extends StatefulWidget {
-  const LandingPage({Key? key}) : super(key: key);
+import '../widgets/SettingTab.dart';
+import 'landing_model.dart';
 
+class LandingView extends ConsumerWidget {
   @override
-  _LandingPageState createState() => _LandingPageState();
-}
-
-class _LandingPageState extends State<LandingPage>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context); // This line is important!
+  Widget build(BuildContext context, WidgetRef ref) {
+        final LandingController controller =
+        ref.read(providers.landingControllerProvider.notifier);
+    final LandingModel model = ref.watch(providers.landingControllerProvider);
 
     return DefaultTabController(
       length: 3,
@@ -29,7 +25,7 @@ class _LandingPageState extends State<LandingPage>
             tabs: [
               Tab(text: AppLocalizations.of(context)!.firstTabTitle),
               Tab(text: AppLocalizations.of(context)!.secondTabTitle),
-              Tab(text: "AppLocalizations.of(context)!.settingsTabTitle"),
+              Tab(text: "settings"),
             ],
           ),
         ),
@@ -40,8 +36,10 @@ class _LandingPageState extends State<LandingPage>
             SettingsTab(),
           ],
         ),
-      ),
-    );
+      )
+);
+
+
   }
 
   Widget _buildFirstTab(BuildContext context) {
@@ -72,4 +70,12 @@ class _LandingPageState extends State<LandingPage>
       ],
     );
   }
+  }
+
+
+abstract class LandingController extends StateNotifier<LandingModel> {
+  LandingController(LandingModel state) : super(state as LandingModel);
 }
+
+
+

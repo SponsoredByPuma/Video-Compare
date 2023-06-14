@@ -24,12 +24,12 @@ class _SettingsTabState extends State<SettingsTab> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "AppLocalizations.of(context)!.settingsTabTitle",
+                  "Settings",
                   style: TextStyle(fontSize: 24, color: Colors.black),
                 ),
                 SizedBox(height: 16),
                 SwitchListTile(
-                  title: Text("AppLocalizations.of(context)!.darkMode"),
+                  title: Text("Darkmode"),
                   value: _isDarkModeEnabled,
                   onChanged: (value) {
                     setState(() {
@@ -47,7 +47,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 SizedBox(height: 16),
                 DropdownButtonFormField<String>(
                   decoration: InputDecoration(
-                    labelText: "AppLocalizations.of(context)!.language",
+                    labelText: "Language",
                     border: OutlineInputBorder(),
                   ),
                   value: _selectedLanguage,
