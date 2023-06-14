@@ -11,35 +11,32 @@ import 'landing_model.dart';
 class LandingView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-        final LandingController controller =
+    final LandingController controller =
         ref.read(providers.landingControllerProvider.notifier);
     final LandingModel model = ref.watch(providers.landingControllerProvider);
 
     return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text(AppLocalizations.of(context)!.appTitle),
-          bottom: TabBar(
-            tabs: [
-              Tab(text: AppLocalizations.of(context)!.firstTabTitle),
-              Tab(text: AppLocalizations.of(context)!.secondTabTitle),
-              Tab(text: "settings"),
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text(AppLocalizations.of(context)!.appTitle),
+            bottom: TabBar(
+              tabs: [
+                Tab(text: AppLocalizations.of(context)!.firstTabTitle),
+                Tab(text: AppLocalizations.of(context)!.secondTabTitle),
+                const Tab(text: "settings"),
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              _buildFirstTab(context),
+              const AboutWidget(),
+              const SettingsTab(),
             ],
           ),
-        ),
-        body: TabBarView(
-          children: [
-            _buildFirstTab(context),
-            AboutWidget(),
-            SettingsTab(),
-          ],
-        ),
-      )
-);
-
-
+        ));
   }
 
   Widget _buildFirstTab(BuildContext context) {
@@ -54,9 +51,9 @@ class LandingView extends ConsumerWidget {
               children: [
                 Text(
                   AppLocalizations.of(context)!.firstTabTitle,
-                  style: TextStyle(fontSize: 24, color: Colors.white),
+                  style: const TextStyle(fontSize: 24, color: Colors.white),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/videoCompare');
@@ -70,12 +67,8 @@ class LandingView extends ConsumerWidget {
       ],
     );
   }
-  }
-
-
-abstract class LandingController extends StateNotifier<LandingModel> {
-  LandingController(LandingModel state) : super(state as LandingModel);
 }
 
-
-
+abstract class LandingController extends StateNotifier<LandingModel> {
+  LandingController(LandingModel state) : super(state);
+}
