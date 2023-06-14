@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'landingpage/landing_view.dart';
+
 void main() async {
   runApp(await buildApp());
 }
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Video Compare',
+      initialRoute: '/',
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -50,9 +53,11 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         textTheme: GoogleFonts.robotoFlexTextTheme(),
       ),
-      home: const AnimatedSplashScreen(),
+      home: AnimatedSplashScreen(
+      ),
       routes: {
-        '/home': (context) => const HomeView(),
+        '/home': (context) => LandingView(),
+        '/videoCompare': (context) => const HomeView(),
       },
     );
   }
