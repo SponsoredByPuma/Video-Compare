@@ -49,16 +49,6 @@ class HomeControllerImplmentation extends HomeController {
   }
 
   @override
-  void removeFirstVideo() {
-    state = state.copyWith(firstVideoController: null);
-  }
-
-  @override
-  void removeSecondVideo() {
-    state = state.copyWith(secondVideoController: null);
-  }
-
-  @override
   bool getLightMode() {
     return state.lightmode;
   }
@@ -120,5 +110,13 @@ class HomeControllerImplmentation extends HomeController {
   @override
   double getSecondVideoEnd() {
     return state.secondVideoEndPoint;
+  }
+
+  @override
+  void resetEverything() {
+    state = state.copyWith(firstVideoController: null);
+    state = state.copyWith(secondVideoController: null);
+    state = state.copyWith(firstVideoTapped: false);
+    state = state.copyWith(secondVideoTapped: false);
   }
 }
