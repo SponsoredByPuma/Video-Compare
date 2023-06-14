@@ -45,9 +45,14 @@ class _SpeedButtonState extends State<SpeedButton> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(width: 8.0),
-            Text(
-              _isSlowMotion ? AppLocalizations.of(context)?.speedButtonSlowSpeed?? '' : AppLocalizations.of(context)?.speedButtonNormalSpeed ?? '',
-              style: const TextStyle(fontSize: 13),
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  _isSlowMotion ? AppLocalizations.of(context)?.speedButtonSlowSpeed ?? '' : AppLocalizations.of(context)?.speedButtonNormalSpeed ?? '',
+                  maxLines: 1,
+                ),
+              ),
             ),
           ],
         ),
