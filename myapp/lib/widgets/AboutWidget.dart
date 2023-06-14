@@ -11,7 +11,7 @@ class AboutWidget extends StatelessWidget {
         Expanded(
           child: Container(
             color: Colors.white,
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(

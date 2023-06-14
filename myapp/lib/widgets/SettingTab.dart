@@ -23,13 +23,13 @@ class _SettingsTabState extends State<SettingsTab> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Settings",
                   style: TextStyle(fontSize: 24, color: Colors.black),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 SwitchListTile(
-                  title: Text("Darkmode"),
+                  title: const Text("Darkmode"),
                   value: _isDarkModeEnabled,
                   onChanged: (value) {
                     setState(() {
@@ -44,9 +44,9 @@ class _SettingsTabState extends State<SettingsTab> {
                     });
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Language",
                     border: OutlineInputBorder(),
                   ),
@@ -62,7 +62,7 @@ class _SettingsTabState extends State<SettingsTab> {
                       }
                     });
                   },
-                  items: [
+                  items: const [
                     DropdownMenuItem(
                       value: 'English',
                       child: Text('English'),
