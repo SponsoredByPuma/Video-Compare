@@ -205,6 +205,8 @@ abstract class HomeController extends StateNotifier<HomeModel> {
 
   void changeSecondVideoEndPoint(endPoint);
 
+  void changeLanguage(BuildContext context, String languageCode);
+
   double getFirstVideoStart();
 
   double getFirstVideoEnd();
