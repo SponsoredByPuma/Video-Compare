@@ -95,7 +95,6 @@ class HomeView extends ConsumerWidget {
             (model.firstVideoEndPoint - model.firstVideoStartPoint) >=
                 (model.secondVideoEndPoint - model.secondVideoStartPoint),
       ),
-      // start & end points
     );
 
     Widget verticalContainer = VerticalContainer(
