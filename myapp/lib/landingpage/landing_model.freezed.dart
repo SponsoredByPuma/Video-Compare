@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LandingModel {
   bool get lightmode => throw _privateConstructorUsedError;
+  String get currentLanguage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LandingModelCopyWith<LandingModel> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $LandingModelCopyWith<$Res> {
           LandingModel value, $Res Function(LandingModel) then) =
       _$LandingModelCopyWithImpl<$Res, LandingModel>;
   @useResult
-  $Res call({bool lightmode});
+  $Res call({bool lightmode, String currentLanguage});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$LandingModelCopyWithImpl<$Res, $Val extends LandingModel>
   @override
   $Res call({
     Object? lightmode = null,
+    Object? currentLanguage = null,
   }) {
     return _then(_value.copyWith(
       lightmode: null == lightmode
           ? _value.lightmode
           : lightmode // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentLanguage: null == currentLanguage
+          ? _value.currentLanguage
+          : currentLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$_LandingModelCopyWith<$Res>
       __$$_LandingModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool lightmode});
+  $Res call({bool lightmode, String currentLanguage});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$_LandingModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? lightmode = null,
+    Object? currentLanguage = null,
   }) {
     return _then(_$_LandingModel(
       lightmode: null == lightmode
           ? _value.lightmode
           : lightmode // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentLanguage: null == currentLanguage
+          ? _value.currentLanguage
+          : currentLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -92,14 +103,17 @@ class __$$_LandingModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LandingModel implements _LandingModel {
-  const _$_LandingModel({required this.lightmode});
+  const _$_LandingModel(
+      {required this.lightmode, required this.currentLanguage});
 
   @override
   final bool lightmode;
+  @override
+  final String currentLanguage;
 
   @override
   String toString() {
-    return 'LandingModel(lightmode: $lightmode)';
+    return 'LandingModel(lightmode: $lightmode, currentLanguage: $currentLanguage)';
   }
 
   @override
@@ -108,11 +122,13 @@ class _$_LandingModel implements _LandingModel {
         (other.runtimeType == runtimeType &&
             other is _$_LandingModel &&
             (identical(other.lightmode, lightmode) ||
-                other.lightmode == lightmode));
+                other.lightmode == lightmode) &&
+            (identical(other.currentLanguage, currentLanguage) ||
+                other.currentLanguage == currentLanguage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, lightmode);
+  int get hashCode => Object.hash(runtimeType, lightmode, currentLanguage);
 
   @JsonKey(ignore: true)
   @override
@@ -122,11 +138,14 @@ class _$_LandingModel implements _LandingModel {
 }
 
 abstract class _LandingModel implements LandingModel {
-  const factory _LandingModel({required final bool lightmode}) =
-      _$_LandingModel;
+  const factory _LandingModel(
+      {required final bool lightmode,
+      required final String currentLanguage}) = _$_LandingModel;
 
   @override
   bool get lightmode;
+  @override
+  String get currentLanguage;
   @override
   @JsonKey(ignore: true)
   _$$_LandingModelCopyWith<_$_LandingModel> get copyWith =>

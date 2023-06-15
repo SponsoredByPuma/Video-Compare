@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SettingsTab extends StatefulWidget {
-  const SettingsTab({Key? key}) : super(key: key);
+
+  const SettingsTab({
+    Key? key,
+    required this.changeLanguage,
+  }) : super(key: key);
+
+  final Function(String languageCode) changeLanguage;
 
   @override
   _SettingsTabState createState() => _SettingsTabState();
@@ -54,10 +60,9 @@ class _SettingsTabState extends State<SettingsTab> {
                     setState(() {
                       _selectedLanguage = value!;
                       if (_selectedLanguage == 'English') {
-                        // switch to english
-                      } else if (_selectedLanguage == 'German') {
-                        // Switch to German
-                        // ...
+                        widget.changeLanguage('en');
+                      } else if (_selectedLanguage == 'Deutsch') {
+                        widget.changeLanguage('de');
                       }
                     });
                   },
@@ -67,12 +72,8 @@ class _SettingsTabState extends State<SettingsTab> {
                       child: Text('English'),
                     ),
                     DropdownMenuItem(
-                      value: 'Spanish',
-                      child: Text('Spanish'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'French',
-                      child: Text('French'),
+                      value: 'Deutsch',
+                      child: Text('Deutsch'),
                     ),
                   ],
                 ),

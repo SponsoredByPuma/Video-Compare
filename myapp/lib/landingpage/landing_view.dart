@@ -32,7 +32,10 @@ class LandingView extends ConsumerWidget {
             children: [
               _buildFirstTab(context),
               const AboutWidget(),
-              const SettingsTab(),
+              SettingsTab(      changeLanguage: (String languageCode) {
+                controller.changeLanguage(context, languageCode);
+              }) ,
+
             ],
           ),
         ));
@@ -70,4 +73,5 @@ class LandingView extends ConsumerWidget {
 
 abstract class LandingController extends StateNotifier<LandingModel> {
   LandingController(LandingModel state) : super(state);
+  void changeLanguage(BuildContext context, String languageCode);
 }

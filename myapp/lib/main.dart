@@ -17,7 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDirectory = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
-
+  Hive.registerAdapter(LanguageAdapter());
   await Hive.openBox<Language>('language');
   Get.put(LanguageService());
   runApp(await buildApp());
