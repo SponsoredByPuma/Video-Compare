@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/home/home_view.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayButton extends StatefulWidget {
