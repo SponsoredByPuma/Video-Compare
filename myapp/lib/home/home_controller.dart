@@ -1,7 +1,14 @@
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:myapp/home/LanguageService.dart';
 import 'package:myapp/home/home_model.dart';
 import 'package:myapp/home/home_view.dart';
+import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HomeControllerImplmentation extends HomeController {
+  final LanguageService _languageService = Get.find();
   HomeControllerImplmentation({
     HomeModel? model,
   }) : super(model ??
@@ -18,8 +25,13 @@ class HomeControllerImplmentation extends HomeController {
               firstVideoEndPoint: 0.0,
               secondVideoStartPoint: 0.0,
               secondVideoEndPoint: 0.0,
+              currentLanguage: 'en',
             ));
-
+  @override
+  void changeLanguage(BuildContext context, String languageCode) {
+    _languageService.changeLanguage(context, languageCode);
+    state = state.copyWith(currentLanguage: _languageService.currentLanguage);
+  }
   @override
   void rotate() {
     state = state.copyWith(vertical: !state.vertical);
@@ -33,16 +45,6 @@ class HomeControllerImplmentation extends HomeController {
   @override
   void setSecondController(controller) {
     state = state.copyWith(secondVideoController: controller);
-  }
-
-  @override
-  void removeFirstVideo() {
-    state = state.copyWith(firstVideoController: null);
-  }
-
-  @override
-  void removeSecondVideo() {
-    state = state.copyWith(secondVideoController: null);
   }
 
   @override
@@ -107,5 +109,13 @@ class HomeControllerImplmentation extends HomeController {
   @override
   double getSecondVideoEnd() {
     return state.secondVideoEndPoint;
+  }
+
+  @override
+  void resetEverything() {
+    state = state.copyWith(firstVideoController: null);
+    state = state.copyWith(secondVideoController: null);
+    state = state.copyWith(firstVideoTapped: false);
+    state = state.copyWith(secondVideoTapped: false);
   }
 }

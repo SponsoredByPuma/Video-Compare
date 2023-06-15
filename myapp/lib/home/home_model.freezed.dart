@@ -30,6 +30,7 @@ mixin _$HomeModel {
   double get firstVideoEndPoint => throw _privateConstructorUsedError;
   double get secondVideoStartPoint => throw _privateConstructorUsedError;
   double get secondVideoEndPoint => throw _privateConstructorUsedError;
+  String get currentLanguage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeModelCopyWith<HomeModel> get copyWith =>
@@ -53,7 +54,8 @@ abstract class $HomeModelCopyWith<$Res> {
       double firstVideoStartPoint,
       double firstVideoEndPoint,
       double secondVideoStartPoint,
-      double secondVideoEndPoint});
+      double secondVideoEndPoint,
+      String currentLanguage});
 }
 
 /// @nodoc
@@ -81,6 +83,7 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? firstVideoEndPoint = null,
     Object? secondVideoStartPoint = null,
     Object? secondVideoEndPoint = null,
+    Object? currentLanguage = null,
   }) {
     return _then(_value.copyWith(
       vertical: null == vertical
@@ -131,6 +134,10 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
           ? _value.secondVideoEndPoint
           : secondVideoEndPoint // ignore: cast_nullable_to_non_nullable
               as double,
+      currentLanguage: null == currentLanguage
+          ? _value.currentLanguage
+          : currentLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -154,7 +161,8 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       double firstVideoStartPoint,
       double firstVideoEndPoint,
       double secondVideoStartPoint,
-      double secondVideoEndPoint});
+      double secondVideoEndPoint,
+      String currentLanguage});
 }
 
 /// @nodoc
@@ -180,6 +188,7 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? firstVideoEndPoint = null,
     Object? secondVideoStartPoint = null,
     Object? secondVideoEndPoint = null,
+    Object? currentLanguage = null,
   }) {
     return _then(_$_HomeModel(
       vertical: null == vertical
@@ -230,6 +239,10 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value.secondVideoEndPoint
           : secondVideoEndPoint // ignore: cast_nullable_to_non_nullable
               as double,
+      currentLanguage: null == currentLanguage
+          ? _value.currentLanguage
+          : currentLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -249,7 +262,8 @@ class _$_HomeModel implements _HomeModel {
       required this.firstVideoStartPoint,
       required this.firstVideoEndPoint,
       required this.secondVideoStartPoint,
-      required this.secondVideoEndPoint});
+      required this.secondVideoEndPoint,
+      required this.currentLanguage});
 
   @override
   final bool vertical;
@@ -275,10 +289,12 @@ class _$_HomeModel implements _HomeModel {
   final double secondVideoStartPoint;
   @override
   final double secondVideoEndPoint;
+  @override
+  final String currentLanguage;
 
   @override
   String toString() {
-    return 'HomeModel(vertical: $vertical, lightmode: $lightmode, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo, firstVideoTapped: $firstVideoTapped, secondVideoTapped: $secondVideoTapped, firstVideoStartPoint: $firstVideoStartPoint, firstVideoEndPoint: $firstVideoEndPoint, secondVideoStartPoint: $secondVideoStartPoint, secondVideoEndPoint: $secondVideoEndPoint)';
+    return 'HomeModel(vertical: $vertical, lightmode: $lightmode, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo, firstVideoTapped: $firstVideoTapped, secondVideoTapped: $secondVideoTapped, firstVideoStartPoint: $firstVideoStartPoint, firstVideoEndPoint: $firstVideoEndPoint, secondVideoStartPoint: $secondVideoStartPoint, secondVideoEndPoint: $secondVideoEndPoint, currentLanguage: $currentLanguage)';
   }
 
   @override
@@ -309,7 +325,9 @@ class _$_HomeModel implements _HomeModel {
             (identical(other.secondVideoStartPoint, secondVideoStartPoint) ||
                 other.secondVideoStartPoint == secondVideoStartPoint) &&
             (identical(other.secondVideoEndPoint, secondVideoEndPoint) ||
-                other.secondVideoEndPoint == secondVideoEndPoint));
+                other.secondVideoEndPoint == secondVideoEndPoint) &&
+            (identical(other.currentLanguage, currentLanguage) ||
+                other.currentLanguage == currentLanguage));
   }
 
   @override
@@ -326,7 +344,8 @@ class _$_HomeModel implements _HomeModel {
       firstVideoStartPoint,
       firstVideoEndPoint,
       secondVideoStartPoint,
-      secondVideoEndPoint);
+      secondVideoEndPoint,
+      currentLanguage);
 
   @JsonKey(ignore: true)
   @override
@@ -348,7 +367,8 @@ abstract class _HomeModel implements HomeModel {
       required final double firstVideoStartPoint,
       required final double firstVideoEndPoint,
       required final double secondVideoStartPoint,
-      required final double secondVideoEndPoint}) = _$_HomeModel;
+      required final double secondVideoEndPoint,
+      required final String currentLanguage}) = _$_HomeModel;
 
   @override
   bool get vertical;
@@ -374,6 +394,8 @@ abstract class _HomeModel implements HomeModel {
   double get secondVideoStartPoint;
   @override
   double get secondVideoEndPoint;
+  @override
+  String get currentLanguage;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>

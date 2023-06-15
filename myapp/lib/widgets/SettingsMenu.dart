@@ -8,10 +8,18 @@ enum SampleItem { itemOne, itemTwo, itemThree, itemFour }
 class SettingsMenu extends StatefulWidget {
   const SettingsMenu({
     Key? key,
-    required this.controller,
+    required this.themeSwitch,
+    required this.newProject,
+    required this.saveProject,
+    required this.changeLanguage,
+    required this.getLightmode,
   }) : super(key: key);
 
-  final HomeController controller;
+  final Function() themeSwitch;
+  final Function() newProject;
+  final Function() saveProject;
+  final Function(String languageCode) changeLanguage;
+  final bool getLightmode;
 
   @override
   State<StatefulWidget> createState() => _SettingsMenuState();
@@ -26,62 +34,25 @@ class _SettingsMenuState extends State<SettingsMenu> {
       child: PopupMenuButton<SampleItem>(
         icon: const Icon(Icons.more_horiz),
         iconSize: 48,
-
         initialValue: selectedMenu,
-        // Callback that sets the selected popup menu item.
         onSelected: (SampleItem item) {
           setState(
             () {
               selectedMenu = item;
               if (selectedMenu == SampleItem.itemOne) {
-                widget.controller.switchColorMode();
-                widget.controller.getLightMode()
-                    ? Get.changeTheme(
-                        ThemeData(
-                            scaffoldBackgroundColor:
-                                const Color.fromRGBO(178, 206, 222, 1),
-                            appBarTheme: const AppBarTheme(
-                              backgroundColor: Color.fromRGBO(178, 206, 222, 1),
-                              iconTheme: IconThemeData(color: Colors.black),
-                            ),
-                            elevatedButtonTheme: ElevatedButtonThemeData(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromARGB(
-                                    255, 91, 31, 97), // 111, 104, 102, 1
-                              ),
-                            ),
-                            primaryColor: Colors.black),
-                      )
-                    : Get.changeTheme(
-                        ThemeData(
-                          scaffoldBackgroundColor:
-                              const Color.fromARGB(255, 67, 13, 117),
-                          appBarTheme: const AppBarTheme(
-                            backgroundColor: Color.fromARGB(255, 67, 13, 117),
-                          ),
-                          elevatedButtonTheme: ElevatedButtonThemeData(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 216, 99, 67),
-                            ),
-                          ),
-                          primaryColor: Colors.white,
-                        ),
-                      );
+                widget.themeSwitch();
               }
               if (selectedMenu == SampleItem.itemTwo) {
-                widget.controller.removeFirstVideo();
-                widget.controller.removeSecondVideo();
+                widget.newProject();
               }
               if (selectedMenu == SampleItem.itemThree) {
-                //safe
+                widget.saveProject();
               }
               if (selectedMenu == SampleItem.itemFour) {
                 if (AppLocalizations.of(context)?.localeName == 'en') {
-                  selectedMenu = SampleItem.itemFour;
-                  Get.updateLocale(const Locale('de', 'DE'));
+                  widget.changeLanguage('de');
                 } else {
-                  Get.updateLocale(const Locale('en', 'US'));
+                  widget.changeLanguage('en');
                 }
               }
             },
@@ -90,7 +61,7 @@ class _SettingsMenuState extends State<SettingsMenu> {
         itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
           PopupMenuItem<SampleItem>(
             value: SampleItem.itemOne,
-            child: widget.controller.getLightMode()
+            child: widget.getLightmode
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

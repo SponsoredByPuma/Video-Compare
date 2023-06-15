@@ -21,5 +21,6 @@ class HomeModel with _$HomeModel {
     required double firstVideoEndPoint,
     required double secondVideoStartPoint,
     required double secondVideoEndPoint,
+    required String currentLanguage,
   }) = _HomeModel;
 }

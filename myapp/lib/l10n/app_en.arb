@@ -38,6 +38,22 @@
   "languageSwitchButton": "🇩🇪 ",
   "@languageSwitchButton": {
     "description": "Button for switching between German and english , always displays the other language"
+  },
+  "appTitle": "Video Compare APP",
+  "@appTitle": {
+    "description": "Title of the app"
+  },
+  "firstTabTitle": "Main",
+  "@firstTabTitle": {
+    "description": "Title of the first tab"
+  },
+  "secondTabTitle": "About",
+  "@secondTabTitle": {
+    "description": "Title of the second tab"
+  },
+  "goToCompareVideos": "Go to Compare Videos",
+  "@goToCompareVideos": {
+    "description": "Label for the button that navigates to the video comparison screen"
   }
 }
 
