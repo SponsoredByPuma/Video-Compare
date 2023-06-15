@@ -11,6 +11,7 @@ import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:myapp/widgets/VideoTrimmer.dart';
+import 'package:get/get.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -49,10 +50,6 @@ class HomeView extends ConsumerWidget {
       controllerRight: model.secondVideoController,
       controller: controller,
       // start & end points
-      firstVideoStartPoint: model.firstVideoStartPoint,
-      firstVideoEndPoint: model.firstVideoEndPoint,
-      secondVideoStartPoint: model.secondVideoStartPoint,
-      secondVideoEndPoint: model.secondVideoEndPoint,
     );
 
     Widget verticalContainer = VerticalContainer(
@@ -96,13 +93,57 @@ class HomeView extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back),
           iconSize: 48,
           onPressed: () {
-            //navigate back to landingpage
             Navigator.pop(context);
           },
         ),
         actions: <Widget>[
           SettingsMenu(
-            controller: controller,
+            getLightmode: controller.getLightMode(),
+            changeLanguage: (String languageCode) {
+              controller.changeLanguage(context, languageCode);
+            },
+            newProject: () {
+              controller.resetEverything();
+            },
+            saveProject: () {
+              // save Project
+            },
+            themeSwitch: () {
+              controller.switchColorMode();
+              controller.getLightMode()
+                  ? Get.changeTheme(
+                      ThemeData(
+                          scaffoldBackgroundColor:
+                              const Color.fromRGBO(178, 206, 222, 1),
+                          appBarTheme: const AppBarTheme(
+                            backgroundColor: Color.fromRGBO(178, 206, 222, 1),
+                            iconTheme: IconThemeData(color: Colors.black),
+                          ),
+                          elevatedButtonTheme: ElevatedButtonThemeData(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromARGB(
+                                  255, 91, 31, 97), // 111, 104, 102, 1
+                            ),
+                          ),
+                          primaryColor: Colors.black),
+                    )
+                  : Get.changeTheme(
+                      ThemeData(
+                        scaffoldBackgroundColor:
+                            const Color.fromARGB(255, 67, 13, 117),
+                        appBarTheme: const AppBarTheme(
+                          backgroundColor: Color.fromARGB(255, 67, 13, 117),
+                        ),
+                        elevatedButtonTheme: ElevatedButtonThemeData(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 216, 99, 67),
+                          ),
+                        ),
+                        primaryColor: Colors.white,
+                      ),
+                    );
+            },
           ),
         ],
       ),

@@ -10,10 +10,6 @@ class HorizontalContainer extends StatelessWidget {
   final VideoPlayerController? controllerLeft;
   final VideoPlayerController? controllerRight;
   final HomeController controller;
-  final double firstVideoStartPoint;
-  final double firstVideoEndPoint;
-  final double secondVideoStartPoint;
-  final double secondVideoEndPoint;
 
   const HorizontalContainer({
     Key? key,
@@ -22,10 +18,6 @@ class HorizontalContainer extends StatelessWidget {
     required this.controllerLeft,
     required this.controllerRight,
     required this.controller,
-    required this.firstVideoStartPoint,
-    required this.firstVideoEndPoint,
-    required this.secondVideoStartPoint,
-    required this.secondVideoEndPoint,
   }) : super(key: key);
 
   @override
@@ -72,11 +64,6 @@ class HorizontalContainer extends StatelessWidget {
                 child: PlayButton(
                   firstVideoController: controllerLeft!,
                   secondVideoController: controllerRight!,
-                  firstVideoStartPoint: firstVideoStartPoint,
-                  firstVideoEndPoint: firstVideoEndPoint,
-                  secondVideoStartPoint: secondVideoStartPoint,
-                  secondVideoEndPoint: secondVideoEndPoint,
-                  homecontroller: controller,
                 ),
               )
             : const Center()

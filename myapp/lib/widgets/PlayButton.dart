@@ -5,21 +5,11 @@ import 'package:video_player/video_player.dart';
 class PlayButton extends StatefulWidget {
   final VideoPlayerController firstVideoController;
   final VideoPlayerController secondVideoController;
-  final double firstVideoStartPoint;
-  final double firstVideoEndPoint;
-  final double secondVideoStartPoint;
-  final double secondVideoEndPoint;
-  final HomeController homecontroller;
 
   const PlayButton({
     Key? key,
     required this.firstVideoController,
     required this.secondVideoController,
-    required this.firstVideoStartPoint,
-    required this.firstVideoEndPoint,
-    required this.secondVideoStartPoint,
-    required this.secondVideoEndPoint,
-    required this.homecontroller,
   }) : super(key: key);
 
   @override
@@ -34,17 +24,8 @@ class _PlayButtonState extends State<PlayButton> {
     super.initState();
     _isPlaying = widget.firstVideoController.value.isPlaying ||
         widget.secondVideoController.value.isPlaying;
-    double firstVideoDuration = widget.homecontroller.getFirstVideoEnd() -
-        widget.homecontroller.getFirstVideoStart();
-    double secondVideoDuration = widget.homecontroller.getSecondVideoEnd() -
-        widget.homecontroller.getSecondVideoStart();
-    addWatcherToController(
-        firstVideoDuration: firstVideoDuration,
-        secondVideoDuration: secondVideoDuration,
-        firstVideoEndPoint: widget.homecontroller.getFirstVideoEnd(),
-        secondVideoEndPoint: widget.homecontroller.getSecondVideoEnd());
   }
-
+/*
   @override
   void dispose() {
     widget.firstVideoController.removeListener(_watcherFirstVideo);
@@ -104,6 +85,7 @@ class _PlayButtonState extends State<PlayButton> {
       });
     }
   }
+  */
 
   @override
   Widget build(BuildContext context) {

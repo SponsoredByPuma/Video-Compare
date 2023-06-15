@@ -71,14 +71,8 @@ class VerticalContainer extends StatelessWidget {
             ? Align(
                 alignment: const Alignment(-0.04, 1),
                 child: PlayButton(
-                  firstVideoController: controllerLeft!,
-                  secondVideoController: controllerRight!,
-                  firstVideoStartPoint: firstVideoStartPoint,
-                  firstVideoEndPoint: firstVideoEndPoint,
-                  secondVideoStartPoint: secondVideoStartPoint,
-                  secondVideoEndPoint: secondVideoEndPoint,
-                  homecontroller: controller,
-                ),
+                    firstVideoController: controllerLeft!,
+                    secondVideoController: controllerRight!),
               )
             : const Center()
       ],
