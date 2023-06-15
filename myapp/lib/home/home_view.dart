@@ -263,7 +263,12 @@ class HomeView extends ConsumerWidget {
                                       builder:
                                           (context, position, duration, _) =>
                                               VideoProgressSlider(
-                                        position: position,
+                                        position: Duration(
+                                            milliseconds: (position
+                                                        .inMilliseconds
+                                                        .toDouble() -
+                                                    model.firstVideoStartPoint)
+                                                .toInt()),
                                         duration: Duration(
                                             milliseconds: (controller
                                                         .getFirstVideoEnd() -
@@ -284,7 +289,12 @@ class HomeView extends ConsumerWidget {
                                       builder:
                                           (context, position, duration, _) =>
                                               VideoProgressSlider(
-                                        position: position,
+                                        position: Duration(
+                                            milliseconds: (position
+                                                        .inMilliseconds
+                                                        .toDouble() -
+                                                    model.secondVideoStartPoint)
+                                                .toInt()),
                                         duration: Duration(
                                             milliseconds: (controller
                                                         .getSecondVideoEnd() -

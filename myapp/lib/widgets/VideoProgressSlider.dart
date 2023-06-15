@@ -17,7 +17,7 @@ class VideoProgressSlider extends StatelessWidget {
   final VideoPlayerController controller;
   final VideoPlayerController secondController;
   final Color swatch;
-  final Function() getEndValue;
+  final double Function() getEndValue;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +44,7 @@ class VideoProgressSlider extends StatelessWidget {
           else
             {
               secondController.seekTo(Duration(milliseconds: value.toInt())),
+              secondController.play(),
             }
         },
         onChangeStart: (_) => controller.pause(),
