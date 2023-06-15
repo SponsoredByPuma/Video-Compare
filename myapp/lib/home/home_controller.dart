@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:myapp/home/LanguageService.dart';
 import 'package:myapp/home/home_model.dart';
 import 'package:myapp/home/home_view.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class HomeControllerImplmentation extends HomeController {
+  final LanguageService _languageService = Get.find();
   HomeControllerImplmentation({
     HomeModel? model,
   }) : super(model ??
@@ -27,12 +29,9 @@ class HomeControllerImplmentation extends HomeController {
             ));
   @override
   void changeLanguage(BuildContext context, String languageCode) {
-    if (AppLocalizations.of(context)?.localeName != languageCode) {
-      Get.updateLocale(Locale(languageCode));
-      state = state.copyWith(currentLanguage: languageCode);
-    }
+    _languageService.changeLanguage(context, languageCode);
+    state = state.copyWith(currentLanguage: _languageService.currentLanguage);
   }
-
   @override
   void rotate() {
     state = state.copyWith(vertical: !state.vertical);

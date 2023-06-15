@@ -11,6 +11,8 @@ import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:myapp/widgets/VideoTrimmer.dart';
+import 'package:myapp/home/LanguageService.dart';
+import 'package:myapp/home/LanguageService.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
