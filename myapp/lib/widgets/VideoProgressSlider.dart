@@ -23,16 +23,24 @@ class VideoProgressSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final max = duration.inMilliseconds.toDouble();
     final value = position.inMilliseconds.clamp(0, max).toDouble();
-    return Theme(
-      data: ThemeData.from(
-        colorScheme: ColorScheme.fromSeed(seedColor: swatch),
-        useMaterial3: true,
-      ),
+    return SliderTheme(
+      data: const SliderThemeData(
+          activeTrackColor: Color.fromARGB(249, 161, 151, 10),
+          inactiveTrackColor: Color.fromARGB(204, 14, 161, 117),
+          //overlayColor: Color.fromARGB(150, 153, 32, 190),
+          trackHeight: 14,
+          thumbShape: RoundSliderThumbShape(
+              enabledThumbRadius: 12, pressedElevation: 10),
+          thumbColor: Color.fromARGB(255, 0, 0, 0),
+          trackShape: RectangularSliderTrackShape(),
+          showValueIndicator: ShowValueIndicator.always,
+          valueIndicatorColor: Colors.amber,
+          valueIndicatorTextStyle: TextStyle(color: Colors.black)),
       child: Slider(
         min: 0,
         max: max,
         value: value,
-        label: '${value.round()}',
+        label: Duration(milliseconds: value.toInt()).toString(),
         onChanged: (value) => {
           controller.seekTo(Duration(milliseconds: value.toInt())),
           if (value >= getEndValue())
