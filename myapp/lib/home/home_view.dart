@@ -1,3 +1,4 @@
+import 'package:myapp/widgets/PlayButton.dart';
 import 'package:myapp/widgets/RotateButton.dart';
 import 'package:myapp/widgets/SettingsMenu.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
@@ -54,6 +55,42 @@ class HomeView extends ConsumerWidget {
       secondContainerTapped: () {
         controller.secondVideoTapped();
       },
+      playButton: PlayButton(
+        firstVideoController: model.firstVideoController,
+        secondVideoController: model.secondVideoController,
+        watcherFirstVideo: () {
+          if (model.firstVideoController!.value.position.inMilliseconds >=
+              controller.getFirstVideoEnd().toInt()) {
+            //_isPlaying = false;
+            model.firstVideoController!.pause();
+            model.secondVideoController!.pause();
+            model.firstVideoController!.seekTo(
+                Duration(milliseconds: model.firstVideoStartPoint.toInt()));
+            model.secondVideoController!.seekTo(
+                Duration(milliseconds: model.secondVideoStartPoint.toInt()));
+          } else if (model
+                  .secondVideoController!.value.position.inMilliseconds >=
+              controller.getSecondVideoEnd().toInt()) {
+            model.secondVideoController!.pause();
+          }
+        },
+        watcherSecondVideo: () {
+          if (model.secondVideoController!.value.position.inMilliseconds >=
+              controller.getSecondVideoEnd().toInt()) {
+            //_isPlaying = false;
+            model.secondVideoController!.pause();
+            model.firstVideoController!.pause();
+            model.secondVideoController!.seekTo(
+                Duration(milliseconds: model.secondVideoStartPoint.toInt()));
+            model.firstVideoController!.seekTo(
+                Duration(milliseconds: model.firstVideoStartPoint.toInt()));
+          } else if (model
+                  .firstVideoController!.value.position.inMilliseconds >=
+              controller.getFirstVideoEnd().toInt()) {
+            model.firstVideoController!.pause();
+          }
+        },
+      ),
       // start & end points
     );
 
@@ -89,6 +126,42 @@ class HomeView extends ConsumerWidget {
       secondContainerTapped: () {
         controller.secondVideoTapped();
       },
+      playButton: PlayButton(
+        firstVideoController: model.firstVideoController,
+        secondVideoController: model.secondVideoController,
+        watcherFirstVideo: () {
+          if (model.firstVideoController!.value.position.inMilliseconds >=
+              controller.getFirstVideoEnd().toInt()) {
+            //_isPlaying = false;
+            model.firstVideoController!.pause();
+            model.secondVideoController!.pause();
+            model.firstVideoController!.seekTo(
+                Duration(milliseconds: model.firstVideoStartPoint.toInt()));
+            model.secondVideoController!.seekTo(
+                Duration(milliseconds: model.secondVideoStartPoint.toInt()));
+          } else if (model
+                  .secondVideoController!.value.position.inMilliseconds >=
+              controller.getSecondVideoEnd().toInt()) {
+            model.secondVideoController!.pause();
+          }
+        },
+        watcherSecondVideo: () {
+          if (model.secondVideoController!.value.position.inMilliseconds >=
+              controller.getSecondVideoEnd().toInt()) {
+            //_isPlaying = false;
+            model.secondVideoController!.pause();
+            model.firstVideoController!.pause();
+            model.secondVideoController!.seekTo(
+                Duration(milliseconds: model.secondVideoStartPoint.toInt()));
+            model.firstVideoController!.seekTo(
+                Duration(milliseconds: model.firstVideoStartPoint.toInt()));
+          } else if (model
+                  .firstVideoController!.value.position.inMilliseconds >=
+              controller.getFirstVideoEnd().toInt()) {
+            model.firstVideoController!.pause();
+          }
+        },
+      ),
     );
 
     return Scaffold(
