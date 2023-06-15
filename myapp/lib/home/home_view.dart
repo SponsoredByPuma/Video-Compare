@@ -1,7 +1,6 @@
 import 'package:myapp/widgets/PlayButton.dart';
 import 'package:myapp/widgets/RotateButton.dart';
 import 'package:myapp/widgets/SettingsMenu.dart';
-import 'package:myapp/widgets/SliderStartLocation.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
 import 'package:myapp/widgets/VideoChooser.dart';
 
@@ -12,8 +11,10 @@ import 'package:myapp/home/home_model.dart';
 import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:myapp/widgets/VideoProgressSlider.dart';
 import 'package:myapp/widgets/VideoTrimmer.dart';
 import 'package:get/get.dart';
+import 'package:smooth_video_progress/smooth_video_progress.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -256,22 +257,50 @@ class HomeView extends ConsumerWidget {
                             model.secondVideoController != null)
                         ? Column(
                             children: [
-                              SliderExample(
-                                firstVideoController:
-                                    model.firstVideoController,
-                                secondVideoController:
-                                    model.secondVideoController,
-                                firstVideoLonger: () {
-                                  return controller.isFirstVideoLonger();
-                                },
-                                getEndValue: (String videoNumber) {
-                                  return controller.getEndValue(videoNumber);
-                                },
-                                getStartValue: (String videoNumber) {
-                                  return controller.getStartValue(videoNumber);
-                                },
-                                startVideoOne: model.firstVideoStartPoint,
-                              ),
+                              controller.isFirstVideoLonger()
+                                  ? SmoothVideoProgress(
+                                      controller: model.firstVideoController!,
+                                      builder:
+                                          (context, position, duration, _) =>
+                                              VideoProgressSlider(
+                                        position: position,
+                                        duration: Duration(
+                                            milliseconds: (controller
+                                                        .getFirstVideoEnd() -
+                                                    model.firstVideoStartPoint)
+                                                .toInt()),
+                                        controller: model.firstVideoController!,
+                                        secondController:
+                                            model.secondVideoController!,
+                                        getEndValue: () {
+                                          return controller
+                                              .getEndValue("first");
+                                        },
+                                        swatch: Colors.greenAccent,
+                                      ),
+                                    )
+                                  : SmoothVideoProgress(
+                                      controller: model.secondVideoController!,
+                                      builder:
+                                          (context, position, duration, _) =>
+                                              VideoProgressSlider(
+                                        position: position,
+                                        duration: Duration(
+                                            milliseconds: (controller
+                                                        .getSecondVideoEnd() -
+                                                    model.secondVideoStartPoint)
+                                                .toInt()),
+                                        controller:
+                                            model.secondVideoController!,
+                                        secondController:
+                                            model.firstVideoController!,
+                                        getEndValue: () {
+                                          return controller
+                                              .getEndValue("second");
+                                        },
+                                        swatch: Colors.greenAccent,
+                                      ),
+                                    ),
                               model.firstVideoTapped &&
                                       model.firstVideoController != null &&
                                       !(model.firstVideoController!.value
