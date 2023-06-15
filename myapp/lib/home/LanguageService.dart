@@ -31,3 +31,20 @@ class Language extends HiveObject {
 
   Language({required this.code});
 }
+class LanguageAdapter extends TypeAdapter<Language> {
+  @override
+  final int typeId = 0;
+
+  @override
+  Language read(BinaryReader reader) {
+    final code = reader.readString();
+    return Language(code: code);
+  }
+
+  @override
+  void write(BinaryWriter writer, Language obj) {
+    writer.writeString(obj.code);
+  }
+}
+
+

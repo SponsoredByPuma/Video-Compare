@@ -1,10 +1,10 @@
-import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:myapp/home/LanguageService.dart';
 import 'package:myapp/home/home_model.dart';
 import 'package:myapp/home/home_view.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 class HomeControllerImplmentation extends HomeController {

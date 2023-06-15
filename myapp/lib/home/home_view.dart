@@ -173,7 +173,7 @@ class HomeView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.apptitle ?? ''),
+        title: Text(AppLocalizations.of(context)?.appTitle ?? ''),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           iconSize: 48,
