@@ -67,6 +67,12 @@ class _PlayButtonState extends State<PlayButton> {
     }
   }
 
+  rebuildComponent() {
+    widget.firstVideoController!.removeListener(_watcherFirstVideo);
+    widget.secondVideoController!.removeListener(_watcherSecondVideo);
+    addWatcherToController(firstVideoIsLonger: widget.firstVideoIsLonger);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -74,6 +80,7 @@ class _PlayButtonState extends State<PlayButton> {
       builder: (BuildContext context, double startFirstVideo, Widget? child) {
         _isPlaying = widget.firstVideoController!.value.isPlaying ||
             widget.secondVideoController!.value.isPlaying;
+        rebuildComponent();
         return IconButton(
           icon: Icon(
             _isPlaying ? Icons.pause : Icons.play_arrow,
