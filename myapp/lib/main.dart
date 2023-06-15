@@ -13,7 +13,6 @@ import 'package:path_provider/path_provider.dart';
 import 'landingpage/landing_view.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDirectory = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Video Compare',
-            initialBinding: BindingsBuilder(() {
+      initialBinding: BindingsBuilder(() {
         Get.put(LanguageService());
       }),
       initialRoute: '/',
@@ -65,9 +64,22 @@ class MyApp extends StatelessWidget {
         ),
         primaryColor: Colors.black,
         textTheme: GoogleFonts.robotoFlexTextTheme(),
+        sliderTheme: const SliderThemeData(
+          activeTrackColor: Color.fromARGB(248, 88, 10, 161),
+          inactiveTrackColor: Color.fromARGB(204, 148, 10, 10),
+          //overlayColor: Color.fromARGB(150, 153, 32, 190),
+          trackHeight: 14,
+          thumbShape: RoundSliderThumbShape(
+              enabledThumbRadius: 12, pressedElevation: 10),
+          thumbColor: Color.fromARGB(255, 255, 255, 255),
+          trackShape: RectangularSliderTrackShape(),
+          showValueIndicator: ShowValueIndicator.always,
+          valueIndicatorColor: Color.fromARGB(255, 0, 0, 0),
+          valueIndicatorTextStyle:
+              TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        ),
       ),
-      home: AnimatedSplashScreen(
-      ),
+      home: const AnimatedSplashScreen(),
       routes: {
         '/home': (context) => LandingView(),
         '/videoCompare': (context) => const HomeView(),
