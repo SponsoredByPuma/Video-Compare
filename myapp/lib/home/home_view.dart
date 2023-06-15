@@ -262,19 +262,33 @@ class HomeView extends ConsumerWidget {
                               model.firstVideoTapped &&
                                       model.firstVideoController != null
                                   ? VideoTrimmer(
-                                      controller: controller,
                                       videoPlayerController:
                                           model.firstVideoController!,
                                       isItFirstVideo: true,
+                                      videoEndPoint: (double value) {
+                                        controller
+                                            .changeFirstVideoEndPoint(value);
+                                      },
+                                      videoStartPoint: (double value) {
+                                        controller
+                                            .changeFirstVideoStartPoint(value);
+                                      },
                                     )
                                   : const Center(),
                               model.secondVideoTapped &&
                                       model.secondVideoController != null
                                   ? VideoTrimmer(
-                                      controller: controller,
                                       videoPlayerController:
                                           model.secondVideoController!,
                                       isItFirstVideo: false,
+                                      videoEndPoint: (double value) {
+                                        controller
+                                            .changeSecondVideoEndPoint(value);
+                                      },
+                                      videoStartPoint: (double value) {
+                                        controller
+                                            .changeSecondVideoStartPoint(value);
+                                      },
                                     )
                                   : const Center(),
                             ],

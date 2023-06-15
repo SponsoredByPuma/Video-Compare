@@ -1,20 +1,22 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:myapp/home/home_view.dart';
 import 'package:video_trimmer/video_trimmer.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoTrimmer extends StatefulWidget {
   final VideoPlayerController videoPlayerController;
-  final HomeController controller;
   final bool isItFirstVideo;
+  final Function(double value) videoStartPoint;
+  final Function(double value) videoEndPoint;
 
-  const VideoTrimmer(
-      {super.key,
-      required this.controller,
-      required this.videoPlayerController,
-      required this.isItFirstVideo});
+  const VideoTrimmer({
+    super.key,
+    required this.videoPlayerController,
+    required this.isItFirstVideo,
+    required this.videoStartPoint,
+    required this.videoEndPoint,
+  });
 
   @override
   _VideoTrimmerState createState() => _VideoTrimmerState();
@@ -54,29 +56,27 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
         borderRadius: 12,
       ),
       onChangeStart: (double value) => {
+        widget.videoStartPoint(value),
         if (widget.isItFirstVideo)
           {
-            widget.controller.changeFirstVideoStartPoint(value),
             widget.videoPlayerController
                 .seekTo(Duration(milliseconds: value.toInt())),
           }
         else
           {
-            widget.controller.changeSecondVideoStartPoint(value),
             widget.videoPlayerController
                 .seekTo(Duration(milliseconds: value.toInt())),
           }
       },
       onChangeEnd: (double value) => {
+        widget.videoEndPoint(value),
         if (widget.isItFirstVideo)
           {
-            widget.controller.changeFirstVideoEndPoint(value),
             widget.videoPlayerController
                 .seekTo(Duration(milliseconds: value.toInt())),
           }
         else
           {
-            widget.controller.changeSecondVideoEndPoint(value),
             widget.videoPlayerController
                 .seekTo(Duration(milliseconds: value.toInt())),
           }
