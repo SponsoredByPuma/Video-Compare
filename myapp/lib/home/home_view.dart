@@ -48,7 +48,12 @@ class HomeView extends ConsumerWidget {
       // additional controller
       controllerLeft: model.firstVideoController,
       controllerRight: model.secondVideoController,
-      controller: controller,
+      firstContainerTapped: () {
+        controller.firstVideoTapped();
+      },
+      secondContainerTapped: () {
+        controller.secondVideoTapped();
+      },
       // start & end points
     );
 
@@ -78,12 +83,12 @@ class HomeView extends ConsumerWidget {
       // additional controller
       controllerLeft: model.firstVideoController,
       controllerRight: model.secondVideoController,
-      controller: controller,
-      //start & endPoints
-      firstVideoStartPoint: model.firstVideoStartPoint,
-      firstVideoEndPoint: model.firstVideoEndPoint,
-      secondVideoStartPoint: model.secondVideoStartPoint,
-      secondVideoEndPoint: model.secondVideoEndPoint,
+      firstContainerTapped: () {
+        controller.firstVideoTapped();
+      },
+      secondContainerTapped: () {
+        controller.secondVideoTapped();
+      },
     );
 
     return Scaffold(

@@ -9,7 +9,8 @@ class HorizontalContainer extends StatelessWidget {
   final Widget rightVideoController;
   final VideoPlayerController? controllerLeft;
   final VideoPlayerController? controllerRight;
-  final HomeController controller;
+  final Function() firstContainerTapped;
+  final Function() secondContainerTapped;
 
   const HorizontalContainer({
     Key? key,
@@ -17,7 +18,8 @@ class HorizontalContainer extends StatelessWidget {
     required this.rightVideoController,
     required this.controllerLeft,
     required this.controllerRight,
-    required this.controller,
+    required this.firstContainerTapped,
+    required this.secondContainerTapped,
   }) : super(key: key);
 
   @override
@@ -35,7 +37,7 @@ class HorizontalContainer extends StatelessWidget {
                   child: leftVideoController,
                 ),
                 onTap: () {
-                  controller.firstVideoTapped();
+                  firstContainerTapped();
                 },
               ),
             ),
@@ -52,7 +54,7 @@ class HorizontalContainer extends StatelessWidget {
                   child: rightVideoController,
                 ),
                 onTap: () {
-                  controller.secondVideoTapped();
+                  secondContainerTapped();
                 },
               ),
             ),

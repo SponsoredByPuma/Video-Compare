@@ -9,12 +9,8 @@ class VerticalContainer extends StatelessWidget {
   final Widget rightVideoController;
   final VideoPlayerController? controllerLeft;
   final VideoPlayerController? controllerRight;
-  final HomeController controller;
-
-  final double firstVideoStartPoint;
-  final double firstVideoEndPoint;
-  final double secondVideoStartPoint;
-  final double secondVideoEndPoint;
+  final Function() firstContainerTapped;
+  final Function() secondContainerTapped;
 
   const VerticalContainer({
     Key? key,
@@ -22,11 +18,8 @@ class VerticalContainer extends StatelessWidget {
     required this.rightVideoController,
     required this.controllerLeft,
     required this.controllerRight,
-    required this.controller,
-    required this.firstVideoStartPoint,
-    required this.firstVideoEndPoint,
-    required this.secondVideoStartPoint,
-    required this.secondVideoEndPoint,
+    required this.firstContainerTapped,
+    required this.secondContainerTapped,
   }) : super(key: key);
 
   @override
@@ -44,7 +37,7 @@ class VerticalContainer extends StatelessWidget {
                   child: leftVideoController,
                 ),
                 onTap: () {
-                  controller.firstVideoTapped();
+                  firstContainerTapped();
                 },
               ),
             ),
@@ -61,7 +54,7 @@ class VerticalContainer extends StatelessWidget {
                   child: rightVideoController,
                 ),
                 onTap: () {
-                  controller.secondVideoTapped();
+                  secondContainerTapped();
                 },
               ),
             ),
