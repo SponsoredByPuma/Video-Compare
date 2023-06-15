@@ -198,19 +198,34 @@ class HomeView extends ConsumerWidget {
               controller.getLightMode()
                   ? Get.changeTheme(
                       ThemeData(
-                          scaffoldBackgroundColor:
-                              const Color.fromRGBO(178, 206, 222, 1),
-                          appBarTheme: const AppBarTheme(
-                            backgroundColor: Color.fromRGBO(178, 206, 222, 1),
-                            iconTheme: IconThemeData(color: Colors.black),
+                        scaffoldBackgroundColor:
+                            const Color.fromRGBO(178, 206, 222, 1),
+                        appBarTheme: const AppBarTheme(
+                          backgroundColor: Color.fromRGBO(178, 206, 222, 1),
+                          iconTheme: IconThemeData(color: Colors.black),
+                        ),
+                        elevatedButtonTheme: ElevatedButtonThemeData(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(
+                                255, 91, 31, 97), // 111, 104, 102, 1
                           ),
-                          elevatedButtonTheme: ElevatedButtonThemeData(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(
-                                  255, 91, 31, 97), // 111, 104, 102, 1
-                            ),
-                          ),
-                          primaryColor: Colors.black),
+                        ),
+                        primaryColor: Colors.black,
+                        sliderTheme: const SliderThemeData(
+                          activeTrackColor: Color.fromARGB(248, 88, 10, 161),
+                          inactiveTrackColor: Color.fromARGB(204, 148, 10, 10),
+                          //overlayColor: Color.fromARGB(150, 153, 32, 190),
+                          trackHeight: 14,
+                          thumbShape: RoundSliderThumbShape(
+                              enabledThumbRadius: 12, pressedElevation: 10),
+                          thumbColor: Color.fromARGB(255, 255, 255, 255),
+                          trackShape: RectangularSliderTrackShape(),
+                          showValueIndicator: ShowValueIndicator.always,
+                          valueIndicatorColor: Color.fromARGB(255, 0, 0, 0),
+                          valueIndicatorTextStyle: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255)),
+                        ),
+                      ),
                     )
                   : Get.changeTheme(
                       ThemeData(
@@ -226,6 +241,20 @@ class HomeView extends ConsumerWidget {
                           ),
                         ),
                         primaryColor: Colors.white,
+                        sliderTheme: const SliderThemeData(
+                          activeTrackColor: Color.fromARGB(249, 161, 151, 10),
+                          inactiveTrackColor: Color.fromARGB(204, 14, 161, 117),
+                          //overlayColor: Color.fromARGB(150, 153, 32, 190),
+                          trackHeight: 14,
+                          thumbShape: RoundSliderThumbShape(
+                              enabledThumbRadius: 12, pressedElevation: 10),
+                          thumbColor: Color.fromARGB(255, 0, 0, 0),
+                          trackShape: RectangularSliderTrackShape(),
+                          showValueIndicator: ShowValueIndicator.always,
+                          valueIndicatorColor: Colors.amber,
+                          valueIndicatorTextStyle:
+                              TextStyle(color: Colors.black),
+                        ),
                       ),
                     );
             },

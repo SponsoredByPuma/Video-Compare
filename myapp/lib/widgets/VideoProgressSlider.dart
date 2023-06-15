@@ -24,18 +24,7 @@ class VideoProgressSlider extends StatelessWidget {
     final max = duration.inMilliseconds.toDouble();
     final value = position.inMilliseconds.clamp(0, max).toDouble();
     return SliderTheme(
-      data: const SliderThemeData(
-          activeTrackColor: Color.fromARGB(249, 161, 151, 10),
-          inactiveTrackColor: Color.fromARGB(204, 14, 161, 117),
-          //overlayColor: Color.fromARGB(150, 153, 32, 190),
-          trackHeight: 14,
-          thumbShape: RoundSliderThumbShape(
-              enabledThumbRadius: 12, pressedElevation: 10),
-          thumbColor: Color.fromARGB(255, 0, 0, 0),
-          trackShape: RectangularSliderTrackShape(),
-          showValueIndicator: ShowValueIndicator.always,
-          valueIndicatorColor: Colors.amber,
-          valueIndicatorTextStyle: TextStyle(color: Colors.black)),
+      data: Theme.of(context).sliderTheme,
       child: Slider(
         min: 0,
         max: max,
