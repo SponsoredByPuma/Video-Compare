@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
 import 'package:myapp/home/home_view.dart';
 import 'package:myapp/widgets/AnimatedSplashScreen.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:myapp/home/LanguageService.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'landingpage/landing_view.dart';
 
 void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocumentDirectory = await getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDirectory.path);
+
+  await Hive.openBox<Language>('language');
+  Get.put(LanguageService());
   runApp(await buildApp());
 }
 
@@ -27,6 +37,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Video Compare',
+            initialBinding: BindingsBuilder(() {
+        Get.put(LanguageService());
+      }),
       initialRoute: '/',
       localizationsDelegates: const [
         AppLocalizations.delegate,

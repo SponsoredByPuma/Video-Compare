@@ -35,7 +35,7 @@
   "@saveProjectButtonText": {
     "description": "text for Save Project Button"
   },
-  "languageSwitchButton": "🇩🇪",
+  "languageSwitchButton": "🇬🇧 ",
   "@languageSwitchButton": {
     "description": "Button for switching between German and English, always displays the other language"
   },
