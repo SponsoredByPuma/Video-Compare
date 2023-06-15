@@ -90,6 +90,10 @@ class HomeView extends ConsumerWidget {
             model.firstVideoController!.pause();
           }
         },
+        firstVideoStartPoint: model.firstVideoStartPoint,
+        firstVideoIsLonger:
+            (model.firstVideoEndPoint - model.firstVideoStartPoint) >=
+                (model.secondVideoEndPoint - model.secondVideoStartPoint),
       ),
       // start & end points
     );
@@ -161,6 +165,10 @@ class HomeView extends ConsumerWidget {
             model.firstVideoController!.pause();
           }
         },
+        firstVideoStartPoint: model.firstVideoStartPoint,
+        firstVideoIsLonger:
+            (model.firstVideoEndPoint - model.firstVideoStartPoint) >=
+                (model.secondVideoEndPoint - model.secondVideoStartPoint),
       ),
     );
 
