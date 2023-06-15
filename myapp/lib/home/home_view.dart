@@ -1,3 +1,4 @@
+import 'package:myapp/widgets/PlayButton.dart';
 import 'package:myapp/widgets/RotateButton.dart';
 import 'package:myapp/widgets/SettingsMenu.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
@@ -11,6 +12,7 @@ import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:myapp/widgets/VideoTrimmer.dart';
+import 'package:get/get.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -47,12 +49,52 @@ class HomeView extends ConsumerWidget {
       // additional controller
       controllerLeft: model.firstVideoController,
       controllerRight: model.secondVideoController,
-      controller: controller,
-      // start & end points
-      firstVideoStartPoint: model.firstVideoStartPoint,
-      firstVideoEndPoint: model.firstVideoEndPoint,
-      secondVideoStartPoint: model.secondVideoStartPoint,
-      secondVideoEndPoint: model.secondVideoEndPoint,
+      firstContainerTapped: () {
+        controller.firstVideoTapped();
+      },
+      secondContainerTapped: () {
+        controller.secondVideoTapped();
+      },
+      playButton: PlayButton(
+        firstVideoController: model.firstVideoController,
+        secondVideoController: model.secondVideoController,
+        watcherFirstVideo: () {
+          if (model.firstVideoController!.value.position.inMilliseconds >=
+              controller.getFirstVideoEnd().toInt()) {
+            //_isPlaying = false;
+            model.firstVideoController!.pause();
+            model.secondVideoController!.pause();
+            model.firstVideoController!.seekTo(
+                Duration(milliseconds: model.firstVideoStartPoint.toInt()));
+            model.secondVideoController!.seekTo(
+                Duration(milliseconds: model.secondVideoStartPoint.toInt()));
+          } else if (model
+                  .secondVideoController!.value.position.inMilliseconds >=
+              controller.getSecondVideoEnd().toInt()) {
+            model.secondVideoController!.pause();
+          }
+        },
+        watcherSecondVideo: () {
+          if (model.secondVideoController!.value.position.inMilliseconds >=
+              controller.getSecondVideoEnd().toInt()) {
+            //_isPlaying = false;
+            model.secondVideoController!.pause();
+            model.firstVideoController!.pause();
+            model.secondVideoController!.seekTo(
+                Duration(milliseconds: model.secondVideoStartPoint.toInt()));
+            model.firstVideoController!.seekTo(
+                Duration(milliseconds: model.firstVideoStartPoint.toInt()));
+          } else if (model
+                  .firstVideoController!.value.position.inMilliseconds >=
+              controller.getFirstVideoEnd().toInt()) {
+            model.firstVideoController!.pause();
+          }
+        },
+        firstVideoStartPoint: model.firstVideoStartPoint,
+        firstVideoIsLonger:
+            (model.firstVideoEndPoint - model.firstVideoStartPoint) >=
+                (model.secondVideoEndPoint - model.secondVideoStartPoint),
+      ),
     );
 
     Widget verticalContainer = VerticalContainer(
@@ -81,12 +123,52 @@ class HomeView extends ConsumerWidget {
       // additional controller
       controllerLeft: model.firstVideoController,
       controllerRight: model.secondVideoController,
-      controller: controller,
-      //start & endPoints
-      firstVideoStartPoint: model.firstVideoStartPoint,
-      firstVideoEndPoint: model.firstVideoEndPoint,
-      secondVideoStartPoint: model.secondVideoStartPoint,
-      secondVideoEndPoint: model.secondVideoEndPoint,
+      firstContainerTapped: () {
+        controller.firstVideoTapped();
+      },
+      secondContainerTapped: () {
+        controller.secondVideoTapped();
+      },
+      playButton: PlayButton(
+        firstVideoController: model.firstVideoController,
+        secondVideoController: model.secondVideoController,
+        watcherFirstVideo: () {
+          if (model.firstVideoController!.value.position.inMilliseconds >=
+              controller.getFirstVideoEnd().toInt()) {
+            //_isPlaying = false;
+            model.firstVideoController!.pause();
+            model.secondVideoController!.pause();
+            model.firstVideoController!.seekTo(
+                Duration(milliseconds: model.firstVideoStartPoint.toInt()));
+            model.secondVideoController!.seekTo(
+                Duration(milliseconds: model.secondVideoStartPoint.toInt()));
+          } else if (model
+                  .secondVideoController!.value.position.inMilliseconds >=
+              controller.getSecondVideoEnd().toInt()) {
+            model.secondVideoController!.pause();
+          }
+        },
+        watcherSecondVideo: () {
+          if (model.secondVideoController!.value.position.inMilliseconds >=
+              controller.getSecondVideoEnd().toInt()) {
+            //_isPlaying = false;
+            model.secondVideoController!.pause();
+            model.firstVideoController!.pause();
+            model.secondVideoController!.seekTo(
+                Duration(milliseconds: model.secondVideoStartPoint.toInt()));
+            model.firstVideoController!.seekTo(
+                Duration(milliseconds: model.firstVideoStartPoint.toInt()));
+          } else if (model
+                  .firstVideoController!.value.position.inMilliseconds >=
+              controller.getFirstVideoEnd().toInt()) {
+            model.firstVideoController!.pause();
+          }
+        },
+        firstVideoStartPoint: model.firstVideoStartPoint,
+        firstVideoIsLonger:
+            (model.firstVideoEndPoint - model.firstVideoStartPoint) >=
+                (model.secondVideoEndPoint - model.secondVideoStartPoint),
+      ),
     );
 
     return Scaffold(
@@ -96,13 +178,57 @@ class HomeView extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back),
           iconSize: 48,
           onPressed: () {
-            //navigate back to landingpage
             Navigator.pop(context);
           },
         ),
         actions: <Widget>[
           SettingsMenu(
-            controller: controller,
+            getLightmode: controller.getLightMode(),
+            changeLanguage: (String languageCode) {
+              controller.changeLanguage(context, languageCode);
+            },
+            newProject: () {
+              controller.resetEverything();
+            },
+            saveProject: () {
+              // save Project
+            },
+            themeSwitch: () {
+              controller.switchColorMode();
+              controller.getLightMode()
+                  ? Get.changeTheme(
+                      ThemeData(
+                          scaffoldBackgroundColor:
+                              const Color.fromRGBO(178, 206, 222, 1),
+                          appBarTheme: const AppBarTheme(
+                            backgroundColor: Color.fromRGBO(178, 206, 222, 1),
+                            iconTheme: IconThemeData(color: Colors.black),
+                          ),
+                          elevatedButtonTheme: ElevatedButtonThemeData(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromARGB(
+                                  255, 91, 31, 97), // 111, 104, 102, 1
+                            ),
+                          ),
+                          primaryColor: Colors.black),
+                    )
+                  : Get.changeTheme(
+                      ThemeData(
+                        scaffoldBackgroundColor:
+                            const Color.fromARGB(255, 67, 13, 117),
+                        appBarTheme: const AppBarTheme(
+                          backgroundColor: Color.fromARGB(255, 67, 13, 117),
+                        ),
+                        elevatedButtonTheme: ElevatedButtonThemeData(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 216, 99, 67),
+                          ),
+                        ),
+                        primaryColor: Colors.white,
+                      ),
+                    );
+            },
           ),
         ],
       ),
@@ -135,19 +261,33 @@ class HomeView extends ConsumerWidget {
                               model.firstVideoTapped &&
                                       model.firstVideoController != null
                                   ? VideoTrimmer(
-                                      controller: controller,
                                       videoPlayerController:
                                           model.firstVideoController!,
                                       isItFirstVideo: true,
+                                      videoEndPoint: (double value) {
+                                        controller
+                                            .changeFirstVideoEndPoint(value);
+                                      },
+                                      videoStartPoint: (double value) {
+                                        controller
+                                            .changeFirstVideoStartPoint(value);
+                                      },
                                     )
                                   : const Center(),
                               model.secondVideoTapped &&
                                       model.secondVideoController != null
                                   ? VideoTrimmer(
-                                      controller: controller,
                                       videoPlayerController:
                                           model.secondVideoController!,
                                       isItFirstVideo: false,
+                                      videoEndPoint: (double value) {
+                                        controller
+                                            .changeSecondVideoEndPoint(value);
+                                      },
+                                      videoStartPoint: (double value) {
+                                        controller
+                                            .changeSecondVideoStartPoint(value);
+                                      },
                                     )
                                   : const Center(),
                             ],
