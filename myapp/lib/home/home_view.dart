@@ -136,7 +136,6 @@ class HomeView extends ConsumerWidget {
         watcherFirstVideo: () {
           if (model.firstVideoController!.value.position.inMilliseconds >=
               controller.getFirstVideoEnd().toInt()) {
-            //_isPlaying = false;
             model.firstVideoController!.pause();
             model.secondVideoController!.pause();
             model.firstVideoController!.seekTo(
@@ -152,7 +151,6 @@ class HomeView extends ConsumerWidget {
         watcherSecondVideo: () {
           if (model.secondVideoController!.value.position.inMilliseconds >=
               controller.getSecondVideoEnd().toInt()) {
-            //_isPlaying = false;
             model.secondVideoController!.pause();
             model.firstVideoController!.pause();
             model.secondVideoController!.seekTo(
@@ -263,6 +261,16 @@ class HomeView extends ConsumerWidget {
                                     model.firstVideoController,
                                 secondVideoController:
                                     model.secondVideoController,
+                                firstVideoLonger: () {
+                                  return controller.isFirstVideoLonger();
+                                },
+                                getEndValue: (String videoNumber) {
+                                  return controller.getEndValue(videoNumber);
+                                },
+                                getStartValue: (String videoNumber) {
+                                  return controller.getStartValue(videoNumber);
+                                },
+                                startVideoOne: model.firstVideoStartPoint,
                               ),
                               model.firstVideoTapped &&
                                       model.firstVideoController != null &&
@@ -354,13 +362,15 @@ abstract class HomeController extends StateNotifier<HomeModel> {
 
   void changeLanguage(BuildContext context, String languageCode);
 
-  double getFirstVideoStart();
-
   double getFirstVideoEnd();
-
-  double getSecondVideoStart();
 
   double getSecondVideoEnd();
 
   void resetEverything();
+
+  bool isFirstVideoLonger();
+
+  double getStartValue(String videoName);
+
+  double getEndValue(String videoName);
 }

@@ -39,6 +39,11 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TrimViewer(
       trimmer: _trimmer,
@@ -70,6 +75,7 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
       },
       onChangeEnd: (double value) => {
         widget.videoEndPoint(value),
+        /*
         if (widget.isItFirstVideo)
           {
             widget.videoPlayerController
@@ -80,6 +86,7 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
             widget.videoPlayerController
                 .seekTo(Duration(milliseconds: value.toInt())),
           }
+          */
       },
     );
   }

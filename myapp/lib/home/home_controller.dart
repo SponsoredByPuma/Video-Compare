@@ -6,7 +6,6 @@ import 'package:myapp/home/home_view.dart';
 import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class HomeControllerImplmentation extends HomeController {
   final LanguageService _languageService = Get.find();
   HomeControllerImplmentation({
@@ -32,6 +31,7 @@ class HomeControllerImplmentation extends HomeController {
     _languageService.changeLanguage(context, languageCode);
     state = state.copyWith(currentLanguage: _languageService.currentLanguage);
   }
+
   @override
   void rotate() {
     state = state.copyWith(vertical: !state.vertical);
@@ -92,18 +92,8 @@ class HomeControllerImplmentation extends HomeController {
   }
 
   @override
-  double getFirstVideoStart() {
-    return state.firstVideoStartPoint;
-  }
-
-  @override
   double getFirstVideoEnd() {
     return state.firstVideoEndPoint;
-  }
-
-  @override
-  double getSecondVideoStart() {
-    return state.secondVideoStartPoint;
   }
 
   @override
@@ -117,5 +107,29 @@ class HomeControllerImplmentation extends HomeController {
     state = state.copyWith(secondVideoController: null);
     state = state.copyWith(firstVideoTapped: false);
     state = state.copyWith(secondVideoTapped: false);
+  }
+
+  @override
+  double getEndValue(String videoName) {
+    if (videoName == "first") {
+      return state.firstVideoEndPoint;
+    } else {
+      return state.secondVideoEndPoint;
+    }
+  }
+
+  @override
+  double getStartValue(String videoName) {
+    if (videoName == "first") {
+      return state.firstVideoStartPoint;
+    } else {
+      return state.secondVideoStartPoint;
+    }
+  }
+
+  @override
+  bool isFirstVideoLonger() {
+    return (state.firstVideoEndPoint - state.firstVideoStartPoint) >=
+        (state.secondVideoEndPoint - state.secondVideoStartPoint);
   }
 }
