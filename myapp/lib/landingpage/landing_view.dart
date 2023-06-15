@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/common/providers.dart';
-import 'package:myapp/home/home_model.dart';
 import 'package:myapp/widgets/AboutWidget.dart';
 
 import '../widgets/SettingTab.dart';
@@ -33,7 +32,10 @@ class LandingView extends ConsumerWidget {
             children: [
               _buildFirstTab(context),
               const AboutWidget(),
-              const SettingsTab(),
+              SettingsTab(      changeLanguage: (String languageCode) {
+                controller.changeLanguage(context, languageCode);
+              }) ,
+
             ],
           ),
         ));
@@ -71,4 +73,5 @@ class LandingView extends ConsumerWidget {
 
 abstract class LandingController extends StateNotifier<LandingModel> {
   LandingController(LandingModel state) : super(state);
+  void changeLanguage(BuildContext context, String languageCode);
 }

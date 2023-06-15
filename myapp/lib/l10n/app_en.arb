@@ -3,10 +3,11 @@
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
   },
-  "apptitle": "VideoCompare app",
-  "@apptitle": {
+  "appTitle": "VideoCompare app",
+  "@appTitle": {
     "description": "The name of the video comparison app"
   },
+
   "speedButtonNormalSpeed": "Normal Speed",
   "@speedButtonNormalSpeed": {
     "description": "normal Speed"
@@ -38,10 +39,6 @@
   "languageSwitchButton": "🇩🇪 ",
   "@languageSwitchButton": {
     "description": "Button for switching between German and english , always displays the other language"
-  },
-  "appTitle": "Video Compare APP",
-  "@appTitle": {
-    "description": "Title of the app"
   },
   "firstTabTitle": "Main",
   "@firstTabTitle": {

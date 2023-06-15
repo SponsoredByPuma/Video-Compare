@@ -46,7 +46,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
               Image.asset('assets/images/VideoAppLogoForSplashScreen.png',
                   width: 300, height: 300),
               const SizedBox(height: 24),
-              Text(AppLocalizations.of(context)?.apptitle ?? '',
+              Text(AppLocalizations.of(context)?.appTitle ?? '',
                   style: const TextStyle(fontSize: 24)),
             ],
           ),
