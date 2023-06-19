@@ -13,6 +13,8 @@ import 'package:myapp/widgets/VerticalContainer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:myapp/widgets/VideoTrimmer.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
+import 'dart:io';
 
 class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -28,22 +30,24 @@ class HomeView extends ConsumerWidget {
       leftVideoController: VideoChooserButton(
         controller: model.firstVideoController,
         video: model.firstVideo,
-        onVideoSelected: (newController) {
+        onVideoSelected: (VideoPlayerController newController, File video) {
           controller.setFirstController(newController);
           controller.changeFirstVideoStartPoint(0.0);
           controller.changeFirstVideoEndPoint(
               newController.value.duration.inSeconds.toDouble());
+          controller.setFirstVideo(video);
         },
       ),
       // Second Controller
       rightVideoController: VideoChooserButton(
         controller: model.secondVideoController,
         video: model.secondVideo,
-        onVideoSelected: (newController) {
+        onVideoSelected: (VideoPlayerController newController, File video) {
           controller.setSecondController(newController);
           controller.changeSecondVideoStartPoint(0.0);
           controller.changeSecondVideoEndPoint(
               newController.value.duration.inSeconds.toDouble());
+          controller.setSecondVideo(video);
         },
       ),
       // additional controller
@@ -102,22 +106,24 @@ class HomeView extends ConsumerWidget {
       leftVideoController: VideoChooserButton(
         controller: model.firstVideoController,
         video: model.firstVideo,
-        onVideoSelected: (newController) {
+        onVideoSelected: (VideoPlayerController newController, File video) {
           controller.setFirstController(newController);
           controller.changeFirstVideoStartPoint(0.0);
           controller.changeFirstVideoEndPoint(
               newController.value.duration.inMilliseconds.toDouble());
+          controller.setFirstVideo(video);
         },
       ),
       // Second Controller
       rightVideoController: VideoChooserButton(
         controller: model.secondVideoController,
         video: model.secondVideo,
-        onVideoSelected: (newController) {
+        onVideoSelected: (VideoPlayerController newController, File video) {
           controller.setSecondController(newController);
           controller.changeSecondVideoStartPoint(0.0);
           controller.changeSecondVideoEndPoint(
               newController.value.duration.inMilliseconds.toDouble());
+          controller.setSecondVideo(video);
         },
       ),
       // additional controller
@@ -192,6 +198,19 @@ class HomeView extends ConsumerWidget {
             },
             saveProject: () {
               // save Project
+              String firstVideoPath = model.firstVideo!.path;
+              String secondVideoPath = model.secondVideo!.path;
+              print(firstVideoPath + " FirstVideoPath");
+              print(secondVideoPath + " secondVideoPath");
+
+              controller.downloadVideos(
+                firstVideoPath,
+                secondVideoPath,
+                model.firstVideoStartPoint,
+                model.firstVideoEndPoint,
+                model.secondVideoStartPoint,
+                model.secondVideoEndPoint,
+              );
             },
             themeSwitch: () {
               controller.switchColorMode();
@@ -322,9 +341,13 @@ abstract class HomeController extends StateNotifier<HomeModel> {
 
   void rotate();
 
-  void setFirstController(controller);
+  void setFirstController(VideoPlayerController controller);
 
-  void setSecondController(controller);
+  void setSecondController(VideoPlayerController controller);
+
+  void setFirstVideo(File video);
+
+  void setSecondVideo(File video);
 
   bool getLightMode();
 
@@ -334,13 +357,13 @@ abstract class HomeController extends StateNotifier<HomeModel> {
 
   void secondVideoTapped();
 
-  void changeFirstVideoStartPoint(startPoint);
+  void changeFirstVideoStartPoint(double startPoint);
 
-  void changeFirstVideoEndPoint(endPoint);
+  void changeFirstVideoEndPoint(double endPoint);
 
-  void changeSecondVideoStartPoint(startPoint);
+  void changeSecondVideoStartPoint(double startPoint);
 
-  void changeSecondVideoEndPoint(endPoint);
+  void changeSecondVideoEndPoint(double endPoint);
 
   void changeLanguage(BuildContext context, String languageCode);
 
@@ -353,4 +376,12 @@ abstract class HomeController extends StateNotifier<HomeModel> {
   double getSecondVideoEnd();
 
   void resetEverything();
+
+  Future<void> downloadVideos(
+      String firstVideoPath,
+      String secondVideoPath,
+      double startPointFirst,
+      double endPointFirst,
+      double startPointSecond,
+      double endPointSecond);
 }
