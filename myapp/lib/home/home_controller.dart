@@ -204,22 +204,7 @@ class HomeControllerImplmentation extends HomeController {
       outputPath,
     ];
 
-    FFmpegKit.executeWithArgumentsAsync(command, (session) async {
-      final state =
-          FFmpegKitConfig.sessionStateToString(await session.getState());
-      final returnCode = await session.getReturnCode();
-
-      debugPrint("FFmpeg process exited with state $state and rc $returnCode");
-      debugPrint(await session.getOutput());
-      if (ReturnCode.isSuccess(returnCode)) {
-        debugPrint("FFmpeg processing completed successfully.");
-        debugPrint('Video successfully saved');
-      } else {
-        debugPrint(await session.getOutput());
-        debugPrint("FFmpeg processing failed.");
-        debugPrint('Couldn\'t save the video');
-      }
-    });
+    await FFmpegKit.executeWithArguments(command);
   }
 }
 

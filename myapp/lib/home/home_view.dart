@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:myapp/widgets/PlayButton.dart';
 import 'package:myapp/widgets/RotateButton.dart';
+import 'package:myapp/widgets/SavingWidget.dart';
 import 'package:myapp/widgets/SettingsMenu.dart';
 import 'package:myapp/widgets/SpeedButton.dart';
 import 'package:myapp/widgets/VideoChooser.dart';
@@ -196,14 +198,13 @@ class HomeView extends ConsumerWidget {
             newProject: () {
               controller.resetEverything();
             },
-            saveProject: () {
+            saveProject: () async {
               // save Project
               String firstVideoPath = model.firstVideo!.path;
               String secondVideoPath = model.secondVideo!.path;
-              print(firstVideoPath + " FirstVideoPath");
-              print(secondVideoPath + " secondVideoPath");
 
-              controller.downloadVideos(
+              SavingWidget().show(context);
+              await controller.downloadVideos(
                 firstVideoPath,
                 secondVideoPath,
                 model.firstVideoStartPoint,
@@ -211,6 +212,7 @@ class HomeView extends ConsumerWidget {
                 model.secondVideoStartPoint,
                 model.secondVideoEndPoint,
               );
+              SavingWidget().dismiss();
             },
             themeSwitch: () {
               controller.switchColorMode();
