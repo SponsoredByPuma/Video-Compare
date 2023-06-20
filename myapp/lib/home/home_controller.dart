@@ -11,6 +11,7 @@ import 'package:video_trimmer/video_trimmer.dart';
 
 import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 import 'package:path/path.dart';
+import 'package:ffmpeg_kit_flutter/return_code.dart';
 
 class HomeControllerImplmentation extends HomeController {
   final LanguageService _languageService = Get.find();
@@ -150,7 +151,7 @@ class HomeControllerImplmentation extends HomeController {
   }
 
   @override
-  Future<void> downloadVideos(
+  Future<bool> downloadVideos(
       String firstVideoPath,
       String secondVideoPath,
       double startPointFirst,
@@ -206,7 +207,15 @@ class HomeControllerImplmentation extends HomeController {
       outputPath,
     ];
 
-    await FFmpegKit.executeWithArguments(command);
+    bool didItWork = false;
+    await FFmpegKit.executeWithArguments(command).then((value) async {
+      final returnCode = await value.getReturnCode();
+
+      if (ReturnCode.isSuccess(returnCode)) {
+        didItWork = true;
+      }
+    });
+    return didItWork;
   }
 }
 

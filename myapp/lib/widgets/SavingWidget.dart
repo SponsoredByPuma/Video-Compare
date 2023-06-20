@@ -26,7 +26,6 @@ class SavingWidget {
           return WillPopScope(
             onWillPop: () async => false,
             child: SimpleDialog(
-              backgroundColor: Colors.white,
               children: [
                 Center(
                   child: Column(
@@ -35,7 +34,7 @@ class SavingWidget {
                       const Padding(
                         padding: EdgeInsets.only(left: 16, top: 16, right: 16),
                         child: CupertinoActivityIndicator(
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 39, 176, 130),
                           radius: 30,
                         ),
                       ),
