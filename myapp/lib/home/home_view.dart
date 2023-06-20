@@ -13,8 +13,10 @@ import 'package:myapp/home/home_model.dart';
 import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:myapp/widgets/VideoProgressSlider.dart';
 import 'package:myapp/widgets/VideoTrimmer.dart';
 import 'package:get/get.dart';
+import 'package:smooth_video_progress/smooth_video_progress.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:io';
 
@@ -143,7 +145,6 @@ class HomeView extends ConsumerWidget {
         watcherFirstVideo: () {
           if (model.firstVideoController!.value.position.inMilliseconds >=
               controller.getFirstVideoEnd().toInt()) {
-            //_isPlaying = false;
             model.firstVideoController!.pause();
             model.secondVideoController!.pause();
             model.firstVideoController!.seekTo(
@@ -159,7 +160,6 @@ class HomeView extends ConsumerWidget {
         watcherSecondVideo: () {
           if (model.secondVideoController!.value.position.inMilliseconds >=
               controller.getSecondVideoEnd().toInt()) {
-            //_isPlaying = false;
             model.secondVideoController!.pause();
             model.firstVideoController!.pause();
             model.secondVideoController!.seekTo(
@@ -219,19 +219,34 @@ class HomeView extends ConsumerWidget {
               controller.getLightMode()
                   ? Get.changeTheme(
                       ThemeData(
-                          scaffoldBackgroundColor:
-                              const Color.fromRGBO(178, 206, 222, 1),
-                          appBarTheme: const AppBarTheme(
-                            backgroundColor: Color.fromRGBO(178, 206, 222, 1),
-                            iconTheme: IconThemeData(color: Colors.black),
+                        scaffoldBackgroundColor:
+                            const Color.fromRGBO(178, 206, 222, 1),
+                        appBarTheme: const AppBarTheme(
+                          backgroundColor: Color.fromRGBO(178, 206, 222, 1),
+                          iconTheme: IconThemeData(color: Colors.black),
+                        ),
+                        elevatedButtonTheme: ElevatedButtonThemeData(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(
+                                255, 91, 31, 97), // 111, 104, 102, 1
                           ),
-                          elevatedButtonTheme: ElevatedButtonThemeData(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(
-                                  255, 91, 31, 97), // 111, 104, 102, 1
-                            ),
-                          ),
-                          primaryColor: Colors.black),
+                        ),
+                        primaryColor: Colors.black,
+                        sliderTheme: const SliderThemeData(
+                          activeTrackColor: Color.fromARGB(248, 88, 10, 161),
+                          inactiveTrackColor: Color.fromARGB(204, 148, 10, 10),
+                          //overlayColor: Color.fromARGB(150, 153, 32, 190),
+                          trackHeight: 14,
+                          thumbShape: RoundSliderThumbShape(
+                              enabledThumbRadius: 12, pressedElevation: 10),
+                          thumbColor: Color.fromARGB(255, 255, 255, 255),
+                          trackShape: RectangularSliderTrackShape(),
+                          showValueIndicator: ShowValueIndicator.always,
+                          valueIndicatorColor: Color.fromARGB(255, 0, 0, 0),
+                          valueIndicatorTextStyle: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255)),
+                        ),
+                      ),
                     )
                   : Get.changeTheme(
                       ThemeData(
@@ -247,6 +262,20 @@ class HomeView extends ConsumerWidget {
                           ),
                         ),
                         primaryColor: Colors.white,
+                        sliderTheme: const SliderThemeData(
+                          activeTrackColor: Color.fromARGB(249, 161, 151, 10),
+                          inactiveTrackColor: Color.fromARGB(204, 14, 161, 117),
+                          //overlayColor: Color.fromARGB(150, 153, 32, 190),
+                          trackHeight: 14,
+                          thumbShape: RoundSliderThumbShape(
+                              enabledThumbRadius: 12, pressedElevation: 10),
+                          thumbColor: Color.fromARGB(255, 0, 0, 0),
+                          trackShape: RectangularSliderTrackShape(),
+                          showValueIndicator: ShowValueIndicator.always,
+                          valueIndicatorColor: Colors.amber,
+                          valueIndicatorTextStyle:
+                              TextStyle(color: Colors.black),
+                        ),
                       ),
                     );
             },
@@ -278,9 +307,64 @@ class HomeView extends ConsumerWidget {
                             model.secondVideoController != null)
                         ? Column(
                             children: [
-                              // Slider
+                              controller.isFirstVideoLonger()
+                                  ? SmoothVideoProgress(
+                                      controller: model.firstVideoController!,
+                                      builder:
+                                          (context, position, duration, _) =>
+                                              VideoProgressSlider(
+                                        position: Duration(
+                                            milliseconds: (position
+                                                        .inMilliseconds
+                                                        .toDouble() -
+                                                    model.firstVideoStartPoint)
+                                                .toInt()),
+                                        duration: Duration(
+                                            milliseconds: (controller
+                                                        .getFirstVideoEnd() -
+                                                    model.firstVideoStartPoint)
+                                                .toInt()),
+                                        controller: model.firstVideoController!,
+                                        secondController:
+                                            model.secondVideoController!,
+                                        getEndValue: () {
+                                          return controller
+                                              .getEndValue("first");
+                                        },
+                                        swatch: Colors.greenAccent,
+                                      ),
+                                    )
+                                  : SmoothVideoProgress(
+                                      controller: model.secondVideoController!,
+                                      builder:
+                                          (context, position, duration, _) =>
+                                              VideoProgressSlider(
+                                        position: Duration(
+                                            milliseconds: (position
+                                                        .inMilliseconds
+                                                        .toDouble() -
+                                                    model.secondVideoStartPoint)
+                                                .toInt()),
+                                        duration: Duration(
+                                            milliseconds: (controller
+                                                        .getSecondVideoEnd() -
+                                                    model.secondVideoStartPoint)
+                                                .toInt()),
+                                        controller:
+                                            model.secondVideoController!,
+                                        secondController:
+                                            model.firstVideoController!,
+                                        getEndValue: () {
+                                          return controller
+                                              .getEndValue("second");
+                                        },
+                                        swatch: Colors.greenAccent,
+                                      ),
+                                    ),
                               model.firstVideoTapped &&
-                                      model.firstVideoController != null
+                                      model.firstVideoController != null &&
+                                      !(model.firstVideoController!.value
+                                          .isPlaying)
                                   ? VideoTrimmer(
                                       videoPlayerController:
                                           model.firstVideoController!,
@@ -296,7 +380,9 @@ class HomeView extends ConsumerWidget {
                                     )
                                   : const Center(),
                               model.secondVideoTapped &&
-                                      model.secondVideoController != null
+                                      model.secondVideoController != null &&
+                                      !(model.secondVideoController!.value
+                                          .isPlaying)
                                   ? VideoTrimmer(
                                       videoPlayerController:
                                           model.secondVideoController!,
@@ -369,15 +455,17 @@ abstract class HomeController extends StateNotifier<HomeModel> {
 
   void changeLanguage(BuildContext context, String languageCode);
 
-  double getFirstVideoStart();
-
   double getFirstVideoEnd();
-
-  double getSecondVideoStart();
 
   double getSecondVideoEnd();
 
   void resetEverything();
+
+  bool isFirstVideoLonger();
+
+  double getStartValue(String videoName);
+
+  double getEndValue(String videoName);
 
   Future<void> downloadVideos(
       String firstVideoPath,
@@ -386,4 +474,5 @@ abstract class HomeController extends StateNotifier<HomeModel> {
       double endPointFirst,
       double startPointSecond,
       double endPointSecond);
+      
 }

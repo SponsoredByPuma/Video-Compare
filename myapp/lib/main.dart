@@ -64,6 +64,20 @@ class MyApp extends StatelessWidget {
         ),
         primaryColor: Colors.black,
         textTheme: GoogleFonts.robotoFlexTextTheme(),
+        sliderTheme: const SliderThemeData(
+          activeTrackColor: Color.fromARGB(248, 88, 10, 161),
+          inactiveTrackColor: Color.fromARGB(204, 148, 10, 10),
+          //overlayColor: Color.fromARGB(150, 153, 32, 190),
+          trackHeight: 14,
+          thumbShape: RoundSliderThumbShape(
+              enabledThumbRadius: 12, pressedElevation: 10),
+          thumbColor: Color.fromARGB(255, 255, 255, 255),
+          trackShape: RectangularSliderTrackShape(),
+          showValueIndicator: ShowValueIndicator.always,
+          valueIndicatorColor: Color.fromARGB(255, 0, 0, 0),
+          valueIndicatorTextStyle:
+              TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        ),
       ),
       home: const AnimatedSplashScreen(),
       routes: {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-
 class SettingsTab extends StatefulWidget {
-
   const SettingsTab({
     Key? key,
     required this.changeLanguage,
@@ -24,62 +22,61 @@ class _SettingsTabState extends State<SettingsTab> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Settings",
-                  style: TextStyle(fontSize: 24, color: Colors.black),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Settings",
+                style: TextStyle(fontSize: 24),
+              ),
+              const SizedBox(height: 16),
+              SwitchListTile(
+                title: const Text(
+                  "Darkmode",
                 ),
-                const SizedBox(height: 16),
-                SwitchListTile(
-                  title: const Text("Darkmode"),
-                  value: _isDarkModeEnabled,
-                  onChanged: (value) {
-                    setState(() {
-                      _isDarkModeEnabled = value;
-                      if (_isDarkModeEnabled) {
-                        // Enable dark mode
-                        // ...
-                      } else {
-                        // Disable dark mode
-                        // ...
-                      }
-                    });
-                  },
+                value: _isDarkModeEnabled,
+                onChanged: (value) {
+                  setState(() {
+                    _isDarkModeEnabled = value;
+                    if (_isDarkModeEnabled) {
+                      // Enable dark mode
+                      // ...
+                    } else {
+                      // Disable dark mode
+                      // ...
+                    }
+                  });
+                },
+              ),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<String>(
+                decoration: const InputDecoration(
+                  labelText: "Language",
+                  border: OutlineInputBorder(),
                 ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    labelText: "Language",
-                    border: OutlineInputBorder(),
+                value: _selectedLanguage,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedLanguage = value!;
+                    if (_selectedLanguage == 'English') {
+                      widget.changeLanguage('en');
+                    } else if (_selectedLanguage == 'Deutsch') {
+                      widget.changeLanguage('de');
+                    }
+                  });
+                },
+                items: const [
+                  DropdownMenuItem(
+                    value: 'English',
+                    child: Text('English'),
                   ),
-                  value: _selectedLanguage,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedLanguage = value!;
-                      if (_selectedLanguage == 'English') {
-                        widget.changeLanguage('en');
-                      } else if (_selectedLanguage == 'Deutsch') {
-                        widget.changeLanguage('de');
-                      }
-                    });
-                  },
-                  items: const [
-                    DropdownMenuItem(
-                      value: 'English',
-                      child: Text('English'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Deutsch',
-                      child: Text('Deutsch'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  DropdownMenuItem(
+                    value: 'Deutsch',
+                    child: Text('Deutsch'),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ],

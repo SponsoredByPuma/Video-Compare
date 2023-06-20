@@ -10,8 +10,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:video_trimmer/video_trimmer.dart';
 
 import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
-import 'package:ffmpeg_kit_flutter/ffmpeg_kit_config.dart';
-import 'package:ffmpeg_kit_flutter/return_code.dart';
 import 'package:path/path.dart';
 
 class HomeControllerImplmentation extends HomeController {
@@ -100,18 +98,8 @@ class HomeControllerImplmentation extends HomeController {
   }
 
   @override
-  double getFirstVideoStart() {
-    return state.firstVideoStartPoint;
-  }
-
-  @override
   double getFirstVideoEnd() {
     return state.firstVideoEndPoint;
-  }
-
-  @override
-  double getSecondVideoStart() {
-    return state.secondVideoStartPoint;
   }
 
   @override
@@ -125,6 +113,30 @@ class HomeControllerImplmentation extends HomeController {
     state = state.copyWith(secondVideoController: null);
     state = state.copyWith(firstVideoTapped: false);
     state = state.copyWith(secondVideoTapped: false);
+  }
+
+  @override
+  double getEndValue(String videoName) {
+    if (videoName == "first") {
+      return state.firstVideoEndPoint;
+    } else {
+      return state.secondVideoEndPoint;
+    }
+  }
+
+  @override
+  double getStartValue(String videoName) {
+    if (videoName == "first") {
+      return state.firstVideoStartPoint;
+    } else {
+      return state.secondVideoStartPoint;
+    }
+  }
+
+  @override
+  bool isFirstVideoLonger() {
+    return (state.firstVideoEndPoint - state.firstVideoStartPoint) >=
+        (state.secondVideoEndPoint - state.secondVideoStartPoint);
   }
 
   @override
@@ -171,17 +183,7 @@ class HomeControllerImplmentation extends HomeController {
     FileFormat outputFormat = FileFormat.mp4;
     String outputFormatString = outputFormat.toString();
     debugPrint('OUTPUT: $outputFormatString');
-    // -ss $startPoint1 -to $endPoint1
-    // -ss $startPointSecond -to $endPoint2
-
-    String trimLengthCommand = '-i "$firstVideoPath" -i "$secondVideoPath"';
-
-    const filter =
-        "[0:v]scale=1080:2040,setsar=1[l];[1:v]scale=1080:2040,setsar=1[r];[l][r]hstack";
-
-    //String command = '$trimLengthCommand -filter_complex "$filter" -c:v copy ';
     String outputPath = '$path$videoFileName$outputFormatString';
-
     debugPrint(outputPath);
 
     final List<String> command = [

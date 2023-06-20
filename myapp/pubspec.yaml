@@ -35,6 +35,8 @@ dependencies:
   intl: any
   flutter_riverpod: ^2.0.0-dev.0
   freezed_annotation: ^2.0.1
+  smooth_video_progress: ^0.0.4
+
   
   file_picker: ^5.3.0
   open_file: ^3.3.1
