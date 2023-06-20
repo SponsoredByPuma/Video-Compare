@@ -49,32 +49,35 @@ class _SettingsTabState extends State<SettingsTab> {
                 },
               ),
               const SizedBox(height: 16),
-              DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  labelText: "Language",
-                  border: OutlineInputBorder(),
+              Theme(
+                data: Theme.of(context),
+                child: DropdownButtonFormField<String>(
+                  decoration: const InputDecoration(
+                    labelText: "Language",
+                    border: OutlineInputBorder(),
+                  ),
+                  value: _selectedLanguage,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedLanguage = value!;
+                      if (_selectedLanguage == 'English') {
+                        widget.changeLanguage('en');
+                      } else if (_selectedLanguage == 'Deutsch') {
+                        widget.changeLanguage('de');
+                      }
+                    });
+                  },
+                  items: const [
+                    DropdownMenuItem(
+                      value: 'English',
+                      child: Text('English'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Deutsch',
+                      child: Text('Deutsch'),
+                    ),
+                  ],
                 ),
-                value: _selectedLanguage,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedLanguage = value!;
-                    if (_selectedLanguage == 'English') {
-                      widget.changeLanguage('en');
-                    } else if (_selectedLanguage == 'Deutsch') {
-                      widget.changeLanguage('de');
-                    }
-                  });
-                },
-                items: const [
-                  DropdownMenuItem(
-                    value: 'English',
-                    child: Text('English'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Deutsch',
-                    child: Text('Deutsch'),
-                  ),
-                ],
               ),
             ],
           ),

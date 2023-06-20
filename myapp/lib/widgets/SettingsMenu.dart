@@ -63,15 +63,19 @@ class _SettingsMenuState extends State<SettingsMenu> {
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(AppLocalizations.of(context)?.darkModeText ?? ''),
-                      const Icon(Icons.brightness_2, color: Colors.black),
+                      Text(
+                        AppLocalizations.of(context)?.darkModeText ?? '',
+                      ),
+                      const Icon(Icons.brightness_2),
                     ],
                   )
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(AppLocalizations.of(context)?.lightModeText ?? ''),
-                      const Icon(Icons.sunny, color: Colors.black),
+                      Text(
+                        AppLocalizations.of(context)?.lightModeText ?? '',
+                      ),
+                      const Icon(Icons.sunny),
                     ],
                   ),
           ),
@@ -80,8 +84,10 @@ class _SettingsMenuState extends State<SettingsMenu> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(AppLocalizations.of(context)?.newProjectButtonText ?? ''),
-                const Icon(Icons.recycling, color: Colors.black),
+                Text(
+                  AppLocalizations.of(context)?.newProjectButtonText ?? '',
+                ),
+                const Icon(Icons.recycling),
               ],
             ),
           ),
@@ -90,8 +96,10 @@ class _SettingsMenuState extends State<SettingsMenu> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(AppLocalizations.of(context)?.saveProjectButtonText ?? ''),
-                const Icon(Icons.save, color: Colors.black),
+                Text(
+                  AppLocalizations.of(context)?.saveProjectButtonText ?? '',
+                ),
+                const Icon(Icons.save),
               ],
             ),
           ),
@@ -101,7 +109,7 @@ class _SettingsMenuState extends State<SettingsMenu> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(AppLocalizations.of(context)?.languageSwitchButton ?? ''),
-                const Icon(Icons.language, color: Colors.black),
+                const Icon(Icons.language),
               ],
             ),
           ),

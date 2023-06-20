@@ -19,7 +19,6 @@ class LandingView extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text(AppLocalizations.of(context)!.appTitle),
           bottom: TabBar(
             tabs: [
               Tab(text: AppLocalizations.of(context)!.firstTabTitle),

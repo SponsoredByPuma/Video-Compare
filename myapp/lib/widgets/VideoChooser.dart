@@ -58,7 +58,10 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
                 ),
               ),
               child: IconButton(
-                icon: const Icon(Icons.add),
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.black,
+                ),
                 iconSize: 48,
                 onPressed: _pickVideo,
               ),
