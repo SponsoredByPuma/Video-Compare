@@ -1,8 +1,18 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:myapp/home/LanguageService.dart';
 import 'package:myapp/home/home_model.dart';
 import 'package:myapp/home/home_view.dart';
 import 'package:get/get.dart';
+import 'dart:async';
+import 'package:path_provider/path_provider.dart';
+import 'package:video_trimmer/video_trimmer.dart';
+
+import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
+import 'package:ffmpeg_kit_flutter/ffmpeg_kit_config.dart';
+import 'package:ffmpeg_kit_flutter/return_code.dart';
+import 'package:path/path.dart';
 
 class HomeControllerImplmentation extends HomeController {
   final LanguageService _languageService = Get.find();
@@ -129,5 +139,94 @@ class HomeControllerImplmentation extends HomeController {
   bool isFirstVideoLonger() {
     return (state.firstVideoEndPoint - state.firstVideoStartPoint) >=
         (state.secondVideoEndPoint - state.secondVideoStartPoint);
+  }
+
+  @override
+  void setFirstVideo(File video) {
+    state = state.copyWith(firstVideo: video);
+  }
+
+  @override
+  void setSecondVideo(File video) {
+    state = state.copyWith(secondVideo: video);
+  }
+
+  @override
+  Future<void> downloadVideos(
+      String firstVideoPath,
+      String secondVideoPath,
+      double startPointFirst,
+      double endPointFirst,
+      double startPointSecond,
+      double endPointSecond) async {
+    String videoFolderName = "Compare";
+    String path = await _createFolderInAppDocDir(videoFolderName).whenComplete(
+      () => debugPrint("Retrieved Trimmer folder"),
+    );
+
+    String dateTime = DateFormat.yMMMd()
+        .addPattern('-')
+        .add_Hms()
+        .format(DateTime.now())
+        .toString();
+    final String videoName1 = basename(firstVideoPath).split('.')[0];
+    String formattedDateTime = dateTime.replaceAll(' ', '');
+    String videoFileName = "${videoName1}_trimmed:$formattedDateTime";
+
+    Duration startPoint1 = Duration(milliseconds: startPointFirst.toInt());
+    Duration endPoint1 = Duration(milliseconds: endPointFirst.toInt());
+    Duration startPoint2 = Duration(milliseconds: startPointSecond.toInt());
+    Duration endPoint2 = Duration(milliseconds: endPointSecond.toInt());
+    debugPrint('startPoint1: $startPoint1');
+    debugPrint('endPoint1: $endPoint1');
+    debugPrint('startPoint2: $startPoint2');
+    debugPrint('endPoint2: $endPoint2');
+
+    FileFormat outputFormat = FileFormat.mp4;
+    String outputFormatString = outputFormat.toString();
+    debugPrint('OUTPUT: $outputFormatString');
+    String outputPath = '$path$videoFileName$outputFormatString';
+    debugPrint(outputPath);
+
+    final List<String> command = [
+      '-i',
+      firstVideoPath,
+      '-ss',
+      startPoint1.toString(),
+      '-to',
+      endPoint1.toString(),
+      '-i',
+      secondVideoPath,
+      '-ss',
+      startPoint2.toString(),
+      '-to',
+      endPoint2.toString(),
+      '-filter_complex',
+      'hstack=inputs=2',
+      '-r',
+      '30',
+      outputPath,
+    ];
+
+    await FFmpegKit.executeWithArguments(command);
+  }
+}
+
+Future<String> _createFolderInAppDocDir(String folderName) async {
+  // Directory + folder name
+  Directory? directory;
+  directory = await getExternalStorageDirectory();
+  final Directory directoryFolder = Directory('${directory!.path}/$folderName');
+
+  if (await directoryFolder.exists()) {
+    // If folder already exists return path
+    debugPrint('Exists');
+    return directoryFolder.path;
+  } else {
+    debugPrint('Creating');
+    // If folder does not exists create folder and then return its path
+    final Directory directoryNewFolder =
+        await directoryFolder.create(recursive: true);
+    return directoryNewFolder.path;
   }
 }

@@ -5,7 +5,7 @@ import 'package:video_player/video_player.dart';
 import 'package:file_picker/file_picker.dart';
 
 class VideoChooserButton extends StatefulWidget {
-  final Function(VideoPlayerController) onVideoSelected;
+  final Function(VideoPlayerController, File) onVideoSelected;
   VideoPlayerController? controller;
   File? video;
 
@@ -38,7 +38,7 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
         widget.controller = controllerTmp;
         widget.video = videoFile;
       });
-      widget.onVideoSelected(controllerTmp);
+      widget.onVideoSelected(controllerTmp, videoFile);
     }
   }
 

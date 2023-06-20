@@ -25,6 +25,10 @@ class VideoTrimmer extends StatefulWidget {
 class _VideoTrimmerState extends State<VideoTrimmer> {
   final Trimmer _trimmer = Trimmer();
 
+  saveVideos() async {
+    _trimmer.saveTrimmedVideo(startValue: 0, endValue: 10, onSave: (String) {});
+  }
+
   _loadVideo() async {
     final uriString = widget.videoPlayerController.dataSource;
     final uri = Uri.parse(uriString);
