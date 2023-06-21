@@ -52,7 +52,7 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
     return TrimViewer(
       trimmer: _trimmer,
       viewerHeight: 50.0,
-      viewerWidth: 400,
+      viewerWidth: double.infinity,
       maxVideoLength: widget.videoPlayerController.value.duration,
       onChangePlaybackState: (bool value) => {},
       showDuration: false,
