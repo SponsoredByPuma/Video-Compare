@@ -23,7 +23,7 @@ class LandingView extends ConsumerWidget {
             tabs: [
               Tab(text: AppLocalizations.of(context)!.firstTabTitle),
               Tab(text: AppLocalizations.of(context)!.secondTabTitle),
-              const Tab(text: "Settings"),
+              Tab(text: AppLocalizations.of(context)!.thirdTabTitle),
             ],
           ),
         ),
