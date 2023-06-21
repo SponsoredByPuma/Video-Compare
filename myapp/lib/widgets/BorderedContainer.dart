@@ -43,7 +43,7 @@ class BorderedContainer extends StatelessWidget {
           )
         : Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.width * 0.65,
+            height: MediaQuery.of(context).size.height * 0.3,
             decoration: const BoxDecoration(
               color: Colors.grey,
               border: Border(
