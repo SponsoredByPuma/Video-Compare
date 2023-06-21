@@ -3,7 +3,7 @@
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
   },
-  "appTitle": "Videovergleichsapp",
+  "appTitle": "Vison",
   "@appTitle": {
     "description": "Title of the app"
   },
@@ -46,6 +46,10 @@
   "secondTabTitle": "Über",
   "@secondTabTitle": {
     "description": "Title of the second tab"
+  },
+  "thirdTabTitle": "Einstellungen",
+  "@thirdTabTitle": {
+    "description": "Title of the third tab"
   },
   "goToCompareVideos": "Zu den Vergleichsvideos",
   "@goToCompareVideos": {

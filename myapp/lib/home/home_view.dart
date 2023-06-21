@@ -198,20 +198,58 @@ class HomeView extends ConsumerWidget {
               controller.resetEverything();
             },
             saveProject: () async {
-              // save Project
-              String firstVideoPath = model.firstVideo!.path;
-              String secondVideoPath = model.secondVideo!.path;
+              if (model.firstVideoController == null ||
+                  model.secondVideoController == null) {
+                showDialog<void>(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    title: const Text("Video Saving Failed"),
+                    content: const Text("Select two Videos !"),
+                    actions: [
+                      MaterialButton(
+                        child: const Text("Okay"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  ),
+                );
+              } else {
+                String firstVideoPath = model.firstVideo!.path;
+                String secondVideoPath = model.secondVideo!.path;
 
-              SavingWidget().show(context);
-              await controller.downloadVideos(
-                firstVideoPath,
-                secondVideoPath,
-                model.firstVideoStartPoint,
-                model.firstVideoEndPoint,
-                model.secondVideoStartPoint,
-                model.secondVideoEndPoint,
-              );
-              SavingWidget().dismiss();
+                SavingWidget().show(context);
+                bool savingWorked = await controller.downloadVideos(
+                  firstVideoPath,
+                  secondVideoPath,
+                  model.firstVideoStartPoint,
+                  model.firstVideoEndPoint,
+                  model.secondVideoStartPoint,
+                  model.secondVideoEndPoint,
+                );
+                SavingWidget().dismiss();
+                if (savingWorked == false) {
+                  // ignore: use_build_context_synchronously
+                  showDialog<String>(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: const Text("Video Saving Failed"),
+                      content: const Text(
+                          "Check if your Videos are the same Format !"),
+                      actions: [
+                        MaterialButton(
+                          color: Colors.amber,
+                          child: const Text("Okay"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        )
+                      ],
+                    ),
+                  );
+                }
+              }
             },
             themeSwitch: () {
               controller.switchColorMode();
@@ -256,6 +294,11 @@ class HomeView extends ConsumerWidget {
                           labelStyle:
                               TextStyle(color: Colors.black, fontSize: 26),
                         ),
+                        dialogTheme: const DialogTheme(
+                          backgroundColor: Colors.white,
+                          contentTextStyle:
+                              TextStyle(color: Colors.black, fontSize: 22),
+                        ),
                       ),
                     )
                   : Get.changeTheme(
@@ -276,7 +319,6 @@ class HomeView extends ConsumerWidget {
                         sliderTheme: const SliderThemeData(
                           activeTrackColor: Color.fromARGB(249, 161, 151, 10),
                           inactiveTrackColor: Color.fromARGB(204, 14, 161, 117),
-                          //overlayColor: Color.fromARGB(150, 153, 32, 190),
                           trackHeight: 14,
                           thumbShape: RoundSliderThumbShape(
                               enabledThumbRadius: 12, pressedElevation: 10),
@@ -298,6 +340,13 @@ class HomeView extends ConsumerWidget {
                         inputDecorationTheme: const InputDecorationTheme(
                           labelStyle:
                               TextStyle(color: Colors.white, fontSize: 26),
+                        ),
+                        dialogTheme: const DialogTheme(
+                          backgroundColor: Colors.white,
+                          contentTextStyle:
+                              TextStyle(color: Colors.black, fontSize: 22),
+                          titleTextStyle:
+                              TextStyle(color: Colors.black, fontSize: 24),
                         ),
                       ),
                     );
@@ -490,7 +539,7 @@ abstract class HomeController extends StateNotifier<HomeModel> {
 
   double getEndValue(String videoName);
 
-  Future<void> downloadVideos(
+  Future<bool> downloadVideos(
       String firstVideoPath,
       String secondVideoPath,
       double startPointFirst,

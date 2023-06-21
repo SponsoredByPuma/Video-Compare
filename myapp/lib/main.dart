@@ -83,6 +83,10 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: const InputDecorationTheme(
           labelStyle: TextStyle(color: Colors.black, fontSize: 26),
         ),
+        dialogTheme: const DialogTheme(
+          backgroundColor: Colors.white,
+          contentTextStyle: TextStyle(color: Colors.black, fontSize: 22),
+        ),
       ),
       home: const AnimatedSplashScreen(),
       routes: {
