@@ -29,7 +29,7 @@ class BorderedContainer extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-              border: Border(
+              border: const Border(
                 left: BorderSide(
                   color: Colors.white,
                   width: 2,
@@ -55,6 +55,47 @@ class BorderedContainer extends StatelessWidget {
               ],
             ),
           )
-        : Container();
+: Container(
+  width: double.infinity,
+  height: MediaQuery.of(context).size.height * 0.3,
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Colors.grey[300]!,
+        Colors.grey[400]!,
+        Colors.grey[500]!,
+        Colors.grey[600]!,
+        Colors.grey[700]!,
+        Colors.grey[800]!,
+        Colors.grey[900]!,
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    border: const Border(
+      left: BorderSide(
+        color: Colors.white,
+        width: 2,
+      ),
+      right: BorderSide(
+        color: Colors.white,
+        width: 2,
+      ),
+      bottom: BorderSide(
+        color: Colors.white,
+        width: 2,
+      ),
+      top: BorderSide(
+        color: Colors.white,
+        width: 2,
+      ),
+    ),
+  ),
+  child: Stack(
+    children: [
+      Align(alignment: Alignment.center, child: child),
+    ],
+  ),
+);
   }
 }
