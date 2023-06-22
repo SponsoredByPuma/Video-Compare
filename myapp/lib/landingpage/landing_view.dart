@@ -55,11 +55,15 @@ class LandingView extends ConsumerWidget {
                 style: const TextStyle(fontSize: 24),
               ),
               const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
+              InkWell(
+                onTap: () {
                   Navigator.pushNamed(context, '/videoCompare');
                 },
-                child: Text(AppLocalizations.of(context)!.goToCompareVideos),
+                child: Image.asset(
+                  'assets/images/goToVideoButton.png',
+                  height: 300,
+                  width: 300,
+                ),
               ),
             ],
           ),
