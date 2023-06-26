@@ -40,7 +40,11 @@ class SavingWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16),
-                        child: Text(textScaleFactor: 2, text),
+                        child: Text(
+                          textScaleFactor: 2,
+                          text,
+                          style: const TextStyle(color: Colors.black),
+                        ),
                       )
                     ],
                   ),
