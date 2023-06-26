@@ -49,7 +49,9 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
 
   @override
   Widget build(BuildContext context) {
-    return TrimViewer(
+    return Padding (
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: TrimViewer(
       trimmer: _trimmer,
       viewerHeight: 50.0,
       viewerWidth: double.infinity,
@@ -92,6 +94,7 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
           }
           */
       },
+    )
     );
   }
 }
