@@ -9,10 +9,9 @@ import 'package:myapp/widgets/VideoChooser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/common/providers.dart';
-import 'package:myapp/home/home_model.dart';
+import 'package:myapp/comparePage/compare_model.dart';
 import 'package:myapp/widgets/HorizontalContainer.dart';
 import 'package:myapp/widgets/VerticalContainer.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:myapp/widgets/VideoProgressSlider.dart';
 import 'package:myapp/widgets/VideoTrimmer.dart';
 import 'package:get/get.dart';
@@ -20,14 +19,14 @@ import 'package:smooth_video_progress/smooth_video_progress.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:io';
 
-class HomeView extends ConsumerWidget {
-  const HomeView({Key? key}) : super(key: key);
+class CompareView extends ConsumerWidget {
+  const CompareView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final HomeController controller =
-        ref.read(providers.homeControllerProvider.notifier);
-    final HomeModel model = ref.watch(providers.homeControllerProvider);
+    final CompareController controller =
+        ref.read(providers.compareControllerProvider.notifier);
+    final CompareModel model = ref.watch(providers.compareControllerProvider);
 
     Widget horizontalConainer = HorizontalContainer(
       //First Controller
@@ -496,8 +495,8 @@ class HomeView extends ConsumerWidget {
   }
 }
 
-abstract class HomeController extends StateNotifier<HomeModel> {
-  HomeController(HomeModel state) : super(state);
+abstract class CompareController extends StateNotifier<CompareModel> {
+  CompareController(CompareModel state) : super(state);
 
   void rotate();
 

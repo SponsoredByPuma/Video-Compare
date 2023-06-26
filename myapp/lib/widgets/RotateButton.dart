@@ -20,7 +20,7 @@ class _RotateButtonState extends State<RotateButton> {
       height: 48,
       child: ElevatedButton(
         onPressed: widget.buttonPressed,
-        child: Text(AppLocalizations.of(context)?.rotateButtonText?? ''),
+        child: Text(AppLocalizations.of(context)?.rotateButtonText ?? ''),
       ),
     );
   }

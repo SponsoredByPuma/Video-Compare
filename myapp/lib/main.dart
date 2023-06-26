@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
-import 'package:myapp/home/home_view.dart';
+import 'package:myapp/comparePage/compare_view.dart';
 import 'package:myapp/widgets/AnimatedSplashScreen.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:myapp/home/LanguageService.dart';
+import 'package:myapp/comparePage/LanguageService.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'landingpage/landing_view.dart';
@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
       home: const AnimatedSplashScreen(),
       routes: {
         '/home': (context) => LandingView(),
-        '/videoCompare': (context) => const HomeView(),
+        '/videoCompare': (context) => const CompareView(),
       },
     );
   }

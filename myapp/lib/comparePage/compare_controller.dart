@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:myapp/home/LanguageService.dart';
-import 'package:myapp/home/home_model.dart';
-import 'package:myapp/home/home_view.dart';
+import 'package:myapp/comparePage/LanguageService.dart';
+import 'package:myapp/comparePage/compare_model.dart';
+import 'package:myapp/comparePage/compare_view.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 import 'package:path_provider/path_provider.dart';
@@ -13,12 +13,12 @@ import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 import 'package:path/path.dart';
 import 'package:ffmpeg_kit_flutter/return_code.dart';
 
-class HomeControllerImplmentation extends HomeController {
+class CompareControllerImplmentation extends CompareController {
   final LanguageService _languageService = Get.find();
-  HomeControllerImplmentation({
-    HomeModel? model,
+  CompareControllerImplmentation({
+    CompareModel? model,
   }) : super(model ??
-            const HomeModel(
+            const CompareModel(
               vertical: true,
               lightmode: true,
               firstVideoController: null,

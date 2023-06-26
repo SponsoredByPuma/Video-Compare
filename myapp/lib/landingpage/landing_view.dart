@@ -8,6 +8,8 @@ import '../widgets/SettingTab.dart';
 import 'landing_model.dart';
 
 class LandingView extends ConsumerWidget {
+  const LandingView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final LandingController controller =
