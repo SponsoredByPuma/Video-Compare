@@ -6,79 +6,82 @@ class AboutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Stack(
       children: [
-        const Align(
-          alignment: Alignment(0, -0.85),
+        Align(
+          alignment: const Alignment(0, -0.85),
           child: Text(
             "Vison",
-            style: TextStyle(fontSize: 26),
+            style: TextStyle(fontSize: screenWidth * 0.06),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 3.0),
+          padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
           child: Align(
             alignment: const Alignment(-0.9, -0.75),
             child: Text(
               AppLocalizations.of(context)?.aboutTheTeam ?? '',
-              style: const TextStyle(fontSize: 26),
+              style: TextStyle(fontSize: screenWidth * 0.06),
             ),
           ),
         ),
         Align(
           alignment: const Alignment(-0.8, -0.625),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
             child: Text(
               AppLocalizations.of(context)?.aboutTheTeamText ?? '',
-              style: const TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: screenWidth * 0.03),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 3.0),
+          padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
           child: Align(
             alignment: const Alignment(-0.9, -0.475),
             child: Text(
               AppLocalizations.of(context)?.aboutTheApp ?? '',
-              style: const TextStyle(fontSize: 26),
+              style: TextStyle(fontSize: screenWidth * 0.06),
             ),
           ),
         ),
         Align(
           alignment: const Alignment(-0.8, -0.35),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
             child: Text(
               AppLocalizations.of(context)?.aboutTheAppText ?? '',
-              style: const TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: screenWidth * 0.03),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 3.0),
+          padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
           child: Align(
             alignment: const Alignment(-0.9, -0.2),
             child: Text(
               AppLocalizations.of(context)?.aboutTheName ?? '',
-              style: const TextStyle(fontSize: 26),
+              style: TextStyle(fontSize: screenWidth * 0.06),
             ),
           ),
         ),
         Align(
           alignment: const Alignment(-0.8, -0.025),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
             child: Text(
               AppLocalizations.of(context)?.aboutTheNameText ?? '',
-              style: const TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: screenWidth * 0.03),
             ),
           ),
         ),
         Align(
           alignment: const Alignment(0, 0.8),
           child: Image.asset('assets/images/BisonTransparent.png',
-              width: 300, height: 300),
+              width: screenWidth * 0.8, height: screenWidth * 0.8),
         ),
       ],
     );
