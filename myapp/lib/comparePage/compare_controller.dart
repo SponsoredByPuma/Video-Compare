@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:myapp/comparePage/LanguageService.dart';
-import 'package:myapp/comparePage/compare_model.dart';
-import 'package:myapp/comparePage/compare_view.dart';
+import 'package:vison/comparePage/LanguageService.dart';
+import 'package:vison/comparePage/compare_model.dart';
+import 'package:vison/comparePage/compare_view.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 import 'package:path_provider/path_provider.dart';
