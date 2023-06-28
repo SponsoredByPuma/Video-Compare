@@ -18,68 +18,67 @@ class _SettingsTabState extends State<SettingsTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Stack(
       children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Settings",
-                style: TextStyle(fontSize: 24),
+        const Align(
+          alignment: Alignment(0, -0.85),
+          child: Text(
+            "Settings",
+            style: TextStyle(fontSize: 26),
+          ),
+        ),
+        Align(
+          alignment: const Alignment(0, -0.65),
+          child: SwitchListTile(
+            title: const Text(
+              "Darkmode",
+            ),
+            value: _isDarkModeEnabled,
+            onChanged: (value) {
+              setState(() {
+                _isDarkModeEnabled = value;
+                if (_isDarkModeEnabled) {
+                  // Enable dark mode
+                  // ...
+                } else {
+                  // Disable dark mode
+                  // ...
+                }
+              });
+            },
+          ),
+        ),
+        Align(
+          alignment: const Alignment(0, -0.45),
+          child: Theme(
+            data: Theme.of(context),
+            child: DropdownButtonFormField<String>(
+              decoration: const InputDecoration(
+                labelText: "Language",
+                border: OutlineInputBorder(),
               ),
-              const SizedBox(height: 16),
-              SwitchListTile(
-                title: const Text(
-                  "Darkmode",
+              value: _selectedLanguage,
+              onChanged: (value) {
+                setState(() {
+                  _selectedLanguage = value!;
+                  if (_selectedLanguage == 'English') {
+                    widget.changeLanguage('en');
+                  } else if (_selectedLanguage == 'Deutsch') {
+                    widget.changeLanguage('de');
+                  }
+                });
+              },
+              items: const [
+                DropdownMenuItem(
+                  value: 'English',
+                  child: Text('English'),
                 ),
-                value: _isDarkModeEnabled,
-                onChanged: (value) {
-                  setState(() {
-                    _isDarkModeEnabled = value;
-                    if (_isDarkModeEnabled) {
-                      // Enable dark mode
-                      // ...
-                    } else {
-                      // Disable dark mode
-                      // ...
-                    }
-                  });
-                },
-              ),
-              const SizedBox(height: 16),
-              Theme(
-                data: Theme.of(context),
-                child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    labelText: "Language",
-                    border: OutlineInputBorder(),
-                  ),
-                  value: _selectedLanguage,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedLanguage = value!;
-                      if (_selectedLanguage == 'English') {
-                        widget.changeLanguage('en');
-                      } else if (_selectedLanguage == 'Deutsch') {
-                        widget.changeLanguage('de');
-                      }
-                    });
-                  },
-                  items: const [
-                    DropdownMenuItem(
-                      value: 'English',
-                      child: Text('English'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Deutsch',
-                      child: Text('Deutsch'),
-                    ),
-                  ],
+                DropdownMenuItem(
+                  value: 'Deutsch',
+                  child: Text('Deutsch'),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
