@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myapp/comparePage/compare_model.dart';
-import 'package:myapp/comparePage/compare_view.dart';
-import 'package:myapp/landingpage/landing_model.dart';
-import 'package:myapp/landingpage/landing_view.dart';
+import 'package:vison/comparePage/compare_model.dart';
+import 'package:vison/comparePage/compare_view.dart';
+import 'package:vison/landingpage/landing_model.dart';
+import 'package:vison/landingpage/landing_view.dart';
 
 import '../comparePage/compare_controller.dart';
 import '../landingpage/landing_controller.dart';

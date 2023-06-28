@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/widgets/BorderedContainer.dart';
-import 'package:myapp/widgets/PlayButton.dart';
+import 'package:vison/widgets/BorderedContainer.dart';
+import 'package:vison/widgets/PlayButton.dart';
 import 'package:video_player/video_player.dart';
 
 class HorizontalContainer extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myapp/landingpage/landing_model.dart';
-import 'package:myapp/landingpage/landing_view.dart';
-import 'package:myapp/comparePage/LanguageService.dart';
+import 'package:vison/landingpage/landing_model.dart';
+import 'package:vison/landingpage/landing_view.dart';
+import 'package:vison/comparePage/LanguageService.dart';
 
 class LandingControllerImplmentation extends LandingController {
   final LanguageService _languageService = Get.find();

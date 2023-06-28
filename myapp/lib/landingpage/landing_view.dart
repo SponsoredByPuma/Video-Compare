@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myapp/common/providers.dart';
-import 'package:myapp/widgets/AboutWidget.dart';
+import 'package:vison/common/providers.dart';
+import 'package:vison/widgets/AboutWidget.dart';
 
 import '../widgets/SettingTab.dart';
 import 'landing_model.dart';
