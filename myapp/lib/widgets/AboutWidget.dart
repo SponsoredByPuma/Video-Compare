@@ -18,7 +18,7 @@ class AboutWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 3.0),
           child: Align(
-            alignment: Alignment(-0.9, -0.85),
+            alignment: const Alignment(-0.9, -0.85),
             child: Text(
               AppLocalizations.of(context)?.aboutTheTeam ?? '',
               style: const TextStyle(fontSize: 26),
