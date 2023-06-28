@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const AnimatedSplashScreen(),
       routes: {
-        '/home': (context) => LandingView(),
+        '/home': (context) => const LandingView(),
         '/videoCompare': (context) => const CompareView(),
       },
     );
