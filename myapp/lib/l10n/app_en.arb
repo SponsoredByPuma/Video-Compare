@@ -81,6 +81,10 @@
   "aboutTheNameText": "What our app does is basically Video Comparison. If we take the first two and the last three letters we get the Vison. Also we choose the Bison because it ryhmes with Vison.",
   "@aboutTheNameText": {
     "description": "Text for the Name of the App"
+  },
+  "toggleDarkmode": "Toggle Darkmode :",
+  "@toggleDarkmode": {
+    "description": "for usage of a Darkmode Toggle"
   }
 }
 

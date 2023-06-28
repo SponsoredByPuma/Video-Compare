@@ -39,6 +39,11 @@ class LandingView extends ConsumerWidget {
               changeLanguage: (String languageCode) {
                 controller.changeLanguage(context, languageCode);
               },
+              switchColorMode: () {
+                controller.switchColorMode();
+              },
+              getLightmode: controller.getLightmode(),
+
             ),
           ],
         ),
@@ -73,4 +78,6 @@ class LandingView extends ConsumerWidget {
 abstract class LandingController extends StateNotifier<LandingModel> {
   LandingController(LandingModel state) : super(state);
   void changeLanguage(BuildContext context, String languageCode);
+  void switchColorMode();
+  bool getLightmode();
 }

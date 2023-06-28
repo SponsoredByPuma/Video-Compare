@@ -4,13 +4,13 @@ import 'package:hive/hive.dart';
 import 'package:vison/comparePage/compare_view.dart';
 import 'package:vison/widgets/AnimatedSplashScreen.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:vison/comparePage/LanguageService.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'comparePage/ThemeService.dart';
 import 'landingpage/landing_view.dart';
+import 'comparePage/compare_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +19,9 @@ void main() async {
   Hive.registerAdapter(LanguageAdapter());
   await Hive.openBox<Language>('language');
   Get.put(LanguageService());
+  Get.put(ThemeService());
+  final ThemeService themeService = Get.find<ThemeService>();
+  themeService.setisLightModefromPreferences();
   runApp(await buildApp());
 }
 
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Video Compare',
@@ -50,47 +54,21 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('de'),
       ],
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromRGBO(70, 158, 209, 1),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromRGBO(70, 158, 209, 1),
-          iconTheme: IconThemeData(color: Colors.black),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.black,
-            backgroundColor: const Color.fromARGB(255, 82, 224, 153),
-          ),
-        ),
-        primaryColor: Colors.black,
-        sliderTheme: const SliderThemeData(
-          activeTrackColor: Color.fromARGB(248, 88, 10, 161),
-          inactiveTrackColor: Color.fromARGB(204, 148, 10, 10),
-          trackHeight: 14,
-          thumbShape: RoundSliderThumbShape(
-              enabledThumbRadius: 12, pressedElevation: 10),
-          thumbColor: Color.fromARGB(255, 255, 255, 255),
-          trackShape: RectangularSliderTrackShape(),
-          showValueIndicator: ShowValueIndicator.always,
-          valueIndicatorColor: Color.fromARGB(255, 0, 0, 0),
-          valueIndicatorTextStyle:
-              TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-        ),
-        primaryTextTheme: Typography(platform: TargetPlatform.iOS).black,
-        textTheme: Typography(platform: TargetPlatform.iOS).black,
-        canvasColor: Colors.white,
-        popupMenuTheme: const PopupMenuThemeData(color: Colors.white),
-        inputDecorationTheme: const InputDecorationTheme(
-          labelStyle: TextStyle(color: Colors.black, fontSize: 26),
-        ),
-        dialogTheme: const DialogTheme(
-          backgroundColor: Colors.white,
-          contentTextStyle: TextStyle(color: Colors.black, fontSize: 22),
-        ),
-      ),
+      theme: themeService.isLightMode ? themeService.lightTheme : themeService.darkTheme,
       home: const AnimatedSplashScreen(),
+      builder: (context, child) {
+        return GetBuilder<ThemeService>(
+          init: ThemeService(),
+          builder: (themeService) {
+            return Theme(
+              data: themeService.isLightMode ? themeService.lightTheme : themeService.darkTheme,
+              child: child!,
+            );
+          },
+        );
+      },
       routes: {
-        '/home': (context) => const LandingView(),
+        '/home': (context) => LandingView(),
         '/videoCompare': (context) => const CompareView(),
       },
     );
