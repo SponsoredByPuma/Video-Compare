@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myapp/common/providers.dart';
-import 'package:myapp/widgets/AboutWidget.dart';
+import 'package:vison/common/providers.dart';
+import 'package:vison/widgets/AboutWidget.dart';
 
 import '../widgets/SettingTab.dart';
 import 'landing_model.dart';
 
 class LandingView extends ConsumerWidget {
+  const LandingView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final LandingController controller =
@@ -20,6 +22,8 @@ class LandingView extends ConsumerWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           bottom: TabBar(
+            indicatorColor: Colors.white,
+            indicatorWeight: 4,
             tabs: [
               Tab(text: AppLocalizations.of(context)!.firstTabTitle),
               Tab(text: AppLocalizations.of(context)!.secondTabTitle),
@@ -43,27 +47,24 @@ class LandingView extends ConsumerWidget {
   }
 
   Widget _buildFirstTab(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Stack(
       children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                AppLocalizations.of(context)!.firstTabTitle,
-                style: const TextStyle(fontSize: 24),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/videoCompare');
-                },
-                child: Text(AppLocalizations.of(context)!.goToCompareVideos),
-              ),
-            ],
+        Align(
+          alignment: const Alignment(0, -0.85),
+          child: Text(
+            AppLocalizations.of(context)!.firstTabTitle,
+            style: const TextStyle(fontSize: 24),
           ),
         ),
+        Align(
+          alignment: const Alignment(0, -0.65),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/videoCompare');
+            },
+            child: Text(AppLocalizations.of(context)!.goToCompareVideos),
+          ),
+        )
       ],
     );
   }

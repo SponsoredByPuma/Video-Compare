@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'home_model.dart';
+part of 'compare_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$HomeModel {
+mixin _$CompareModel {
   bool get vertical => throw _privateConstructorUsedError;
   bool get lightmode => throw _privateConstructorUsedError;
   VideoPlayerController? get firstVideoController =>
@@ -33,14 +33,15 @@ mixin _$HomeModel {
   String get currentLanguage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelCopyWith<HomeModel> get copyWith =>
+  $CompareModelCopyWith<CompareModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelCopyWith<$Res> {
-  factory $HomeModelCopyWith(HomeModel value, $Res Function(HomeModel) then) =
-      _$HomeModelCopyWithImpl<$Res, HomeModel>;
+abstract class $CompareModelCopyWith<$Res> {
+  factory $CompareModelCopyWith(
+          CompareModel value, $Res Function(CompareModel) then) =
+      _$CompareModelCopyWithImpl<$Res, CompareModel>;
   @useResult
   $Res call(
       {bool vertical,
@@ -59,9 +60,9 @@ abstract class $HomeModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
-    implements $HomeModelCopyWith<$Res> {
-  _$HomeModelCopyWithImpl(this._value, this._then);
+class _$CompareModelCopyWithImpl<$Res, $Val extends CompareModel>
+    implements $CompareModelCopyWith<$Res> {
+  _$CompareModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -143,10 +144,11 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
 }
 
 /// @nodoc
-abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
-  factory _$$_HomeModelCopyWith(
-          _$_HomeModel value, $Res Function(_$_HomeModel) then) =
-      __$$_HomeModelCopyWithImpl<$Res>;
+abstract class _$$_CompareModelCopyWith<$Res>
+    implements $CompareModelCopyWith<$Res> {
+  factory _$$_CompareModelCopyWith(
+          _$_CompareModel value, $Res Function(_$_CompareModel) then) =
+      __$$_CompareModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -166,11 +168,11 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_HomeModelCopyWithImpl<$Res>
-    extends _$HomeModelCopyWithImpl<$Res, _$_HomeModel>
-    implements _$$_HomeModelCopyWith<$Res> {
-  __$$_HomeModelCopyWithImpl(
-      _$_HomeModel _value, $Res Function(_$_HomeModel) _then)
+class __$$_CompareModelCopyWithImpl<$Res>
+    extends _$CompareModelCopyWithImpl<$Res, _$_CompareModel>
+    implements _$$_CompareModelCopyWith<$Res> {
+  __$$_CompareModelCopyWithImpl(
+      _$_CompareModel _value, $Res Function(_$_CompareModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -190,7 +192,7 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? secondVideoEndPoint = null,
     Object? currentLanguage = null,
   }) {
-    return _then(_$_HomeModel(
+    return _then(_$_CompareModel(
       vertical: null == vertical
           ? _value.vertical
           : vertical // ignore: cast_nullable_to_non_nullable
@@ -249,8 +251,8 @@ class __$$_HomeModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeModel implements _HomeModel {
-  const _$_HomeModel(
+class _$_CompareModel implements _CompareModel {
+  const _$_CompareModel(
       {required this.vertical,
       required this.lightmode,
       required this.firstVideoController,
@@ -294,14 +296,14 @@ class _$_HomeModel implements _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(vertical: $vertical, lightmode: $lightmode, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo, firstVideoTapped: $firstVideoTapped, secondVideoTapped: $secondVideoTapped, firstVideoStartPoint: $firstVideoStartPoint, firstVideoEndPoint: $firstVideoEndPoint, secondVideoStartPoint: $secondVideoStartPoint, secondVideoEndPoint: $secondVideoEndPoint, currentLanguage: $currentLanguage)';
+    return 'CompareModel(vertical: $vertical, lightmode: $lightmode, firstVideoController: $firstVideoController, secondVideoController: $secondVideoController, firstVideo: $firstVideo, secondVideo: $secondVideo, firstVideoTapped: $firstVideoTapped, secondVideoTapped: $secondVideoTapped, firstVideoStartPoint: $firstVideoStartPoint, firstVideoEndPoint: $firstVideoEndPoint, secondVideoStartPoint: $secondVideoStartPoint, secondVideoEndPoint: $secondVideoEndPoint, currentLanguage: $currentLanguage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeModel &&
+            other is _$_CompareModel &&
             (identical(other.vertical, vertical) ||
                 other.vertical == vertical) &&
             (identical(other.lightmode, lightmode) ||
@@ -350,12 +352,12 @@ class _$_HomeModel implements _HomeModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>
-      __$$_HomeModelCopyWithImpl<_$_HomeModel>(this, _$identity);
+  _$$_CompareModelCopyWith<_$_CompareModel> get copyWith =>
+      __$$_CompareModelCopyWithImpl<_$_CompareModel>(this, _$identity);
 }
 
-abstract class _HomeModel implements HomeModel {
-  const factory _HomeModel(
+abstract class _CompareModel implements CompareModel {
+  const factory _CompareModel(
       {required final bool vertical,
       required final bool lightmode,
       required final VideoPlayerController? firstVideoController,
@@ -368,7 +370,7 @@ abstract class _HomeModel implements HomeModel {
       required final double firstVideoEndPoint,
       required final double secondVideoStartPoint,
       required final double secondVideoEndPoint,
-      required final String currentLanguage}) = _$_HomeModel;
+      required final String currentLanguage}) = _$_CompareModel;
 
   @override
   bool get vertical;
@@ -398,6 +400,6 @@ abstract class _HomeModel implements HomeModel {
   String get currentLanguage;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>
+  _$$_CompareModelCopyWith<_$_CompareModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

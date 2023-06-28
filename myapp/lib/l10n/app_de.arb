@@ -54,5 +54,29 @@
   "goToCompareVideos": "Zu den Vergleichsvideos",
   "@goToCompareVideos": {
     "description": "Label for the button that navigates to the video comparison screen"
+  },
+  "aboutTheTeam": "Das Team",
+  "@aboutTheTeam": {
+    "description": "Label for about the team"
+  },
+  "aboutTheTeamText": "Das Team besteht aus Lukas und Till. Wir sind beide Angewandte Informatik Studenten an der HTWG Konstanz.",
+  "@aboutTheTeamText": {
+    "description": "Text for the about the team"
+  },
+  "aboutTheApp": "Über die App",
+  "@aboutTheApp": {
+    "description": "Label for the About the App"
+  },
+  "aboutTheAppText": "Die Idee hinter unserer App ist es, den Athleten zu helfen sich zu verbessern. Dies schaffen wir über eine verbesserte Videoanalyse.",
+  "@aboutTheAppText": {
+    "description": "Text for the About the App"
+  },
+  "aboutTheName": "Wieso der Name",
+  "@aboutTheName": {
+    "description": "Label for the About the App"
+  },
+  "aboutTheNameText": "Mit unserer App machen wir Video Comparison. Wenn man davon die ersten zwei und die letzten drei Buchstaben nimmt, kommt man auf Vison. Das Bison haben wir noch genommem, da es sich auf Vison reimt.",
+  "@aboutTheNameText": {
+    "description": "Text for the Name of the App"
   }
 }
