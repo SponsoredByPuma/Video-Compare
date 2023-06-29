@@ -46,11 +46,12 @@ flutter:
   assets:
     - assets/images/VideoAppLogoForSplashScreen.png
     - assets/images/BisonTransparent.png
+    - assets/images/BisonTransparent_square.png
 
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/BisonTransparent.png"
+  image_path: "assets/images/BisonTransparent_square.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: false
