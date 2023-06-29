@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class SettingsTab extends StatefulWidget {
   const SettingsTab({
     Key? key,
@@ -14,20 +13,18 @@ class SettingsTab extends StatefulWidget {
   final Function() switchColorMode;
   final bool getLightmode;
 
-
   @override
   _SettingsTabState createState() => _SettingsTabState();
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-
   String _selectedLanguage = 'English';
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-         const Align(
+        const Align(
           alignment: Alignment(0, -0.85),
           child: Text(
             "Settings",
@@ -57,12 +54,9 @@ class _SettingsTabState extends State<SettingsTab> {
                     setState(() {
                       widget.switchColorMode();
                     });
-
                   },
-                  icon:
-                  const Icon(Icons.dark_mode) ,
-                  label: const Text(
-                      "  "),
+                  icon: const Icon(Icons.dark_mode),
+                  label: const Text("  "),
                 ),
               ),
             ],
