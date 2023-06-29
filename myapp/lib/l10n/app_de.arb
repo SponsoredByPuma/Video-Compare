@@ -78,5 +78,9 @@
   "aboutTheNameText": "Mit unserer App machen wir Video Comparison. Wenn man davon die ersten zwei und die letzten drei Buchstaben nimmt, kommt man auf Vison. Das Bison haben wir noch genommem, da es sich auf Vison reimt.",
   "@aboutTheNameText": {
     "description": "Text for the Name of the App"
+  },
+  "toggleDarkmode": "DarkMode an/aus",
+  "@toggleDarkmode": {
+    "description": "for usage of a Darkmode Toggle"
   }
 }

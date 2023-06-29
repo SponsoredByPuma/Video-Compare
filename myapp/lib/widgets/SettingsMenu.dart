@@ -38,7 +38,10 @@ class _SettingsMenuState extends State<SettingsMenu> {
             () {
               selectedMenu = item;
               if (selectedMenu == SampleItem.itemOne) {
-                widget.themeSwitch();
+
+                  widget.themeSwitch();
+
+
               }
               if (selectedMenu == SampleItem.itemTwo) {
                 widget.newProject();
@@ -59,25 +62,17 @@ class _SettingsMenuState extends State<SettingsMenu> {
         itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
           PopupMenuItem<SampleItem>(
             value: SampleItem.itemOne,
-            child: widget.getLightmode
-                ? Row(
+            child:
+                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppLocalizations.of(context)?.darkModeText ?? '',
+                        AppLocalizations.of(context)?.toggleDarkmode ?? '',
                       ),
                       const Icon(Icons.brightness_2),
                     ],
                   )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)?.lightModeText ?? '',
-                      ),
-                      const Icon(Icons.sunny),
-                    ],
-                  ),
+
           ),
           PopupMenuItem<SampleItem>(
             value: SampleItem.itemTwo,

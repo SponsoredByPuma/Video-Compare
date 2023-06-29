@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class SettingsTab extends StatefulWidget {
   const SettingsTab({
     Key? key,
     required this.changeLanguage,
+    required this.switchColorMode,
+    required this.getLightmode,
   }) : super(key: key);
 
   final Function(String languageCode) changeLanguage;
+  final Function() switchColorMode;
+  final bool getLightmode;
+
 
   @override
   _SettingsTabState createState() => _SettingsTabState();
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-  bool _isDarkModeEnabled = false;
+
   String _selectedLanguage = 'English';
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const Align(
+         const Align(
           alignment: Alignment(0, -0.85),
           child: Text(
             "Settings",
@@ -29,23 +36,36 @@ class _SettingsTabState extends State<SettingsTab> {
         ),
         Align(
           alignment: const Alignment(0, -0.65),
-          child: SwitchListTile(
-            title: const Text(
-              "Darkmode",
-            ),
-            value: _isDarkModeEnabled,
-            onChanged: (value) {
-              setState(() {
-                _isDarkModeEnabled = value;
-                if (_isDarkModeEnabled) {
-                  // Enable dark mode
-                  // ...
-                } else {
-                  // Disable dark mode
-                  // ...
-                }
-              });
-            },
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    AppLocalizations.of(context)?.toggleDarkmode ?? '',
+                    style: const TextStyle(fontSize: 16),
+                    maxLines: 1,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8.0),
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0, left: 8.0),
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      widget.switchColorMode();
+                    });
+
+                  },
+                  icon:
+                  const Icon(Icons.dark_mode) ,
+                  label: const Text(
+                      "  "),
+                ),
+              ),
+            ],
           ),
         ),
         Align(

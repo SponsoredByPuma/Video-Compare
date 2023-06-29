@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:vison/comparePage/LanguageService.dart';
+import 'package:vison/comparePage/ThemeService.dart';
 import 'package:vison/comparePage/compare_model.dart';
 import 'package:vison/comparePage/compare_view.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ import 'package:ffmpeg_kit_flutter/return_code.dart';
 
 class CompareControllerImplmentation extends CompareController {
   final LanguageService _languageService = Get.find();
+  final ThemeService _themeService = Get.find();
   CompareControllerImplmentation({
     CompareModel? model,
   }) : super(model ??
@@ -61,6 +63,7 @@ class CompareControllerImplmentation extends CompareController {
 
   @override
   void switchColorMode() {
+    _themeService.switchTheme();
     state = state.copyWith(lightmode: !state.lightmode);
   }
 
