@@ -39,6 +39,7 @@ class CompareView extends ConsumerWidget {
           controller.changeFirstVideoEndPoint(
               newController.value.duration.inSeconds.toDouble());
           controller.setFirstVideo(video);
+          newController.setVolume(0.0);
         },
       ),
       // Second Controller
@@ -51,6 +52,7 @@ class CompareView extends ConsumerWidget {
           controller.changeSecondVideoEndPoint(
               newController.value.duration.inSeconds.toDouble());
           controller.setSecondVideo(video);
+          newController.setVolume(0.0);
         },
       ),
       // additional controller
@@ -115,6 +117,7 @@ class CompareView extends ConsumerWidget {
           controller.changeFirstVideoEndPoint(
               newController.value.duration.inMilliseconds.toDouble());
           controller.setFirstVideo(video);
+          newController.setVolume(0.0);
         },
       ),
       // Second Controller
@@ -127,6 +130,7 @@ class CompareView extends ConsumerWidget {
           controller.changeSecondVideoEndPoint(
               newController.value.duration.inMilliseconds.toDouble());
           controller.setSecondVideo(video);
+          newController.setVolume(0.0);
         },
       ),
       // additional controller
