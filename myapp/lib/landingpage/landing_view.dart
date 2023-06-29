@@ -43,7 +43,7 @@ class LandingView extends ConsumerWidget {
                 controller.switchColorMode();
               },
               getLightmode: controller.getLightmode(),
-
+              currentLanguage: model.currentLanguage,
             ),
           ],
         ),
@@ -52,6 +52,8 @@ class LandingView extends ConsumerWidget {
   }
 
   Widget _buildFirstTab(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Stack(
       children: [
         Align(
@@ -69,7 +71,12 @@ class LandingView extends ConsumerWidget {
             },
             child: Text(AppLocalizations.of(context)!.goToCompareVideos),
           ),
-        )
+        ),
+        Align(
+          alignment: const Alignment(0, 1),
+          child: Image.asset('assets/images/BisonTransparent.png',
+              width: screenWidth * 0.8, height: screenWidth * 0.8),
+        ),
       ],
     );
   }

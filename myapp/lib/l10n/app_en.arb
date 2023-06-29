@@ -52,6 +52,10 @@
   "@thirdTabTitle": {
     "description": "Title of the third tab"
   },
+  "settingsLanguage": "Language",
+  "@thirdTabTitle": {
+    "description": "Title of Language Chooser"
+  },
   "goToCompareVideos": "Go to Compare Videos",
   "@goToCompareVideos": {
     "description": "Label for the button that navigates to the video comparison screen"
@@ -82,7 +86,7 @@
   "@aboutTheNameText": {
     "description": "Text for the Name of the App"
   },
-  "toggleDarkmode": "Toggle Darkmode :",
+  "toggleDarkmode": "Toggle Darkmode",
   "@toggleDarkmode": {
     "description": "for usage of a Darkmode Toggle"
   }

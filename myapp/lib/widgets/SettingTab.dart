@@ -7,11 +7,13 @@ class SettingsTab extends StatefulWidget {
     required this.changeLanguage,
     required this.switchColorMode,
     required this.getLightmode,
+    required this.currentLanguage,
   }) : super(key: key);
 
   final Function(String languageCode) changeLanguage;
   final Function() switchColorMode;
   final bool getLightmode;
+  final String currentLanguage;
 
   @override
   _SettingsTabState createState() => _SettingsTabState();
@@ -22,6 +24,8 @@ class _SettingsTabState extends State<SettingsTab> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Stack(
       children: [
         const Align(
@@ -62,38 +66,79 @@ class _SettingsTabState extends State<SettingsTab> {
             ],
           ),
         ),
-        Align(
-          alignment: const Alignment(0, -0.45),
-          child: Theme(
-            data: Theme.of(context),
-            child: DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
-                labelText: "Language",
-                border: OutlineInputBorder(),
+        widget.currentLanguage == 'en'
+            ? Align(
+                alignment: const Alignment(0, -0.45),
+                child: Theme(
+                  data: Theme.of(context),
+                  child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText:
+                          AppLocalizations.of(context)?.settingsLanguage ?? '',
+                      border: const OutlineInputBorder(),
+                    ),
+                    value: "English",
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedLanguage = value!;
+                        if (_selectedLanguage == 'English') {
+                          widget.changeLanguage('en');
+                        } else if (_selectedLanguage == 'Deutsch') {
+                          widget.changeLanguage('de');
+                        }
+                      });
+                    },
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'English',
+                        child: Text('English'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Deutsch',
+                        child: Text('Deutsch'),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : Align(
+                alignment: const Alignment(0, -0.45),
+                child: Theme(
+                  data: Theme.of(context),
+                  child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText:
+                          AppLocalizations.of(context)?.settingsLanguage ?? '',
+                      border: const OutlineInputBorder(),
+                    ),
+                    value: "Deutsch",
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedLanguage = value!;
+                        if (_selectedLanguage == 'English') {
+                          widget.changeLanguage('en');
+                        } else if (_selectedLanguage == 'Deutsch') {
+                          widget.changeLanguage('de');
+                        }
+                      });
+                    },
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'English',
+                        child: Text('English'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Deutsch',
+                        child: Text('Deutsch'),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              value: _selectedLanguage,
-              onChanged: (value) {
-                setState(() {
-                  _selectedLanguage = value!;
-                  if (_selectedLanguage == 'English') {
-                    widget.changeLanguage('en');
-                  } else if (_selectedLanguage == 'Deutsch') {
-                    widget.changeLanguage('de');
-                  }
-                });
-              },
-              items: const [
-                DropdownMenuItem(
-                  value: 'English',
-                  child: Text('English'),
-                ),
-                DropdownMenuItem(
-                  value: 'Deutsch',
-                  child: Text('Deutsch'),
-                ),
-              ],
-            ),
-          ),
+        Align(
+          alignment: const Alignment(0, 1),
+          child: Image.asset('assets/images/BisonTransparent.png',
+              width: screenWidth * 0.8, height: screenWidth * 0.8),
         ),
       ],
     );

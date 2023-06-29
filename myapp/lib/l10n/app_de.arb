@@ -39,7 +39,7 @@
   "@languageSwitchButton": {
     "description": "Button for switching between German and English, always displays the other language"
   },
-  "firstTabTitle": "Haupt",
+  "firstTabTitle": "Hauptseite",
   "@firstTabTitle": {
     "description": "Title of the first tab"
   },
@@ -50,6 +50,10 @@
   "thirdTabTitle": "Einstellungen",
   "@thirdTabTitle": {
     "description": "Title of the third tab"
+  },
+  "settingsLanguage": "Sprache",
+  "@thirdTabTitle": {
+    "description": "Title of Language Chooser"
   },
   "goToCompareVideos": "Zu den Vergleichsvideos",
   "@goToCompareVideos": {
@@ -79,7 +83,7 @@
   "@aboutTheNameText": {
     "description": "Text for the Name of the App"
   },
-  "toggleDarkmode": "DarkMode an/aus",
+  "toggleDarkmode": "Darkmode an/aus",
   "@toggleDarkmode": {
     "description": "for usage of a Darkmode Toggle"
   }
