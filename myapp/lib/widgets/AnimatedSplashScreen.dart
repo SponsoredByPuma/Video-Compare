@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -43,11 +44,22 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/VideoAppLogoForSplashScreen.png',
-                  width: 300, height: 300),
-              const SizedBox(height: 24),
-              Text(AppLocalizations.of(context)?.appTitle ?? '',
-                  style: const TextStyle(fontSize: 24)),
+              Align(
+                alignment: const Alignment(0, 0),
+                child: Image.asset('assets/images/BisonTransparent.png',
+                    width: 300, height: 300),
+              ),
+              Align(
+                alignment: const Alignment(0, 0.1),
+                child: AnimatedTextKit(animatedTexts: [
+                  WavyAnimatedText(
+                    'Vison',
+                    textStyle: const TextStyle(
+                      fontSize: 24,
+                    ),
+                  ),
+                ]),
+              ),
             ],
           ),
         ),
