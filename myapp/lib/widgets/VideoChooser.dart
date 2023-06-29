@@ -43,23 +43,23 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
   }
 
   @override
-Widget build(BuildContext context) {
-  return Container(
-    child: widget.controller != null
-        ? SizedBox(
-            height: 700,
-            width: 800,
-            child: VideoPlayer(widget.controller!),
-          )
-        : IconButton(
-            icon: const Icon(
-              //Icons.add_rounded,
-              Icons.add_a_photo_rounded,
-              color: Colors.black,
+  Widget build(BuildContext context) {
+    return Container(
+      child: widget.controller != null
+          ? SizedBox(
+              height: 700,
+              width: 800,
+              child: VideoPlayer(widget.controller!),
+            )
+          : IconButton(
+              icon: const Icon(
+                //Icons.add_rounded,
+                Icons.add_a_photo_rounded,
+                color: Colors.black,
+              ),
+              iconSize: 64,
+              onPressed: _pickVideo,
             ),
-            iconSize: 64,
-            onPressed: _pickVideo,
-          ),
-  );
-}
+    );
+  }
 }
