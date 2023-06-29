@@ -10,7 +10,7 @@ import 'package:vison/comparePage/LanguageService.dart';
 import 'package:path_provider/path_provider.dart';
 import 'comparePage/ThemeService.dart';
 import 'landingpage/landing_view.dart';
-import 'comparePage/compare_view.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         );
       },
       routes: {
-        '/home': (context) => LandingView(),
+        '/home': (context) => const LandingView(),
         '/videoCompare': (context) => const CompareView(),
       },
     );
