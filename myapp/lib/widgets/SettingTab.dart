@@ -25,79 +25,80 @@ class _SettingsTabState extends State<SettingsTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Stack(
       children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+         const Align(
+          alignment: Alignment(0, -0.85),
+          child: Text(
+            "Settings",
+            style: TextStyle(fontSize: 26),
+          ),
+        ),
+        Align(
+          alignment: const Alignment(0, -0.65),
+          child: Row(
             children: [
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 16.0),
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        AppLocalizations.of(context)?.toggleDarkmode ?? '',
-                        style: TextStyle(fontSize: 16),
-                        maxLines: 1,
-                      ),
-                    ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    AppLocalizations.of(context)?.toggleDarkmode ?? '',
+                    style: const TextStyle(fontSize: 16),
+                    maxLines: 1,
                   ),
-                  const SizedBox(width: 8.0),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0, left: 8.0),
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-
-                        setState(() {
-                          widget.switchColorMode();
-
-                        });
-
-                      },
-                      icon:
-                           const Icon(Icons.dark_mode) ,
-                      label: const Text(
-                          "  "),
-                    ),
-                  ),
-                ],
+                ),
               ),
-              const SizedBox(height: 16),
-              Theme(
-                data: Theme.of(context),
-                child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    labelText: "Language",
-                    border: OutlineInputBorder(),
-                  ),
-                  value: _selectedLanguage,
-                  onChanged: (value) {
+              const SizedBox(width: 8.0),
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0, left: 8.0),
+                child: ElevatedButton.icon(
+                  onPressed: () {
                     setState(() {
-                      _selectedLanguage = value!;
-                      if (_selectedLanguage == 'English') {
-                        widget.changeLanguage('en');
-                      } else if (_selectedLanguage == 'Deutsch') {
-                        widget.changeLanguage('de');
-                      }
+                      widget.switchColorMode();
                     });
+
                   },
-                  items: const [
-                    DropdownMenuItem(
-                      value: 'English',
-                      child: Text('English'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Deutsch',
-                      child: Text('Deutsch'),
-                    ),
-                  ],
+                  icon:
+                  const Icon(Icons.dark_mode) ,
+                  label: const Text(
+                      "  "),
                 ),
               ),
             ],
+          ),
+        ),
+        Align(
+          alignment: const Alignment(0, -0.45),
+          child: Theme(
+            data: Theme.of(context),
+            child: DropdownButtonFormField<String>(
+              decoration: const InputDecoration(
+                labelText: "Language",
+                border: OutlineInputBorder(),
+              ),
+              value: _selectedLanguage,
+              onChanged: (value) {
+                setState(() {
+                  _selectedLanguage = value!;
+                  if (_selectedLanguage == 'English') {
+                    widget.changeLanguage('en');
+                  } else if (_selectedLanguage == 'Deutsch') {
+                    widget.changeLanguage('de');
+                  }
+                });
+              },
+              items: const [
+                DropdownMenuItem(
+                  value: 'English',
+                  child: Text('English'),
+                ),
+                DropdownMenuItem(
+                  value: 'Deutsch',
+                  child: Text('Deutsch'),
+                ),
+              ],
+            ),
           ),
         ),
       ],
