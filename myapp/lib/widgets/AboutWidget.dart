@@ -9,81 +9,65 @@ class AboutWidget extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
-    return Stack(
-      children: [
-        Align(
-          alignment: const Alignment(0, -0.85),
-          child: Text(
-            "Vison",
-            style: TextStyle(fontSize: screenWidth * 0.06),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: screenHeight * 0.01),
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Text(
+                AppLocalizations.of(context)?.aboutTheTeam ?? '',
+                style: TextStyle(fontSize: screenWidth * 0.06),
+              ),
+              SizedBox(width: screenWidth * 0.05),
+              Text(
+                AppLocalizations.of(context)?.aboutTheTeamText ?? '',
+                style: TextStyle(fontSize: screenWidth * 0.03),
+              ),
+            ],
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-          child: Align(
-            alignment: const Alignment(-0.9, -0.75),
-            child: Text(
-              AppLocalizations.of(context)?.aboutTheTeam ?? '',
-              style: TextStyle(fontSize: screenWidth * 0.06),
-            ),
+          SizedBox(height: screenHeight * 0.01),
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Text(
+                AppLocalizations.of(context)?.aboutTheApp ?? '',
+                style: TextStyle(fontSize: screenWidth * 0.06),
+              ),
+              SizedBox(width: screenWidth * 0.05),
+              Text(
+                AppLocalizations.of(context)?.aboutTheAppText ?? '',
+                style: TextStyle(fontSize: screenWidth * 0.03),
+              ),
+            ],
           ),
-        ),
-        Align(
-          alignment: const Alignment(-0.8, -0.625),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-            child: Text(
-              AppLocalizations.of(context)?.aboutTheTeamText ?? '',
-              style: TextStyle(fontSize: screenWidth * 0.03),
-            ),
+          SizedBox(height: screenHeight * 0.01),
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Text(
+                AppLocalizations.of(context)?.aboutTheName ?? '',
+                style: TextStyle(fontSize: screenWidth * 0.06),
+              ),
+              SizedBox(width: screenWidth * 0.05),
+              Text(
+                AppLocalizations.of(context)?.aboutTheNameText ?? '',
+                style: TextStyle(fontSize: screenWidth * 0.03),
+              ),
+            ],
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-          child: Align(
-            alignment: const Alignment(-0.9, -0.475),
-            child: Text(
-              AppLocalizations.of(context)?.aboutTheApp ?? '',
-              style: TextStyle(fontSize: screenWidth * 0.06),
-            ),
-          ),
-        ),
-        Align(
-          alignment: const Alignment(-0.8, -0.35),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-            child: Text(
-              AppLocalizations.of(context)?.aboutTheAppText ?? '',
-              style: TextStyle(fontSize: screenWidth * 0.03),
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-          child: Align(
-            alignment: const Alignment(-0.9, -0.2),
-            child: Text(
-              AppLocalizations.of(context)?.aboutTheName ?? '',
-              style: TextStyle(fontSize: screenWidth * 0.06),
-            ),
-          ),
-        ),
-        Align(
-          alignment: const Alignment(-0.8, -0.025),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-            child: Text(
-              AppLocalizations.of(context)?.aboutTheNameText ?? '',
-              style: TextStyle(fontSize: screenWidth * 0.03),
-            ),
-          ),
-        ),
-        Align(
-          alignment: const Alignment(0, 1),
-          child: Image.asset('assets/images/BisonTransparent.png',
-              width: screenWidth * 0.7, height: screenWidth * 0.7),
-        ),
-      ],
+          SizedBox(height: screenHeight * 0.01),
+      Align(
+        alignment: const Alignment(0, 1),
+        child: Image.asset('assets/images/BisonTransparent.png',
+            width: screenWidth * 0.5, height: screenWidth * 0.5),
+      ),
+
+        ],
+      ),
     );
   }
 }
