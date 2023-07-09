@@ -144,7 +144,7 @@ class _SettingsTabState extends State<SettingsTab> {
         Align(
           alignment: const Alignment(0, 1),
           child: Image.asset('assets/images/BisonTransparent.png',
-              width: screenWidth * 0.8, height: screenWidth * 0.8),
+              width: screenWidth * 0.7, height: screenWidth * 0.7),
         ),
       ],
     );
