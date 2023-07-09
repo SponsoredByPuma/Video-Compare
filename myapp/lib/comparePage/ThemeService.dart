@@ -24,7 +24,7 @@ class ThemeService extends GetxController {
       trackHeight: 14,
       thumbShape:
           RoundSliderThumbShape(enabledThumbRadius: 12, pressedElevation: 10),
-      thumbColor: Color.fromARGB(255, 255, 255, 255),
+      thumbColor: Colors.black,
       trackShape: RectangularSliderTrackShape(),
       showValueIndicator: ShowValueIndicator.always,
       valueIndicatorColor: Color.fromARGB(255, 0, 0, 0),
