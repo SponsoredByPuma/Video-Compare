@@ -9,6 +9,8 @@ class VerticalContainer extends StatelessWidget {
   final VideoPlayerController? controllerLeft;
   final VideoPlayerController? controllerRight;
   final PlayButton playButton;
+  final bool clickedLeft;
+  final bool clickedRight;
   final Function() firstContainerTapped;
   final Function() secondContainerTapped;
 
@@ -21,6 +23,8 @@ class VerticalContainer extends StatelessWidget {
     required this.firstContainerTapped,
     required this.secondContainerTapped,
     required this.playButton,
+    required this.clickedLeft,
+    required this.clickedRight,
   }) : super(key: key);
 
   @override
@@ -35,6 +39,7 @@ class VerticalContainer extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 child: BorderedContainer(
                   vertical: true,
+                  clicked: clickedLeft,
                   child: leftVideoController,
                 ),
                 onTap: () {
@@ -52,6 +57,7 @@ class VerticalContainer extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 child: BorderedContainer(
                   vertical: true,
+                  clicked: clickedRight,
                   child: rightVideoController,
                 ),
                 onTap: () {

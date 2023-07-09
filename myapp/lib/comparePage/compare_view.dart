@@ -103,6 +103,8 @@ class CompareView extends ConsumerWidget {
             (model.firstVideoEndPoint - model.firstVideoStartPoint) >=
                 (model.secondVideoEndPoint - model.secondVideoStartPoint),
       ),
+      clickedUp: model.firstVideoTapped,
+      clickedDown: model.secondVideoTapped,
     );
 
     Widget verticalContainer = VerticalContainer(
@@ -179,6 +181,8 @@ class CompareView extends ConsumerWidget {
             (model.firstVideoEndPoint - model.firstVideoStartPoint) >=
                 (model.secondVideoEndPoint - model.secondVideoStartPoint),
       ),
+      clickedLeft: model.firstVideoTapped,
+      clickedRight: model.secondVideoTapped,
     );
 
     return Scaffold(
@@ -223,14 +227,13 @@ class CompareView extends ConsumerWidget {
 
                 SavingWidget().show(context);
                 bool savingWorked = await controller.downloadVideos(
-                  firstVideoPath,
-                  secondVideoPath,
-                  model.firstVideoStartPoint,
-                  model.firstVideoEndPoint,
-                  model.secondVideoStartPoint,
-                  model.secondVideoEndPoint,
-                  model.vertical
-                );
+                    firstVideoPath,
+                    secondVideoPath,
+                    model.firstVideoStartPoint,
+                    model.firstVideoEndPoint,
+                    model.secondVideoStartPoint,
+                    model.secondVideoEndPoint,
+                    model.vertical);
                 SavingWidget().dismiss();
                 if (savingWorked == false) {
                   // ignore: use_build_context_synchronously
