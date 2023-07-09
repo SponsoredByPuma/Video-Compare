@@ -36,16 +36,16 @@ class VideoProgressSlider extends StatelessWidget {
             {
               secondController
                   .seekTo(Duration(milliseconds: getEndValue().toInt())),
-              secondController.pause(),
             }
           else
             {
               secondController.seekTo(Duration(milliseconds: value.toInt())),
-              secondController.play(),
-            }
+            },
+          controller.pause(),
+          secondController.pause(),
         },
         onChangeStart: (_) => controller.pause(),
-        onChangeEnd: (_) => controller.play(),
+        onChangeEnd: (_) => controller.pause(),
       ),
     );
   }
