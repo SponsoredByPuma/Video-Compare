@@ -35,11 +35,11 @@ class BorderedContainer extends StatelessWidget {
                   border: const Border(
                     left: BorderSide(
                       color: Color.fromARGB(255, 216, 99, 67),
-                      width: 4,
+                      width: 2,
                     ),
                     right: BorderSide(
                       color: Color.fromARGB(255, 216, 99, 67),
-                      width: 4,
+                      width: 2,
                     ),
                     bottom: BorderSide(
                       color: Color.fromARGB(255, 216, 99, 67),
@@ -77,11 +77,11 @@ class BorderedContainer extends StatelessWidget {
                   border: const Border(
                     left: BorderSide(
                       color: Colors.white,
-                      width: 4,
+                      width: 2,
                     ),
                     right: BorderSide(
                       color: Colors.white,
-                      width: 4,
+                      width: 2,
                     ),
                     bottom: BorderSide(
                       color: Colors.white,
@@ -129,11 +129,11 @@ class BorderedContainer extends StatelessWidget {
                     ),
                     bottom: BorderSide(
                       color: Color.fromARGB(255, 216, 99, 67),
-                      width: 4,
+                      width: 2,
                     ),
                     top: BorderSide(
                       color: Color.fromARGB(255, 216, 99, 67),
-                      width: 4,
+                      width: 2,
                     ),
                   ),
                 ),
@@ -171,11 +171,11 @@ class BorderedContainer extends StatelessWidget {
                     ),
                     bottom: BorderSide(
                       color: Colors.white,
-                      width: 4,
+                      width: 2,
                     ),
                     top: BorderSide(
                       color: Colors.white,
-                      width: 4,
+                      width: 2,
                     ),
                   ),
                 ),
