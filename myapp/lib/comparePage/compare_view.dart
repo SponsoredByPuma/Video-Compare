@@ -230,6 +230,7 @@ class CompareView extends ConsumerWidget {
                   model.firstVideoEndPoint,
                   model.secondVideoStartPoint,
                   model.secondVideoEndPoint,
+                  model.vertical
                 );
                 SavingWidget().dismiss();
                 if (savingWorked == false) {
@@ -548,5 +549,6 @@ abstract class CompareController extends StateNotifier<CompareModel> {
       double startPointFirst,
       double endPointFirst,
       double startPointSecond,
-      double endPointSecond);
+      double endPointSecond,
+      bool vertical);
 }

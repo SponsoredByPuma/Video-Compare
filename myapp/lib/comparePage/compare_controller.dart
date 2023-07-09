@@ -12,11 +12,14 @@ import 'package:video_trimmer/video_trimmer.dart';
 
 import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 import 'package:path/path.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:ffmpeg_kit_flutter/return_code.dart';
+
 
 class CompareControllerImplmentation extends CompareController {
   final LanguageService _languageService = Get.find();
   final ThemeService _themeService = Get.find();
+
   CompareControllerImplmentation({
     CompareModel? model,
   }) : super(model ??
@@ -160,7 +163,8 @@ class CompareControllerImplmentation extends CompareController {
       double startPointFirst,
       double endPointFirst,
       double startPointSecond,
-      double endPointSecond) async {
+      double endPointSecond,
+      bool vertical) async {
     String videoFolderName = "Compare";
     String path = await _createFolderInAppDocDir(videoFolderName).whenComplete(
       () => debugPrint("Retrieved Trimmer folder"),
@@ -190,7 +194,29 @@ class CompareControllerImplmentation extends CompareController {
     String outputPath = '$path$videoFileName$outputFormatString';
     debugPrint(outputPath);
 
-    final List<String> command = [
+
+
+    final List<String> commandHorizontal = [
+      '-i',
+      firstVideoPath,
+      '-ss',
+      startPoint1.toString(),
+      '-to',
+      endPoint1.toString(),
+      '-i',
+      secondVideoPath,
+      '-ss',
+      startPoint2.toString(),
+      '-to',
+      endPoint2.toString(),
+      '-filter_complex',
+      'vstack=inputs=2',
+      '-r',
+      '60',
+      outputPath,
+    ];
+
+    final List<String> commandVertical = [
       '-i',
       firstVideoPath,
       '-ss',
@@ -206,21 +232,24 @@ class CompareControllerImplmentation extends CompareController {
       '-filter_complex',
       'hstack=inputs=2',
       '-r',
-      '30',
+      '60',
       outputPath,
     ];
-
+    List<String>  executeCommand = commandHorizontal;
+    if(vertical) {
+      executeCommand = commandVertical;
+    }
     bool didItWork = false;
-    await FFmpegKit.executeWithArguments(command).then((value) async {
+    await FFmpegKit.executeWithArguments(executeCommand).then((value) async {
       final returnCode = await value.getReturnCode();
 
       if (ReturnCode.isSuccess(returnCode)) {
+        await GallerySaver.saveVideo(outputPath);
         didItWork = true;
       }
     });
     return didItWork;
   }
-}
 
 Future<String> _createFolderInAppDocDir(String folderName) async {
   // Directory + folder name
@@ -239,4 +268,5 @@ Future<String> _createFolderInAppDocDir(String folderName) async {
         await directoryFolder.create(recursive: true);
     return directoryNewFolder.path;
   }
+}
 }
