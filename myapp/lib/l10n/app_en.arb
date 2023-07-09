@@ -1,0 +1,95 @@
+{
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "appTitle": "Vison",
+  "@appTitle": {
+    "description": "The name of the video comparison app"
+  },
+
+  "speedButtonNormalSpeed": "Normal Speed",
+  "@speedButtonNormalSpeed": {
+    "description": "normal Speed"
+  },
+  "speedButtonSlowSpeed": "Slow Speed",
+  "@speedButtonSlowSpeed": {
+    "description": "slow Speed"
+  },
+  "rotateButtonText": "Rotate",
+  "@rotateButtonText": {
+    "description": "text for rotate Button"
+  },
+  "darkModeText": "Darkmode",
+  "@darkModeText": {
+    "description": "text for Darkmode"
+  },
+  "lightModeText": "Lightmode",
+  "@lightModeText": {
+    "description": "text for Lightmode"
+  },
+  "newProjectButtonText": "New Project",
+  "@newProjectButtonText": {
+      "description": "text for new Project Button"
+    },
+  "saveProjectButtonText": "Save Project",
+  "@SaveProjectButtonText": {
+    "description": "text for Save Project Button"
+    },
+  "languageSwitchButton": "🇩🇪 ",
+  "@languageSwitchButton": {
+    "description": "Button for switching between German and english , always displays the other language"
+  },
+  "firstTabTitle": "Main",
+  "@firstTabTitle": {
+    "description": "Title of the first tab"
+  },
+  "secondTabTitle": "About",
+  "@secondTabTitle": {
+    "description": "Title of the second tab"
+  },
+  "thirdTabTitle": "Settings",
+  "@thirdTabTitle": {
+    "description": "Title of the third tab"
+  },
+  "settingsLanguage": "Language",
+  "@thirdTabTitle": {
+    "description": "Title of Language Chooser"
+  },
+  "goToCompareVideos": "Go to Compare Videos",
+  "@goToCompareVideos": {
+    "description": "Label for the button that navigates to the video comparison screen"
+  },
+  "aboutTheTeam": "About the Team",
+  "@aboutTheTeam": {
+    "description": "Label for about the team"
+  },
+
+  "aboutTheTeamText": "The Team consists of Lukas and Till. We're both Students in Computer Science at the HTWG Konstanz",
+  "@aboutTheTeamText": {
+    "description": "Text for the about the team"
+  },
+  
+  "aboutTheApp": "About the App",
+  "@aboutTheApp": {
+    "description": "Label for the About the App"
+  },
+  "aboutTheAppText": "The Idea behind our app is too help out athletes by improving their capability to analyze their mistakes via videos",
+  "@aboutTheAppText": {
+    "description": "Text for the About the App"
+  },
+  "aboutTheName": "What about the Name",
+  "@aboutTheName": {
+    "description": "Label for the About the App"
+  },
+  "aboutTheNameText": "What our app does is basically Video Comparison. If we take the first two and the last three letters we get the Vison. Also we choose the Bison because it ryhmes with Vison.",
+  "@aboutTheNameText": {
+    "description": "Text for the Name of the App"
+  },
+  "toggleDarkmode": "Toggle Darkmode",
+  "@toggleDarkmode": {
+    "description": "for usage of a Darkmode Toggle"
+  }
+}
+
+
