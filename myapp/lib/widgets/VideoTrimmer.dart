@@ -25,10 +25,6 @@ class VideoTrimmer extends StatefulWidget {
 class _VideoTrimmerState extends State<VideoTrimmer> {
   final Trimmer _trimmer = Trimmer();
 
-  saveVideos() async {
-    _trimmer.saveTrimmedVideo(startValue: 0, endValue: 10, onSave: (String) {});
-  }
-
   _loadVideo() async {
     final uriString = widget.videoPlayerController.dataSource;
     final uri = Uri.parse(uriString);
@@ -49,52 +45,40 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding (
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: TrimViewer(
-      trimmer: _trimmer,
-      viewerHeight: 50.0,
-      viewerWidth: double.infinity,
-      maxVideoLength: widget.videoPlayerController.value.duration,
-      onChangePlaybackState: (bool value) => {},
-      showDuration: false,
-      editorProperties: const TrimEditorProperties(
-        borderPaintColor: Color.fromARGB(255, 172, 19, 39),
-        borderWidth: 6,
-        circleSize: 10,
-        circlePaintColor: Color.fromARGB(255, 67, 203, 244),
-        circleSizeOnDrag: 12,
-        borderRadius: 12,
+        trimmer: _trimmer,
+        viewerHeight: 50.0,
+        viewerWidth: double.infinity,
+        maxVideoLength: widget.videoPlayerController.value.duration,
+        onChangePlaybackState: (bool value) => {},
+        showDuration: false,
+        editorProperties: const TrimEditorProperties(
+          borderPaintColor: Color.fromARGB(255, 172, 19, 39),
+          borderWidth: 6,
+          circleSize: 10,
+          circlePaintColor: Color.fromARGB(255, 67, 203, 244),
+          circleSizeOnDrag: 12,
+          borderRadius: 12,
+        ),
+        onChangeStart: (double value) => {
+          widget.videoStartPoint(value),
+          if (widget.isItFirstVideo)
+            {
+              widget.videoPlayerController
+                  .seekTo(Duration(milliseconds: value.toInt())),
+            }
+          else
+            {
+              widget.videoPlayerController
+                  .seekTo(Duration(milliseconds: value.toInt())),
+            }
+        },
+        onChangeEnd: (double value) => {
+          widget.videoEndPoint(value),
+        },
       ),
-      onChangeStart: (double value) => {
-        widget.videoStartPoint(value),
-        if (widget.isItFirstVideo)
-          {
-            widget.videoPlayerController
-                .seekTo(Duration(milliseconds: value.toInt())),
-          }
-        else
-          {
-            widget.videoPlayerController
-                .seekTo(Duration(milliseconds: value.toInt())),
-          }
-      },
-      onChangeEnd: (double value) => {
-        widget.videoEndPoint(value),
-        /*
-        if (widget.isItFirstVideo)
-          {
-            widget.videoPlayerController
-                .seekTo(Duration(milliseconds: value.toInt())),
-          }
-        else
-          {
-            widget.videoPlayerController
-                .seekTo(Duration(milliseconds: value.toInt())),
-          }
-          */
-      },
-    )
     );
   }
 }
