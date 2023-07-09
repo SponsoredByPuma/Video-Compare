@@ -58,16 +58,17 @@ class _SettingsMenuState extends State<SettingsMenu> {
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
           PopupMenuItem<SampleItem>(
-              value: SampleItem.itemOne,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)?.toggleDarkmode ?? '',
-                  ),
-                  const Icon(Icons.brightness_2),
-                ],
-              )),
+            value: SampleItem.itemOne,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  AppLocalizations.of(context)?.toggleDarkmode ?? '',
+                ),
+                const Icon(Icons.brightness_2),
+              ],
+            ),
+          ),
           PopupMenuItem<SampleItem>(
             value: SampleItem.itemTwo,
             child: Row(

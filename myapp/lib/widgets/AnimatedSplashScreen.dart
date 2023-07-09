@@ -23,9 +23,12 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
     _animationController.forward();
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/home');
-    });
+    Timer(
+      const Duration(seconds: 3),
+      () {
+        Navigator.pushReplacementNamed(context, '/home');
+      },
+    );
   }
 
   @override
@@ -50,14 +53,16 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
               ),
               Align(
                 alignment: const Alignment(0, 0.1),
-                child: AnimatedTextKit(animatedTexts: [
-                  WavyAnimatedText(
-                    'Vison',
-                    textStyle: const TextStyle(
-                      fontSize: 24,
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    WavyAnimatedText(
+                      'Vison',
+                      textStyle: const TextStyle(
+                        fontSize: 24,
+                      ),
                     ),
-                  ),
-                ]),
+                  ],
+                ),
               ),
             ],
           ),

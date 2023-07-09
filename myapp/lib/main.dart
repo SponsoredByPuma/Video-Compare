@@ -11,7 +11,6 @@ import 'package:path_provider/path_provider.dart';
 import 'comparePage/ThemeService.dart';
 import 'landingpage/landing_view.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDirectory = await getApplicationDocumentsDirectory();
@@ -40,9 +39,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Video Compare',
-      initialBinding: BindingsBuilder(() {
-        Get.put(LanguageService());
-      }),
+      initialBinding: BindingsBuilder(
+        () {
+          Get.put(LanguageService());
+        },
+      ),
       initialRoute: '/',
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -54,14 +55,18 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('de'),
       ],
-      theme: themeService.isLightMode ? themeService.lightTheme : themeService.darkTheme,
+      theme: themeService.isLightMode
+          ? themeService.lightTheme
+          : themeService.darkTheme,
       home: const AnimatedSplashScreen(),
       builder: (context, child) {
         return GetBuilder<ThemeService>(
           init: ThemeService(),
           builder: (themeService) {
             return Theme(
-              data: themeService.isLightMode ? themeService.lightTheme : themeService.darkTheme,
+              data: themeService.isLightMode
+                  ? themeService.lightTheme
+                  : themeService.darkTheme,
               child: child!,
             );
           },

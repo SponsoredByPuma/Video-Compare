@@ -55,9 +55,11 @@ class _SettingsTabState extends State<SettingsTab> {
                 padding: const EdgeInsets.only(right: 16.0, left: 8.0),
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    setState(() {
-                      widget.switchColorMode();
-                    });
+                    setState(
+                      () {
+                        widget.switchColorMode();
+                      },
+                    );
                   },
                   icon: const Icon(Icons.dark_mode),
                   label: const Text("  "),
@@ -79,14 +81,16 @@ class _SettingsTabState extends State<SettingsTab> {
                     ),
                     value: "English",
                     onChanged: (value) {
-                      setState(() {
-                        _selectedLanguage = value!;
-                        if (_selectedLanguage == 'English') {
-                          widget.changeLanguage('en');
-                        } else if (_selectedLanguage == 'Deutsch') {
-                          widget.changeLanguage('de');
-                        }
-                      });
+                      setState(
+                        () {
+                          _selectedLanguage = value!;
+                          if (_selectedLanguage == 'English') {
+                            widget.changeLanguage('en');
+                          } else if (_selectedLanguage == 'Deutsch') {
+                            widget.changeLanguage('de');
+                          }
+                        },
+                      );
                     },
                     items: const [
                       DropdownMenuItem(
@@ -113,14 +117,16 @@ class _SettingsTabState extends State<SettingsTab> {
                     ),
                     value: "Deutsch",
                     onChanged: (value) {
-                      setState(() {
-                        _selectedLanguage = value!;
-                        if (_selectedLanguage == 'English') {
-                          widget.changeLanguage('en');
-                        } else if (_selectedLanguage == 'Deutsch') {
-                          widget.changeLanguage('de');
-                        }
-                      });
+                      setState(
+                        () {
+                          _selectedLanguage = value!;
+                          if (_selectedLanguage == 'English') {
+                            widget.changeLanguage('en');
+                          } else if (_selectedLanguage == 'Deutsch') {
+                            widget.changeLanguage('de');
+                          }
+                        },
+                      );
                     },
                     items: const [
                       DropdownMenuItem(

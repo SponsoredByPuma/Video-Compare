@@ -15,20 +15,21 @@ class LandingControllerImplmentation extends LandingController {
               lightmode: true,
               currentLanguage: 'en',
             )));
+
   @override
   void changeLanguage(BuildContext context, String languageCode) {
     _languageService.changeLanguage(context, languageCode);
     state = state.copyWith(currentLanguage: _languageService.currentLanguage);
   }
+
   @override
   void switchColorMode() {
     _themeService.switchTheme();
     state = state.copyWith(lightmode: !state.lightmode);
   }
+
   @override
   bool getLightmode() {
     return state.lightmode;
   }
-
-
 }
