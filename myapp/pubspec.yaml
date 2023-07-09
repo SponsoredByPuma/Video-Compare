@@ -23,7 +23,8 @@ dependencies:
   file_picker: ^5.3.0
   open_file: ^3.3.1
   video_trimmer: ^2.1.0
-  google_fonts: ^5.0.0
+  google_fonts: ^4.0.4
+  gallery_saver: ^2.1.1
 
   cupertino_icons: ^1.0.2
   get: ^4.6.5
