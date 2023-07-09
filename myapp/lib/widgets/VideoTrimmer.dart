@@ -55,10 +55,10 @@ class _VideoTrimmerState extends State<VideoTrimmer> {
         onChangePlaybackState: (bool value) => {},
         showDuration: false,
         editorProperties: const TrimEditorProperties(
-          borderPaintColor: Color.fromARGB(255, 172, 19, 39),
+          borderPaintColor: Color.fromARGB(255, 216, 99, 67),
           borderWidth: 6,
           circleSize: 10,
-          circlePaintColor: Color.fromARGB(255, 67, 203, 244),
+          circlePaintColor: Colors.white,
           circleSizeOnDrag: 12,
           borderRadius: 12,
         ),

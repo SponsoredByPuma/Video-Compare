@@ -19,8 +19,8 @@ class ThemeService extends GetxController {
     ),
     primaryColor: Colors.black,
     sliderTheme: const SliderThemeData(
-      activeTrackColor: Color.fromARGB(248, 88, 10, 161),
-      inactiveTrackColor: Color.fromARGB(204, 148, 10, 10),
+      activeTrackColor: Color.fromARGB(255, 82, 224, 153),
+      inactiveTrackColor: Color.fromARGB(255, 216, 99, 67),
       trackHeight: 14,
       thumbShape:
           RoundSliderThumbShape(enabledThumbRadius: 12, pressedElevation: 10),
@@ -62,7 +62,7 @@ class ThemeService extends GetxController {
       trackHeight: 14,
       thumbShape:
           RoundSliderThumbShape(enabledThumbRadius: 12, pressedElevation: 10),
-      thumbColor: Color.fromARGB(255, 0, 0, 0),
+      thumbColor: Colors.white,
       trackShape: RectangularSliderTrackShape(),
       showValueIndicator: ShowValueIndicator.always,
       valueIndicatorColor: Colors.amber,
