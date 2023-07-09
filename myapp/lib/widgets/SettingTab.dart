@@ -106,7 +106,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 ),
               )
             : Align(
-                alignment: const Alignment(0, -0.45),
+                alignment: const Alignment(0, -0.25),
                 child: Theme(
                   data: Theme.of(context),
                   child: DropdownButtonFormField<String>(
