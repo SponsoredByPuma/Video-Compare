@@ -18,41 +18,42 @@ class SavingWidget {
       return;
     }
     showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          _context = context;
-          isDisplayed = true;
-          return WillPopScope(
-            onWillPop: () async => false,
-            child: SimpleDialog(
-              children: [
-                Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 16, top: 16, right: 16),
-                        child: CupertinoActivityIndicator(
-                          color: Color.fromARGB(255, 39, 176, 130),
-                          radius: 30,
-                        ),
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        _context = context;
+        isDisplayed = true;
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: SimpleDialog(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16, top: 16, right: 16),
+                      child: CupertinoActivityIndicator(
+                        color: Color.fromARGB(255, 39, 176, 130),
+                        radius: 30,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          textScaleFactor: 2,
-                          text,
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          );
-        });
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        textScaleFactor: 2,
+                        text,
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
   dismiss() {

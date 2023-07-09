@@ -53,17 +53,21 @@ class _PlayButtonState extends State<PlayButton> {
 
   void _watcherFirstVideo() {
     if (mounted) {
-      setState(() {
-        widget.watcherFirstVideo();
-      });
+      setState(
+        () {
+          widget.watcherFirstVideo();
+        },
+      );
     }
   }
 
   void _watcherSecondVideo() {
     if (mounted) {
-      setState(() {
-        widget.watcherSecondVideo();
-      });
+      setState(
+        () {
+          widget.watcherSecondVideo();
+        },
+      );
     }
   }
 
@@ -88,16 +92,18 @@ class _PlayButtonState extends State<PlayButton> {
             color: Theme.of(context).primaryColor,
           ),
           onPressed: () {
-            setState(() {
-              _isPlaying = !_isPlaying;
-              if (_isPlaying) {
-                widget.firstVideoController!.play();
-                widget.secondVideoController!.play();
-              } else {
-                widget.firstVideoController!.pause();
-                widget.secondVideoController!.pause();
-              }
-            });
+            setState(
+              () {
+                _isPlaying = !_isPlaying;
+                if (_isPlaying) {
+                  widget.firstVideoController!.play();
+                  widget.secondVideoController!.play();
+                } else {
+                  widget.firstVideoController!.pause();
+                  widget.secondVideoController!.pause();
+                }
+              },
+            );
           },
         );
       },

@@ -34,10 +34,12 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
         videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
       );
       await controllerTmp.initialize();
-      setState(() {
-        widget.controller = controllerTmp;
-        widget.video = videoFile;
-      });
+      setState(
+        () {
+          widget.controller = controllerTmp;
+          widget.video = videoFile;
+        },
+      );
       widget.onVideoSelected(controllerTmp, videoFile);
     }
   }
@@ -53,7 +55,6 @@ class _VideoChooserButtonState extends State<VideoChooserButton> {
             )
           : IconButton(
               icon: const Icon(
-                //Icons.add_rounded,
                 Icons.add_a_photo_rounded,
                 color: Colors.black,
               ),

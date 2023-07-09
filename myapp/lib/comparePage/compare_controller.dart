@@ -15,7 +15,6 @@ import 'package:path/path.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:ffmpeg_kit_flutter/return_code.dart';
 
-
 class CompareControllerImplmentation extends CompareController {
   final LanguageService _languageService = Get.find();
   final ThemeService _themeService = Get.find();
@@ -194,8 +193,6 @@ class CompareControllerImplmentation extends CompareController {
     String outputPath = '$path$videoFileName$outputFormatString';
     debugPrint(outputPath);
 
-
-
     final List<String> commandHorizontal = [
       '-i',
       firstVideoPath,
@@ -235,10 +232,12 @@ class CompareControllerImplmentation extends CompareController {
       '60',
       outputPath,
     ];
-    List<String>  executeCommand = commandHorizontal;
-    if(vertical) {
+
+    List<String> executeCommand = commandHorizontal;
+    if (vertical) {
       executeCommand = commandVertical;
     }
+
     bool didItWork = false;
     await FFmpegKit.executeWithArguments(executeCommand).then((value) async {
       final returnCode = await value.getReturnCode();
@@ -251,22 +250,20 @@ class CompareControllerImplmentation extends CompareController {
     return didItWork;
   }
 
-Future<String> _createFolderInAppDocDir(String folderName) async {
-  // Directory + folder name
-  Directory? directory;
-  directory = await getExternalStorageDirectory();
-  final Directory directoryFolder = Directory('${directory!.path}/$folderName');
+  Future<String> _createFolderInAppDocDir(String folderName) async {
+    Directory? directory;
+    directory = await getExternalStorageDirectory();
+    final Directory directoryFolder =
+        Directory('${directory!.path}/$folderName');
 
-  if (await directoryFolder.exists()) {
-    // If folder already exists return path
-    debugPrint('Exists');
-    return directoryFolder.path;
-  } else {
-    debugPrint('Creating');
-    // If folder does not exists create folder and then return its path
-    final Directory directoryNewFolder =
-        await directoryFolder.create(recursive: true);
-    return directoryNewFolder.path;
+    if (await directoryFolder.exists()) {
+      debugPrint('Exists');
+      return directoryFolder.path;
+    } else {
+      debugPrint('Creating');
+      final Directory directoryNewFolder =
+          await directoryFolder.create(recursive: true);
+      return directoryNewFolder.path;
+    }
   }
-}
 }

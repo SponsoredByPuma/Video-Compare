@@ -9,6 +9,8 @@ class HorizontalContainer extends StatelessWidget {
   final VideoPlayerController? controllerLeft;
   final VideoPlayerController? controllerRight;
   final PlayButton playButton;
+  final bool clickedUp;
+  final bool clickedDown;
   final Function() firstContainerTapped;
   final Function() secondContainerTapped;
 
@@ -21,6 +23,8 @@ class HorizontalContainer extends StatelessWidget {
     required this.firstContainerTapped,
     required this.secondContainerTapped,
     required this.playButton,
+    required this.clickedUp,
+    required this.clickedDown,
   }) : super(key: key);
 
   @override
@@ -35,6 +39,7 @@ class HorizontalContainer extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 child: BorderedContainer(
                   vertical: false,
+                  clicked: clickedUp,
                   child: leftVideoController,
                 ),
                 onTap: () {
@@ -52,6 +57,7 @@ class HorizontalContainer extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 child: BorderedContainer(
                   vertical: false,
+                  clicked: clickedDown,
                   child: rightVideoController,
                 ),
                 onTap: () {

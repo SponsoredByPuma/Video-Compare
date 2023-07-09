@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class ThemeService extends GetxController {
   bool isLightMode = Get.isDarkMode ? false : true;
   bool isDarkModeEnabled = Get.isDarkMode ? true : false;
@@ -20,17 +19,17 @@ class ThemeService extends GetxController {
     ),
     primaryColor: Colors.black,
     sliderTheme: const SliderThemeData(
-      activeTrackColor: Color.fromARGB(248, 88, 10, 161),
-      inactiveTrackColor: Color.fromARGB(204, 148, 10, 10),
+      activeTrackColor: Color.fromARGB(255, 82, 224, 153),
+      inactiveTrackColor: Color.fromARGB(255, 216, 99, 67),
       trackHeight: 14,
-      thumbShape: RoundSliderThumbShape(
-          enabledThumbRadius: 12, pressedElevation: 10),
-      thumbColor: Color.fromARGB(255, 255, 255, 255),
+      thumbShape:
+          RoundSliderThumbShape(enabledThumbRadius: 12, pressedElevation: 10),
+      thumbColor: Colors.black,
       trackShape: RectangularSliderTrackShape(),
       showValueIndicator: ShowValueIndicator.always,
       valueIndicatorColor: Color.fromARGB(255, 0, 0, 0),
       valueIndicatorTextStyle:
-      TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
     ),
     primaryTextTheme: Typography(platform: TargetPlatform.iOS).black,
     textTheme: Typography(platform: TargetPlatform.iOS).black,
@@ -61,9 +60,9 @@ class ThemeService extends GetxController {
       activeTrackColor: Color.fromARGB(249, 161, 151, 10),
       inactiveTrackColor: Color.fromARGB(204, 14, 161, 117),
       trackHeight: 14,
-      thumbShape: RoundSliderThumbShape(
-          enabledThumbRadius: 12, pressedElevation: 10),
-      thumbColor: Color.fromARGB(255, 0, 0, 0),
+      thumbShape:
+          RoundSliderThumbShape(enabledThumbRadius: 12, pressedElevation: 10),
+      thumbColor: Colors.white,
       trackShape: RectangularSliderTrackShape(),
       showValueIndicator: ShowValueIndicator.always,
       valueIndicatorColor: Colors.amber,
@@ -95,10 +94,9 @@ class ThemeService extends GetxController {
       Get.changeThemeMode(ThemeMode.dark);
       isDarkModeEnabled = true;
     }
-
   }
 
-  bool isDarkmodeOn(){
+  bool isDarkmodeOn() {
     return isDarkModeEnabled;
   }
 
